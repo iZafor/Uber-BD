@@ -12,6 +12,6 @@ public class LoginInfo {
     }
 
     public User verifyLoginInfo() {
-        return null;
+        return DB.getInstance().getUser(id, password, userType);
     }
 }
