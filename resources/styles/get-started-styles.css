@@ -1,0 +1,60 @@
+.title-text {
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+}
+
+.link-text {
+    -fx-font-size: 14;
+    -fx-underline: true;
+    -fx-fill: #0802A3;
+    -fx-cursor: hand;
+}
+
+AnchorPane {
+    -fx-background-color: #FFFAF4;
+}
+
+TextField {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-size: 16;
+    -fx-padding: 2;
+    -fx-pref-width: 288;
+    -fx-pref-height: 35;
+}
+
+ComboBox {
+    -fx-pref-width: 288;
+    -fx-pref-height: 35;
+    -fx-background-color: #0F0F0F;
+    -fx-border-width: 0;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell {
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #FFFAF4;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #9DB2BF;
+}
+
+ComboBox .text {
+    -fx-fill: #FFFAF4;
+}
+
+ComboBox .arrow {
+    -fx-background-color: #FFFAF4;
+}
+
+Button {
+    -fx-pref-width: 288;
+    -fx-pref-height: 35;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #FFFAF4;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}

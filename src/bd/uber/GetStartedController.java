@@ -7,22 +7,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 public class GetStartedController implements Initializable {
     @FXML
-    private Label label;
-    @FXML
-    private Button button;
-
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    ComboBox<UserType> userTypeChoiceBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        userTypeChoiceBox.getItems().addAll(UserType.values());
     }
 }
