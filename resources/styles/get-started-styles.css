@@ -14,7 +14,7 @@ AnchorPane {
     -fx-background-color: #FFFAF4;
 }
 
-TextField {
+TextField, PasswordField {
     -fx-background-color: transparent;
     -fx-border-color: #0F0F0F;
     -fx-border-width: 0 0 2 0;
