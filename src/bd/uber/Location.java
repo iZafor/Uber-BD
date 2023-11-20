@@ -2,7 +2,7 @@ package bd.uber;
 
 import java.io.Serializable;
 
-public class Location implements Serializable {
+public final class Location implements Serializable {
     private final String name;
     private final float distanceFromCentralPoint;
 
