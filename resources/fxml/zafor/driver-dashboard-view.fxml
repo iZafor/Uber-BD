@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="780.0" prefWidth="780.0" stylesheets="@../../styles/zafor/driver-dashboard-styles.css"
+            BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="bd.uber.zafor.controller.DriverDashboardController">
+    <AnchorPane prefHeight="780.0" prefWidth="780.0" styleClass="dashboard-container" AnchorPane.bottomAnchor="10.0"
+                AnchorPane.topAnchor="10.0">
+        <Text fx:id="driverNameText" layoutX="49.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              styleClass="title-text" text="Himel" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="39.0"/>
+        <Text fx:id="currentDateText" layoutX="667.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              styleClass="title-text" text="2023-11-13" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="39.0"/>
+        <Text layoutX="20.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text"
+              text="Availability Status:" AnchorPane.leftAnchor="20.0"/>
+        <Text layoutX="20.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text"
+              text="Current Ride Info:" AnchorPane.leftAnchor="20.0"/>
+        <Text layoutX="51.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text"
+              text="Previous Rides:" AnchorPane.leftAnchor="20.0"/>
+        <ComboBox fx:id="driverStatusComboBox" layoutX="217.0" layoutY="99.0" prefWidth="150.0"/>
+        <ScrollPane layoutX="51.0" layoutY="340.0" prefHeight="425.0" prefWidth="756.0" AnchorPane.leftAnchor="20.0"
+                    AnchorPane.rightAnchor="23.0">
+            <VBox fx:id="ridesVBox" prefHeight="423.0" prefWidth="785.0" styleClass="rides-list"/>
+        </ScrollPane>
+    </AnchorPane>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package bd.uber.zafor;
+package bd.uber.zafor.model;
 
 import bd.uber.Location;
 

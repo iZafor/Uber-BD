@@ -1,0 +1,25 @@
+VBox {
+    -fx-background-color: #DFDFDE;
+    -fx-background-radius: 4;
+    -fx-spacing: 14;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-pref-width: 200;
+    -fx-pref-height: 80;
+    -fx-text-fill: #FFFAF4;
+    -fx-font-size: 20;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.selected {
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 3;
+    -fx-border-radius: 4;
+    -fx-background-color: #FFFAF4;
+    -fx-text-fill: #0F0F0F;
+}

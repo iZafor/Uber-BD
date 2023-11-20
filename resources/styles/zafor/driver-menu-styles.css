@@ -1,0 +1,20 @@
+VBox {
+    -fx-background-color: #DFDFDE;
+    -fx-background-radius: 4;
+    -fx-spacing: 14;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-pref-width: 200;
+    -fx-pref-height: 40;
+    -fx-text-fill: #FFFAF4;
+    -fx-font-size: 16;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.log-out-button {
+    -fx-background-color: #FFFAF4;
+    -fx-text-fill: #0F0F0F;
+}

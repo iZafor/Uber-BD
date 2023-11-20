@@ -12,6 +12,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/get-started-view.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        stage.setTitle("Get Started");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

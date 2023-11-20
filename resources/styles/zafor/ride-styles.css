@@ -1,0 +1,25 @@
+HBox {
+    -fx-background-color: #DFDFDE;
+    -fx-background-radius: 4;
+}
+
+Label {
+    -fx-font-size: 14;
+}
+
+.address-label {
+    -fx-pref-width: 115;
+    -fx-pref-height: 20;
+}
+
+.pickup-address {
+    -fx-text-fill: #005B41;
+}
+
+.dropOff-address {
+    -fx-text-fill: #860A35;
+}
+
+.ride-completion-text {
+    -fx-text-fill: #005B41;
+}

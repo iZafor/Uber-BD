@@ -1,0 +1,25 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 24;
+}
+
+TextField, ComboBox {
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-pref-height: 47;
+    -fx-pref-width: 252;
+}
+
+.mandatory {
+    -fx-font-size: 14;
+    -fx-fill: red;
+}
+
+ImageView {
+    -fx-cursor: hand;
+}

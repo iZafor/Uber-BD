@@ -4,16 +4,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public abstract class User implements Serializable {
-    protected final int id;
-    protected String password;
+    protected int id;
     protected String name;
-    protected final LocalDate accountCreationDate;
-    protected final ContactDetails contactDetails;
+    protected String password;
+    protected LocalDate accountCreationDate;
+    protected ContactDetails contactDetails;
 
-    public User(int id, String password, String name, LocalDate accountCreationDate, ContactDetails contactDetails) {
+    public User() {
+    }
+
+    public User(int id, String name, String password, LocalDate accountCreationDate, ContactDetails contactDetails) {
         this.id = id;
-        this.password = password;
         this.name = name;
+        this.password = password;
         this.accountCreationDate = accountCreationDate;
         this.contactDetails = contactDetails;
     }
@@ -22,12 +25,8 @@ public abstract class User implements Serializable {
         return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,11 +37,27 @@ public abstract class User implements Serializable {
         this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public LocalDate getAccountCreationDate() {
         return accountCreationDate;
     }
 
+    public void setAccountCreationDate(LocalDate accountCreationDate) {
+        this.accountCreationDate = accountCreationDate;
+    }
+
     public ContactDetails getContactDetails() {
         return contactDetails;
+    }
+
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
     }
 }

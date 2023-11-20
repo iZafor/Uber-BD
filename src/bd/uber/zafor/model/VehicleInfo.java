@@ -1,9 +1,10 @@
-package bd.uber.zafor;
+package bd.uber.zafor.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleInfo implements Serializable {
+public final class VehicleInfo implements Serializable {
     private String model;
     private String registrationNumber;
     private int passengerCapacity;
@@ -15,17 +16,8 @@ public class VehicleInfo implements Serializable {
     private List<DamageReport> damageReports;
     private InsurancePolicy insurancePolicy;
 
-    public VehicleInfo(String model, String registrationNumber, int passengerCapacity, int numberOfEngines, String color, VehicleType vehicleType, VehicleStatus vehicleStatus, MaintenanceStatus maintenanceStatus, List<DamageReport> damageReports, InsurancePolicy insurancePolicy) {
-        this.model = model;
-        this.registrationNumber = registrationNumber;
-        this.passengerCapacity = passengerCapacity;
-        this.numberOfEngines = numberOfEngines;
-        this.color = color;
-        this.vehicleType = vehicleType;
-        this.vehicleStatus = vehicleStatus;
-        this.maintenanceStatus = maintenanceStatus;
-        this.damageReports = damageReports;
-        this.insurancePolicy = insurancePolicy;
+    public VehicleInfo() {
+        damageReports = new ArrayList<>();
     }
 
     public String getModel() {

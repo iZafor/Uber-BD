@@ -1,0 +1,41 @@
+.dashboard-container {
+    -fx-background-color: #DFDFDE;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+ComboBox {;
+    -fx-background-color: #0F0F0F;
+    -fx-pref-height: 40;
+    -fx-pref-width: 180;
+    -fx-font-size: 20;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell {
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #FFFAF4;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #9DB2BF;
+}
+
+ComboBox .text {
+    -fx-fill: #FFFAF4;
+}
+
+ComboBox .arrow {
+    -fx-background-color: #FFFAF4;
+}
+
+.rides-list {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+ScrollPane {
+    -fx-hbar-policy: NEVER;
+    -fx-vbar-policy: ALWAYS;
+}

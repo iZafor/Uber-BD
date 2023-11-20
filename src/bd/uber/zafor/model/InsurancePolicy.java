@@ -1,4 +1,4 @@
-package bd.uber.zafor;
+package bd.uber.zafor.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;

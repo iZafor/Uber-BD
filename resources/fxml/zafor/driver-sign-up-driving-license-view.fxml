@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="780.0" prefWidth="780.0" stylesheets="@../../styles/zafor/driver-sign-up-driving-license-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.DriverSignUpDrivingLicenseController">
+    <AnchorPane layoutY="14.0" prefHeight="780.0" prefWidth="780.0" styleClass="main-container" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Text layoutX="129.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="License number:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="110.0" />
+        <Text layoutX="129.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration date:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="170.0" />
+        <Text layoutX="129.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="License class:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="230.0" />
+        <Line endX="502.0" layoutX="147.0" layoutY="318.0" startX="-18.0" />
+        <Text layoutX="129.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Policy number:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="438.0" />
+        <Text layoutX="129.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provider:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="498.0" />
+        <Text layoutX="129.0" layoutY="584.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coverage amount:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="558.0" />
+        <Text layoutX="129.0" layoutY="644.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration date:" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="618.0" />
+        <Text layoutX="129.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Driving License" AnchorPane.leftAnchor="129.0" />
+        <Text layoutX="129.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Insurance Policy" AnchorPane.leftAnchor="129.0" />
+        <TextField fx:id="licenseNumberTextField" layoutX="399.0" layoutY="104.0" AnchorPane.topAnchor="104.0" />
+        <ComboBox fx:id="licenseClassComboBox" layoutX="399.0" layoutY="224.0" prefWidth="150.0" AnchorPane.topAnchor="224.0" />
+        <TextField fx:id="policyNumberTextField" layoutX="399.0" layoutY="432.0" AnchorPane.topAnchor="432.0" />
+        <TextField fx:id="policyProviderTextField" layoutX="399.0" layoutY="492.0" AnchorPane.topAnchor="492.0" />
+        <TextField fx:id="insuranceCoverageAmountTextField" layoutX="399.0" layoutY="552.0" AnchorPane.topAnchor="552.0" />
+        <DatePicker fx:id="insurancePolicyExpirationDatePicker" layoutX="399.0" layoutY="612.0" AnchorPane.topAnchor="612.0" />
+        <ImageView fitHeight="47.0" fitWidth="42.0" layoutX="609.0" layoutY="672.0" onMouseClicked="#onShowNextView" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="672.0">
+            <Image url="@../../images/next.png" />
+        </ImageView>
+      <DatePicker fx:id="divingLicenseExpirationDatePicker" layoutX="399.0" layoutY="164.0" AnchorPane.topAnchor="164.0" />
+      <Text layoutX="662.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+      <Text layoutX="662.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
+    </AnchorPane>
+</AnchorPane>
