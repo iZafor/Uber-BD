@@ -7,6 +7,7 @@ import bd.uber.zafor.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -61,9 +62,10 @@ public class DriverSignUpVehicleStatusController implements Initializable {
             Util.getInstance().showSuccessMessage("Signup successful.\n Your login id is " + driver.getId());
             try {
                 Util.getInstance().showScene(
-                        Util.getInstance().getLoader(FXMLFilePath.GET_STARTED_VIEW).load(),
+                        (Parent) Util.getInstance().getLoader(FXMLFilePath.GET_STARTED_VIEW).load(),
                         event,
-                        "Get Started"
+                        "Get Started",
+                        false
                 );
             } catch (Exception ignored) {
                 // log the error

@@ -3,12 +3,14 @@ package bd.uber;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,11 +35,12 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onCreateNewAccount(MouseEvent mouseEvent) {
-        Util.getInstance().showScene(
-                Util.getInstance().getDriverSignUpView(),
-                mouseEvent,
-                "Driver Signup"
-        );
+        try {
+            Scene scene = new Scene(Util.getInstance().getLoader(FXMLFilePath.CREATE_NEW_ACCOUNT_VIEW).load());
+            Util.getInstance().showScene(scene, mouseEvent, "");
+        } catch (IOException ignored) {
+            // log the error
+        }
     }
 
     @FXML

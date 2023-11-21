@@ -11,7 +11,7 @@
 }
 
 AnchorPane {
-    -fx-background-color: #FFFAF4;
+    -fx-background-color: #DFDFDE;
 }
 
 TextField, PasswordField {
@@ -33,7 +33,7 @@ ComboBox {
 
 ComboBox .combo-box-popup .list-view .list-cell {
     -fx-background-color: #0F0F0F;
-    -fx-text-fill: #FFFAF4;
+    -fx-text-fill: #DFDFDE;
 }
 
 ComboBox .combo-box-popup .list-view .list-cell:hover {
@@ -41,18 +41,18 @@ ComboBox .combo-box-popup .list-view .list-cell:hover {
 }
 
 ComboBox .text {
-    -fx-fill: #FFFAF4;
+    -fx-fill: #DFDFDE;
 }
 
 ComboBox .arrow {
-    -fx-background-color: #FFFAF4;
+    -fx-background-color: #DFDFDE;
 }
 
 Button {
     -fx-pref-width: 288;
     -fx-pref-height: 35;
     -fx-background-color: #0F0F0F;
-    -fx-text-fill: #FFFAF4;
+    -fx-text-fill: #DFDFDE;
     -fx-font-weight: bold;
     -fx-font-size: 16;
     -fx-border-width: 0;
