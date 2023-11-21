@@ -1,0 +1,18 @@
+AnchorPane {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 24;
+    -fx-fill: #0F0F0F;
+}
+
+Button {
+    -fx-font-size: 16;
+    -fx-text-fill: #DFDFDE;
+    -fx-background-color: #0F0F0F;
+    -fx-pref-width: 180;
+    -fx-pref-height: 32;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}

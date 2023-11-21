@@ -2,6 +2,7 @@ package bd.uber;
 
 public enum FXMLFilePath {
     GET_STARTED_VIEW("/fxml/get-started-view.fxml"),
+    CREATE_NEW_ACCOUNT_VIEW("/fxml/create-new-account-view.fxml"),
     DRIVER_VIEW("/fxml/zafor/driver-view.fxml"),
     DRIVER_DASHBOARD_VIEW("/fxml/zafor/driver-dashboard-view.fxml"),
     DRIVER_SIGN_UP_VIEW("/fxml/zafor/driver-sign-up-view.fxml"),

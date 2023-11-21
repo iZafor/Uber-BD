@@ -5,12 +5,14 @@ import bd.uber.zafor.model.Driver;
 import bd.uber.zafor.model.SignupForm;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -88,19 +90,30 @@ public class Util {
     }
 
     /**
-     * Use this method to show scene on the same window
+     * Shows a scene to the source window attached to the eventObject.
+     *
+     * @param parent node to show
+     * @param eventObject source for the window
+     * @param windowTitle title for the new window
+     * @param hideOwner to hide the owner window if there is any
      */
-    public void showScene(Parent parent, EventObject event, String windowTitle) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    public void showScene(Parent parent, EventObject eventObject, String windowTitle, boolean hideOwner) {
+        Stage stage = (Stage) ((Node) eventObject.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle(windowTitle);
+        if(hideOwner && stage.getOwner() != null) {
+            stage.getOwner().hide();
+        }
         stage.show();
     }
 
     /**
-     * Use this method to show scene on a new window
+     * Shows a scene to a whole new window.
+     *
+     * @param scene configured scene to show
+     * @param windowTitle title for the new window
      */
     public void showScene(Scene scene, String windowTitle) {
         Stage stage = new Stage();
@@ -108,6 +121,25 @@ public class Util {
         stage.setTitle(windowTitle);
         stage.setResizable(false);
         stage.show();
+    }
+
+    /**
+     * Shows a scene to a new window adding ownership
+     * and modality to the provided window.
+     *
+     * @param scene configured scene to show
+     * @param eventObject source for the owner window
+     * @param windowTitle title for the new window
+     */
+    public void showScene(Scene scene, EventObject eventObject, String windowTitle) {
+        Stage ownerStage = (Stage) ((Node) eventObject.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
+        stage.setResizable(false);
+        stage.initOwner(ownerStage);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(scene);
+        stage.setTitle(windowTitle);
+        stage.showAndWait();
     }
 
     public FXMLLoader getLoader(FXMLFilePath fxmlFilePath) {
