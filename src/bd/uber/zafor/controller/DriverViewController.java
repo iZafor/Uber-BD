@@ -41,7 +41,7 @@ public class DriverViewController implements Initializable {
     }
 
     @FXML
-    private void onShowProfile(ActionEvent event) {
+    private void onShowAccountSettings(ActionEvent event) {
     }
 
     @FXML

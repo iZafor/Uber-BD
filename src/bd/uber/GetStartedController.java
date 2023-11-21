@@ -45,16 +45,21 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-        LoginInfo loginInfo;
-        if ((loginInfo = validateInputs()) == null) {
-            showAlert("Invalid Input!");
-            return;
-        }
-
-        if (loginInfo.verifyLoginInfo() == null) {
-            showAlert("Incorrect Credential!");
-            return;
-        }
+        Util.getInstance().showScene(
+                Util.getInstance().getDriverView(),
+                actionEvent,
+                "Driver",
+                false
+        );
+//        LoginInfo loginInfo;
+//        if ((loginInfo = validateInputs()) == null) {
+//            showAlert("Invalid Input!");
+//            return;
+//        }
+//
+//        if (loginInfo.verifyLoginInfo() == null) {
+//            showAlert("Incorrect Credential!");
+//        }
     }
 
     private LoginInfo validateInputs() {

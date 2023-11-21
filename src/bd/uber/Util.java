@@ -106,6 +106,7 @@ public class Util {
         if(hideOwner && stage.getOwner() != null) {
             stage.getOwner().hide();
         }
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -120,6 +121,7 @@ public class Util {
         stage.setScene(scene);
         stage.setTitle(windowTitle);
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
     }
 
@@ -139,6 +141,7 @@ public class Util {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(scene);
         stage.setTitle(windowTitle);
+        stage.centerOnScreen();
         stage.showAndWait();
     }
 

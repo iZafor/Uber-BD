@@ -38,8 +38,8 @@
         <Text layoutX="682.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
         <Text layoutX="682.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
         <Text layoutX="682.0" layoutY="545.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
-        <ScrollPane fx:id="scrollPane" layoutX="419.0" layoutY="410.0">
-            <VBox fx:id="searchResultVBox" prefHeight="234.0" prefWidth="244.0" />
+        <ScrollPane fx:id="scrollPane" layoutX="419.0" layoutY="410.0" visible="false">
+            <VBox fx:id="searchResultVBox" prefHeight="234.0" prefWidth="244.0" visible="false" />
         </ScrollPane>
     </AnchorPane>
 </AnchorPane>

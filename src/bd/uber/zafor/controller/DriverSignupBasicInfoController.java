@@ -53,7 +53,7 @@ public class DriverSignupBasicInfoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         restoreData();
         addSearchFunctionality();
-        scrollPane.visibleProperty().setValue(false);
+        searchResultVBox.visibleProperty().setValue(true);
     }
 
     @FXML
