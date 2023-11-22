@@ -29,6 +29,9 @@ public class DriverSignupController implements Initializable {
     @FXML
     public Button vehicleStatusButton;
 
+    @FXML
+    public Button identificationInfoButton;
+
     private ObjectProperty<SignupForm> signupFormProperty;
 
     @Override
@@ -36,6 +39,7 @@ public class DriverSignupController implements Initializable {
         drivingLicenseButton.setDisable(true);
         vehicleInfoButton.setDisable(true);
         vehicleStatusButton.setDisable(true);
+        identificationInfoButton.setDisable(true);
     }
 
     public void setInitData(ObjectProperty<SignupForm> signupFormProperty) {
@@ -67,12 +71,18 @@ public class DriverSignupController implements Initializable {
         setSignupForm(SignupForm.VEHICLE_STATUS);
     }
 
+    @FXML
+    public void onIdentificationInfo() {
+        setSignupForm(SignupForm.IDENTIFICATION_INFO);
+    }
+
     private void configureSignupFormProperty() {
         signupFormProperty.addListener((observable, oldValue, newValue) -> {
             basicInfoButton.getStyleClass().removeAll("selected");
             drivingLicenseButton.getStyleClass().removeAll("selected");
             vehicleInfoButton.getStyleClass().removeAll("selected");
             vehicleStatusButton.getStyleClass().removeAll("selected");
+            identificationInfoButton.getStyleClass().removeAll("selected");
 
             try {
                 switch (newValue) {
@@ -105,6 +115,14 @@ public class DriverSignupController implements Initializable {
                         signupBorderPane.setCenter(
                                 Util.getInstance()
                                         .getLoader(FXMLFilePath.DRIVER_SIGN_UP_VEHICLE_STATUS_VIEW).load()
+                        );
+                        break;
+                    case IDENTIFICATION_INFO:
+                        identificationInfoButton.setDisable(false);
+                        identificationInfoButton.getStyleClass().add("selected");
+                        signupBorderPane.setCenter(
+                                Util.getInstance()
+                                        .getLoader(FXMLFilePath.DRIVER_SIGN_UP_IDENTIFICATION_INFO_VIEW).load()
                         );
                         break;
                 }

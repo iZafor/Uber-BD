@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DriverDashboardController implements Initializable {
@@ -29,7 +30,7 @@ public class DriverDashboardController implements Initializable {
     private Text tripsCountText;
 
     @FXML
-    private TextField currentLocationText;
+    private TextField currentLocationTextField;
 
     @FXML
     private TextField rideRequestAreaTextField;
@@ -52,11 +53,15 @@ public class DriverDashboardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         configureRideRequestArea();
         configureAvailabilityStatus();
+        currentDateText.setText(LocalDate.now().toString());
         driverStatusComboBox.getItems().addAll(DriverStatus.values());
     }
 
     public void setInitData(Driver driver) {
         this.driver = driver;
+        driverNameText.setText(driver.getName());
+        vehicleModelText.setText(driver.getVehicleInfo().getModel());
+        currentLocationTextField.setText(driver.getContactDetails().getAddress().getName());
     }
 
     private void configureAvailabilityStatus() {

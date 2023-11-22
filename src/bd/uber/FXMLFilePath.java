@@ -10,6 +10,7 @@ public enum FXMLFilePath {
     DRIVER_SIGN_UP_VEHICLE_INFO_VIEW("/fxml/zafor/driver-sign-up-vehicle-info-view.fxml"),
     DRIVER_SIGN_UP_VEHICLE_STATUS_VIEW("/fxml/zafor/driver-sign-up-vehicle-status-view.fxml"),
     DRIVER_SIGN_UP_DRIVING_LICENSE_VIEW("/fxml/zafor/driver-sign-up-driving-license-view.fxml"),
+    DRIVER_SIGN_UP_IDENTIFICATION_INFO_VIEW("/fxml/zafor/driver-sign-up-identification-info-view.fxml"),
     RIDE_VIEW("/fxml/zafor/ride-view.fxml");
 
     private final String path;

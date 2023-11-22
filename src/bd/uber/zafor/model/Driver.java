@@ -2,8 +2,8 @@ package bd.uber.zafor.model;
 
 import bd.uber.ContactDetails;
 import bd.uber.Location;
-import bd.uber.Util;
 import bd.uber.User;
+import bd.uber.Util;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Driver extends User implements Serializable {
+    private String profileImage;
+    private String nidFrontSide;
+    private String nidBackSide;
     private DriverStatus driverStatus;
     private Location currentLocation;
     private VehicleInfo vehicleInfo;
@@ -48,6 +51,30 @@ public final class Driver extends User implements Serializable {
         totalEarnings += ride.getFare();
         distanceDriven += ride.getRideDistance();
         Util.getInstance().getDb().addRide(ride); // unsure
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getNidFrontSide() {
+        return nidFrontSide;
+    }
+
+    public void setNidFrontSide(String nidFrontSide) {
+        this.nidFrontSide = nidFrontSide;
+    }
+
+    public String getNidBackSide() {
+        return nidBackSide;
+    }
+
+    public void setNidBackSide(String nidBackSide) {
+        this.nidBackSide = nidBackSide;
     }
 
     public DriverStatus getDriverStatus() {

@@ -33,11 +33,11 @@ public class DriverViewController implements Initializable {
         FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_DASHBOARD_VIEW);
         try {
             driverBorderPane.setCenter(loader.load());
+            DriverDashboardController controller = loader.getController();
+            controller.setInitData(driver);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        DriverDashboardController controller = loader.getController();
-        controller.setInitData(driver);
     }
 
     @FXML
@@ -46,5 +46,17 @@ public class DriverViewController implements Initializable {
 
     @FXML
     private void onLogout(ActionEvent event) {
+        try {
+            Util.getInstance().showScene(
+                    Util.getInstance().getLoader(
+                            FXMLFilePath.GET_STARTED_VIEW
+                    ).load(),
+                    event,
+                    "Get Started",
+                    false
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

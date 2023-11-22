@@ -32,12 +32,16 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
     private DatePicker insurancePolicyExpirationDatePicker;
 
     @FXML
-    private DatePicker divingLicenseExpirationDatePicker;
+    private DatePicker drivingLicenseExpirationDatePicker;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         restoreData();
         licenseClassComboBox.getItems().addAll(LicenseClass.values());
+        insurancePolicyExpirationDatePicker.setConverter(Util.STRING_CONVERTER_FOR_LOCAL_DATE);
+        drivingLicenseExpirationDatePicker.setConverter(Util.STRING_CONVERTER_FOR_LOCAL_DATE);
+        insurancePolicyExpirationDatePicker.setDayCellFactory(param -> Util.getInstance().getConstrainedDateCell(LocalDate.now(), null));
+        drivingLicenseExpirationDatePicker.setDayCellFactory(param -> Util.getInstance().getConstrainedDateCell(LocalDate.now(), null));
     }
 
     @FXML
@@ -61,8 +65,8 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
             return false;
         }
 
-        LocalDate divingLicenseExpirationDate = divingLicenseExpirationDatePicker.getValue();
-        if (divingLicenseExpirationDate == null) {
+        LocalDate drivingLicenseExpirationDate = drivingLicenseExpirationDatePicker.getValue();
+        if (drivingLicenseExpirationDate == null) {
             Util.getInstance().showWarningMessage("Driving License expiration date cannot be avoided!");
             return false;
         }
@@ -84,7 +88,7 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
         float insuranceCoverageAmount;
         try {
             insuranceCoverageAmount = Float.parseFloat(insuranceCoverageAmountTextField.getText());
-        }catch (NumberFormatException | NullPointerException ignored) {
+        } catch (NumberFormatException | NullPointerException ignored) {
             Util.getInstance().showWarningMessage("Provide a valid coverage amount!");
             return false;
         }
@@ -98,7 +102,7 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
         Driver driver = Util.getInstance().getSignUpDriver();
         driver.setDrivingLicense(new DrivingLicense(
                 licenseNumber,
-                divingLicenseExpirationDate,
+                drivingLicenseExpirationDate,
                 licenseClass
         ));
         driver.getVehicleInfo().setInsurancePolicy(
@@ -118,14 +122,14 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
             // DrivingLicense
             licenseNumberTextField.setText(driver.getDrivingLicense().getLicenseNumber());
             licenseClassComboBox.setValue(driver.getDrivingLicense().getLicenseClass());
-            divingLicenseExpirationDatePicker.setValue(driver.getDrivingLicense().getExpirationDate());
+            drivingLicenseExpirationDatePicker.setValue(driver.getDrivingLicense().getExpirationDate());
 
             // InsurancePolicy
             policyNumberTextField.setText(driver.getVehicleInfo().getInsurancePolicy().getPolicyNumber());
             policyProviderTextField.setText(driver.getVehicleInfo().getInsurancePolicy().getProvider());
             insuranceCoverageAmountTextField.setText(String.valueOf(driver.getVehicleInfo().getInsurancePolicy().getCoverageAmount()));
             insurancePolicyExpirationDatePicker.setValue(driver.getVehicleInfo().getInsurancePolicy().getExpirationDate());
-        }catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
 
         }
     }

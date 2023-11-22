@@ -90,8 +90,9 @@ public class DB {
 
     public boolean addLocation(Location location) {
         File locationFile = new File(BinFilePath.LOCATION.getPath());
-        try (FileOutputStream fos = new FileOutputStream(BinFilePath.RIDE.getPath());
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        boolean append = locationFile.exists();
+        try (FileOutputStream fos = new FileOutputStream(locationFile, append);
+             ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
             oos.writeObject(location);
             return true;
         } catch (IOException e) {

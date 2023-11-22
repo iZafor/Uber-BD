@@ -1,10 +1,7 @@
 package bd.uber.zafor.controller;
 
-import bd.uber.BinFilePath;
-import bd.uber.FXMLFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -38,6 +35,7 @@ public class DriverSignUpVehicleStatusController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        restoreData();
         fuelLevelComboBox.getItems().addAll(FuelLevel.values());
         engineoilLevelComboBox.getItems().addAll(EngineOilLevel.values());
         exteriorDamageComboBox.getItems().addAll(ExteriorDamage.values());
@@ -45,30 +43,26 @@ public class DriverSignUpVehicleStatusController implements Initializable {
     }
 
     @FXML
-    private void onSignup(ActionEvent event) {
+    private void onShowNextView() {
         if (validateInputs()) {
-            // Store to the bin file
+            Util.getInstance().setSignupForm(SignupForm.IDENTIFICATION_INFO);
+        }
+    }
+
+    private void restoreData() {
+        try {
             Driver driver = Util.getInstance().getSignUpDriver();
-            Util.getInstance().getDb().addUser(
-                    driver,
-                    BinFilePath.DRIVER
-            );
+            int odometerReading = driver.getVehicleInfo().getVehicleStatus().getOdometerReading();
+            float tirePressure = driver.getVehicleInfo().getVehicleStatus().getTirePressure();
+            odometerReadingTextField.setText(odometerReading == 0 ? "" : String.valueOf(odometerReading));
+            fuelLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getFuelLevel());
+            engineoilLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getEngineOilLevel());
+            interiorCleanlinessTextField.setText(driver.getVehicleInfo().getVehicleStatus().getInteriorCleanliness());
+            tirePressureTextField.setText(tirePressure == 0 ? "" : String.valueOf(tirePressure));
+            exteriorDamageComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getExteriorDamage());
+            mechanicalIssuesComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getMechanicalIssues());
+        } catch (Exception ignored) {
 
-            // Reset the signup instance
-            Util.getInstance().setSignUpDriver(null);
-
-            // Switch to the get started view
-            Util.getInstance().showSuccessMessage("Signup successful.\n Your login id is " + driver.getId());
-            try {
-                Util.getInstance().showScene(
-                        Util.getInstance().getLoader(FXMLFilePath.GET_STARTED_VIEW).load(),
-                        event,
-                        "Get Started",
-                        false
-                );
-            } catch (Exception ignored) {
-                // log the error
-            }
         }
     }
 

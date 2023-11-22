@@ -18,65 +18,53 @@
         <Text layoutX="18.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Availability Status:" AnchorPane.leftAnchor="18.0" />
         <Text layoutX="16.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Requests:" AnchorPane.leftAnchor="16.0" />
         <ComboBox fx:id="driverStatusComboBox" layoutX="207.0" layoutY="237.0" prefWidth="150.0" AnchorPane.topAnchor="237.0" />
-      <ImageView fitHeight="132.0" fitWidth="134.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
+        <ImageView fitHeight="132.0" fitWidth="134.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/man.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="21.0" layoutX="215.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="21.0" layoutX="215.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/star.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="driverRatingText" layoutX="180.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="2.9" AnchorPane.leftAnchor="180.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text fx:id="tripsCountText" layoutX="180.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="10" AnchorPane.leftAnchor="180.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="216.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="trips">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="445.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Location:" />
-      <TextField fx:id="currentLocationText" layoutX="547.0" layoutY="237.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="237.0" />
-      <Text layoutX="16.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Request Area: " />
-      <Text layoutX="304.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="km" />
-      <TextField fx:id="rideRequestAreaTextField" layoutX="207.0" layoutY="306.0" styleClass="ride-request-area" />
-      <Text layoutX="14.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Total Earnings:" />
-      <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="164.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-         <image>
+        </ImageView>
+        <Text fx:id="driverRatingText" layoutX="180.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="2.9" AnchorPane.leftAnchor="180.0">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Text>
+        <Text fx:id="tripsCountText" layoutX="180.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="10" AnchorPane.leftAnchor="180.0">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Text>
+        <Text layoutX="216.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="trips">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Text>
+        <Text layoutX="445.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Location:" />
+        <TextField fx:id="currentLocationTextField" layoutX="547.0" layoutY="237.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="237.0" />
+        <Text layoutX="16.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Request Area: " />
+        <Text layoutX="304.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="km" />
+        <TextField fx:id="rideRequestAreaTextField" layoutX="207.0" layoutY="306.0" styleClass="ride-request-area" />
+        <Text layoutX="14.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Total Earnings:" />
+        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="164.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/bangladesh-currency.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="totalEarningsText" layoutX="191.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
-      <Text layoutX="281.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Earned Today:" />
-      <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="426.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-         <image>
+        </ImageView>
+        <Text fx:id="totalEarningsText" layoutX="191.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
+        <Text layoutX="281.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Earned Today:" />
+        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="426.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/bangladesh-currency.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="earnedTodayText" layoutX="451.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
-      <Text fx:id="vehicleModelText" layoutX="217.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="Toyota Camry">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="175.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
-         <image>
+        </ImageView>
+        <Text fx:id="earnedTodayText" layoutX="451.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
+        <Text fx:id="vehicleModelText" layoutX="217.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="Toyota Camry">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Text>
+        <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="175.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/car.png" />
-         </image>
-      </ImageView>
-      <ScrollPane layoutX="18.0" layoutY="421.0" prefHeight="200.0" prefWidth="746.0" styleClass="ride-request-scroll-pane">
-         <content>
+        </ImageView>
+        <ScrollPane layoutX="18.0" layoutY="421.0" prefHeight="200.0" prefWidth="746.0" styleClass="ride-request-scroll-pane">
             <VBox fx:id="rideRequestsVBox" prefHeight="200.0" prefWidth="747.0" />
-         </content>
-      </ScrollPane>
-      <Text layoutX="18.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Current Ride Info:" />
+        </ScrollPane>
+        <Text layoutX="18.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Current Ride Info:" />
     </AnchorPane>
 </AnchorPane>

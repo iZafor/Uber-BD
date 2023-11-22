@@ -1,7 +1,10 @@
 package bd.uber;
 
+import bd.uber.zafor.controller.DriverViewController;
+import bd.uber.zafor.model.Driver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -45,28 +48,37 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-        Util.getInstance().showScene(
-                Util.getInstance().getDriverView(),
-                actionEvent,
-                "Driver",
-                false
-        );
-//        LoginInfo loginInfo;
-//        if ((loginInfo = validateInputs()) == null) {
-//            showAlert("Invalid Input!");
-//            return;
-//        }
-//
-//        if (loginInfo.verifyLoginInfo() == null) {
-//            showAlert("Incorrect Credential!");
-//        }
+        LoginInfo loginInfo;
+        if ((loginInfo = validateInputs()) == null) {
+            showAlert("Invalid Input!");
+            return;
+        }
+
+        User user;
+        if ((user = loginInfo.verifyLoginInfo()) == null) {
+            showAlert("Incorrect Credential!");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
+            Util.getInstance().showScene(
+                    loader.load(),
+                    actionEvent,
+                    "Driver",
+                    false
+            );
+            ((DriverViewController) loader.getController()).setInitData((Driver) user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private LoginInfo validateInputs() {
         try {
             int id = Integer.parseInt(idTextField.getText());
             String password = passwordField.getText();
-            if (id > 0 && password.length() >= 6 && userTypeComboBox.getValue() != null) {
+            if (id > 0 && !password.isEmpty() && userTypeComboBox.getValue() != null) {
                 return new LoginInfo(id, password, userTypeComboBox.getValue());
             }
         } catch (Exception ignored) {
