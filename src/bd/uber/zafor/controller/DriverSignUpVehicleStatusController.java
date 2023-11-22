@@ -52,13 +52,11 @@ public class DriverSignUpVehicleStatusController implements Initializable {
     private void restoreData() {
         try {
             Driver driver = Util.getInstance().getSignUpDriver();
-            int odometerReading = driver.getVehicleInfo().getVehicleStatus().getOdometerReading();
-            float tirePressure = driver.getVehicleInfo().getVehicleStatus().getTirePressure();
-            odometerReadingTextField.setText(odometerReading == 0 ? "" : String.valueOf(odometerReading));
+            odometerReadingTextField.setText(String.valueOf(driver.getVehicleInfo().getVehicleStatus().getOdometerReading()));
             fuelLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getFuelLevel());
             engineoilLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getEngineOilLevel());
             interiorCleanlinessTextField.setText(driver.getVehicleInfo().getVehicleStatus().getInteriorCleanliness());
-            tirePressureTextField.setText(tirePressure == 0 ? "" : String.valueOf(tirePressure));
+            tirePressureTextField.setText(String.valueOf(driver.getVehicleInfo().getVehicleStatus().getTirePressure()));
             exteriorDamageComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getExteriorDamage());
             mechanicalIssuesComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getMechanicalIssues());
         } catch (Exception ignored) {

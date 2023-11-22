@@ -1,9 +1,6 @@
 package bd.uber.zafor.model;
 
-import bd.uber.ContactDetails;
-import bd.uber.Location;
-import bd.uber.User;
-import bd.uber.Util;
+import bd.uber.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -50,7 +47,7 @@ public final class Driver extends User implements Serializable {
         rideList.add(ride);
         totalEarnings += ride.getFare();
         distanceDriven += ride.getRideDistance();
-        Util.getInstance().getDb().addRide(ride); // unsure
+        Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE); // unsure
     }
 
     public String getProfileImage() {

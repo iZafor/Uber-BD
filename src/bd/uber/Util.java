@@ -114,6 +114,7 @@ public class Util {
      */
     public void showScene(Parent parent, EventObject eventObject, String windowTitle, boolean hideOwner) {
         Stage stage = (Stage) ((Node) eventObject.getSource()).getScene().getWindow();
+        stage.hide();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setResizable(false);
@@ -149,10 +150,9 @@ public class Util {
      * @param windowTitle title for the new window
      */
     public void showScene(Scene scene, EventObject eventObject, String windowTitle) {
-        Stage ownerStage = (Stage) ((Node) eventObject.getSource()).getScene().getWindow();
         Stage stage = new Stage();
         stage.setResizable(false);
-        stage.initOwner(ownerStage);
+        stage.initOwner(((Node) eventObject.getSource()).getScene().getWindow());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(scene);
         stage.setTitle(windowTitle);

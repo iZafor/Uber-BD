@@ -7,6 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DB {
+    public boolean addObject(Object object, BinFilePath binFilePath) {
+        File objectFile = new File(binFilePath.getPath());
+        boolean append = objectFile.exists();
+        try (FileOutputStream fos = new FileOutputStream(objectFile, append);
+             ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
+            oos.writeObject(object);
+            return true;
+        } catch (IOException ignored) {
+            // log the error
+        }
+        return false;
+    }
+
     public int getUserCount(BinFilePath binFilePath) {
         int i = 0;
         try (FileInputStream fis = new FileInputStream(binFilePath.getPath());
@@ -21,19 +34,6 @@ public class DB {
             // log the error
         }
         return i;
-    }
-
-    public boolean addUser(User user, BinFilePath binFilePath) {
-        File userFile = new File(binFilePath.getPath());
-        boolean append = userFile.exists();
-        try (FileOutputStream fos = new FileOutputStream(userFile, append);
-             ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
-            oos.writeObject(user);
-            return true;
-        } catch (IOException ignored) {
-            // log the error
-        }
-        return false;
     }
 
     public User getUser(int userId, String password, BinFilePath binFilePath) {
@@ -51,18 +51,6 @@ public class DB {
             // log the error
         }
         return null;
-    }
-
-    public boolean addRide(Ride ride) {
-        File rideFile = new File(BinFilePath.RIDE.getPath());
-        boolean append = rideFile.exists();
-        try (FileOutputStream fos = new FileOutputStream(rideFile, append);
-             ObjectOutputStream ois = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
-            ois.writeObject(ride);
-        } catch (IOException ignored) {
-            // log the error
-        }
-        return false;
     }
 
     public List<Ride> getRides(int userId, UserType userType) {
@@ -86,19 +74,6 @@ public class DB {
             // log the error
         }
         return rideList;
-    }
-
-    public boolean addLocation(Location location) {
-        File locationFile = new File(BinFilePath.LOCATION.getPath());
-        boolean append = locationFile.exists();
-        try (FileOutputStream fos = new FileOutputStream(locationFile, append);
-             ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
-            oos.writeObject(location);
-            return true;
-        } catch (IOException e) {
-            // log the error
-        }
-        return false;
     }
 
     public List<Location> getLocations() {

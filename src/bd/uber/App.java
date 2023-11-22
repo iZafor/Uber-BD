@@ -15,6 +15,11 @@ public class App extends Application {
         );
     }
 
+    @Override
+    public void stop() throws Exception {
+        Util.getInstance().getWorkers().shutdown();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -67,7 +67,7 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
     private void onSignup(ActionEvent event) {
         if (validateInputs()) {
             // Store to the bin file
-            Util.getInstance().getDb().addUser(
+            Util.getInstance().getDb().addObject(
                     signupDriver,
                     BinFilePath.DRIVER
             );
@@ -96,7 +96,6 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
             setFill(profileImageCircle, signupDriver.getProfileImage());
             setFill(nidFrontSideRectangle, signupDriver.getNidFrontSide());
             setFill(nidBackSideRectangle, signupDriver.getNidBackSide());
-            Util.getInstance().getWorkers().shutdown();
         } catch (Exception e) {
             System.out.println("Restoring error: " + e.getMessage());
         }
