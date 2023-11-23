@@ -178,7 +178,7 @@ public class Util {
     }
 
     public void showSuccessMessage(String successMessage) {
-        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText(successMessage);
         alert.showAndWait();
     }

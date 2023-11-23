@@ -23,4 +23,5 @@ Button {
     -fx-background-color: #0F0F0F;
     -fx-text-fill: #DFDFDE;
     -fx-background-radius: 4;
+    -fx-cursor: hand;
 }

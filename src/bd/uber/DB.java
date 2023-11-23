@@ -19,13 +19,13 @@ public class DB {
         return false;
     }
 
-    public boolean addObjects(List<Object> objectList, BinFilePath binFilePath) {
+    public <E> boolean addObjects(List<E> objectList, BinFilePath binFilePath) {
         File objectFile = new File(binFilePath.getPath());
         boolean append = objectFile.exists();
         try (FileOutputStream fos = new FileOutputStream(objectFile);
              ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
-            for (Object object : objectList) {
-                oos.writeObject(object);
+            for (E e : objectList) {
+                oos.writeObject(e);
             }
         } catch (IOException ignored) {
             // log the error

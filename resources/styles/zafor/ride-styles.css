@@ -12,6 +12,11 @@ Label {
     -fx-pref-height: 20;
 }
 
+.time-label {
+    -fx-pref-width: 140;
+    -fx-pref-height: 20;
+}
+
 .pickup-address {
     -fx-text-fill: #005B41;
 }

@@ -20,10 +20,12 @@ import java.util.ResourceBundle;
 public class GetStartedController implements Initializable {
     @FXML
     private TextField idTextField;
+
     @FXML
-    public PasswordField passwordField;
+    private PasswordField passwordField;
+
     @FXML
-    ComboBox<UserType> userTypeComboBox;
+    private ComboBox<UserType> userTypeComboBox;
 
     private final Alert alert = new Alert(Alert.AlertType.WARNING);
 

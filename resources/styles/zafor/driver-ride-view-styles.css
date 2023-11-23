@@ -1,0 +1,42 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.subtitle-text {
+    -fx-font-size: 16;
+}
+
+ScrollPane {
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-hbar-policy: NEVER;
+}
+
+ScrollPane .scroll-bar:vertical {
+    -fx-pref-width: 15;
+}
+
+VBox {
+    -fx-background-color: transparent;
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+Button {
+    -fx-text-fill: #DFDFDE;
+    -fx-font-size: 14;
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+DatePicker, TextField {
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-text-fill: #0F0F0F;
+}
