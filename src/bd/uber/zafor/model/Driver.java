@@ -47,7 +47,7 @@ public final class Driver extends User implements Serializable {
         rideList.add(ride);
         totalEarnings += ride.getFare();
         distanceDriven += ride.getRideDistance();
-        Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE); // unsure
+//        Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE); // unsure
     }
 
     public String getProfileImage() {

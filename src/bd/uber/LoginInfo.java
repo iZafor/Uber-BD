@@ -12,6 +12,6 @@ public class LoginInfo {
     }
 
     public User verifyLoginInfo() {
-        return Util.getInstance().getDb().getUser(id, password, BinFilePath.valueOf(userType.name()));
+        return Util.getInstance().getDb().getObject(BinFilePath.valueOf(userType.name()), user -> user.getId() == id && user.password.equals(password));
     }
 }

@@ -69,7 +69,7 @@ public class Util {
     public Driver getSignUpDriver() {
         if (signUpDriver == null) {
             signUpDriver = new Driver();
-            signUpDriver.setId(db.getUserCount(BinFilePath.DRIVER) + 1);
+            signUpDriver.setId(db.getObjectCount(BinFilePath.DRIVER) + 1);
         }
         return signUpDriver;
     }
@@ -166,7 +166,7 @@ public class Util {
 
     public List<Location> getLocationList() {
         if (locationList == null) {
-            locationList = db.getLocations();
+            locationList = db.getObjectList(BinFilePath.LOCATION);
         }
         return locationList;
     }

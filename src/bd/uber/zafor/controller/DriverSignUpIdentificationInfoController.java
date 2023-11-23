@@ -67,10 +67,10 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
     private void onSignup(ActionEvent event) {
         if (validateInputs()) {
             // Store to the bin file
-            Util.getInstance().getDb().addObject(
-                    signupDriver,
-                    BinFilePath.DRIVER
-            );
+            if (!Util.getInstance().getDb().addObject(signupDriver, BinFilePath.DRIVER)) {
+                Util.getInstance().showWarningMessage("Signup failed!");
+                return;
+            }
 
             // Reset the signup instance
             Util.getInstance().setSignUpDriver(null);
