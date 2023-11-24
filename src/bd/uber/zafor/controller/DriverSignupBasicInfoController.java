@@ -53,7 +53,7 @@ public class DriverSignupBasicInfoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         restoreData();
         addSearchFunctionality();
-        scrollPane.visibleProperty().setValue(false);
+        searchResultVBox.visibleProperty().setValue(true);
     }
 
     @FXML
@@ -125,6 +125,9 @@ public class DriverSignupBasicInfoController implements Initializable {
         addressTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             searchResultVBox.getChildren().clear();
             String lower = newValue.toLowerCase();
+            if (lower.isEmpty()) {
+                return;
+            }
             for (Location location : Util.getInstance().getLocationList()) {
                 if (location.getName().toLowerCase().contains(lower)) {
                     Text locationText = new Text(location.getName());

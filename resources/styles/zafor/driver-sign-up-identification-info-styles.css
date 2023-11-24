@@ -1,0 +1,27 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 24;
+}
+
+.mandatory {
+    -fx-font-size: 14;
+    -fx-fill: red;
+}
+
+Circle, Rectangle {
+    -fx-fill: transparent;
+    -fx-stroke-width: 2;
+    -fx-stroke: #0F0F0F;
+    -fx-cursor: hand;
+}
+
+Button {
+    -fx-font-size: 24;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DFDFDE;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}

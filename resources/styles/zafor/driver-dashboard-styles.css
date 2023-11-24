@@ -6,10 +6,25 @@
     -fx-font-size: 20;
 }
 
+.subtitle-text {
+    -fx-font-size: 16;
+}
+
 ComboBox {;
     -fx-background-color: #0F0F0F;
     -fx-pref-height: 40;
-    -fx-pref-width: 180;
+    -fx-pref-width: 210;
+    -fx-font-size: 20;
+    -fx-background-radius: 4;
+}
+
+TextField {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-pref-height: 40;
+    -fx-pref-width: 210;
     -fx-font-size: 20;
 }
 
@@ -30,12 +45,24 @@ ComboBox .arrow {
     -fx-background-color: #FFFAF4;
 }
 
-.rides-list {
-    -fx-padding: 10;
-    -fx-spacing: 10;
+ImageView {
+    -fx-fit-width: 100;
+    -fx-fit-height: 100;
 }
 
-ScrollPane {
+.ride-request-area {
+    -fx-pref-width: 80;
+}
+
+.ride-request-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
     -fx-hbar-policy: NEVER;
-    -fx-vbar-policy: ALWAYS;
+}
+
+.ride-request-scroll-pane VBox {
+    -fx-padding: 10;
+    -fx-spacing: 10;
 }

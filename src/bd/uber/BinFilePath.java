@@ -13,7 +13,7 @@ public enum BinFilePath {
 
     // Unknown
     LOCATION("bin/location.bin"),
-    RIDE("bin/rides.bin"),
+    RIDE("bin/ride.bin"),
 
     // Driver Related Files,
     VEHICLE_INFO("bin/vehicle_info.bin");

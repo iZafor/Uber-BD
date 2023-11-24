@@ -1,7 +1,10 @@
 package bd.uber;
 
+import bd.uber.zafor.controller.DriverViewController;
+import bd.uber.zafor.model.Driver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,10 +20,12 @@ import java.util.ResourceBundle;
 public class GetStartedController implements Initializable {
     @FXML
     private TextField idTextField;
+
     @FXML
-    public PasswordField passwordField;
+    private PasswordField passwordField;
+
     @FXML
-    ComboBox<UserType> userTypeComboBox;
+    private ComboBox<UserType> userTypeComboBox;
 
     private final Alert alert = new Alert(Alert.AlertType.WARNING);
 
@@ -51,9 +56,23 @@ public class GetStartedController implements Initializable {
             return;
         }
 
-        if (loginInfo.verifyLoginInfo() == null) {
+        User user;
+        if ((user = loginInfo.verifyLoginInfo()) == null) {
             showAlert("Incorrect Credential!");
             return;
+        }
+
+        try {
+            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
+            Util.getInstance().showScene(
+                    loader.load(),
+                    actionEvent,
+                    "Driver",
+                    false
+            );
+            ((DriverViewController) loader.getController()).setInitData((Driver) user);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -61,7 +80,7 @@ public class GetStartedController implements Initializable {
         try {
             int id = Integer.parseInt(idTextField.getText());
             String password = passwordField.getText();
-            if (id > 0 && password.length() >= 6 && userTypeComboBox.getValue() != null) {
+            if (id > 0 && !password.isEmpty() && userTypeComboBox.getValue() != null) {
                 return new LoginInfo(id, password, userTypeComboBox.getValue());
             }
         } catch (Exception ignored) {

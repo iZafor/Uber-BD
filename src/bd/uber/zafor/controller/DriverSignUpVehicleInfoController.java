@@ -100,11 +100,13 @@ public class DriverSignUpVehicleInfoController implements Initializable {
     private void restoreData() {
         try {
             Driver driver = Util.getInstance().getSignUpDriver();
+            int passengerCapacity = driver.getVehicleInfo().getPassengerCapacity();
+            int numberOfEngines = driver.getVehicleInfo().getNumberOfEngines();
             modelTextField.setText(driver.getVehicleInfo().getModel());
             colorTextField.setText(driver.getVehicleInfo().getColor());
             registrationNumberTextField.setText(driver.getVehicleInfo().getRegistrationNumber());
-            passengerCapacityTextField.setText(String.valueOf(driver.getVehicleInfo().getPassengerCapacity()));
-            numberOfEnginesTextField.setText(String.valueOf(driver.getVehicleInfo().getNumberOfEngines()));
+            passengerCapacityTextField.setText(passengerCapacity == 0 ? "" : String.valueOf(passengerCapacity));
+            numberOfEnginesTextField.setText(numberOfEngines == 0 ? "" : String.valueOf(numberOfEngines));
             vehicleTypeComboBox.setValue(driver.getVehicleInfo().getVehicleType());
         } catch (Exception ignored) {
             // log the error

@@ -1,0 +1,30 @@
+AnchorPane {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-fill: #0F0F0F;
+}
+
+Line {
+    -fx-stroke: #B0A695;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.green-text {
+    -fx-fill: #005B41;
+}
+
+.red-text {
+    -fx-fill: #860A35;
+}
+
+TextArea {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+}

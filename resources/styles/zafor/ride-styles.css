@@ -12,14 +12,19 @@ Label {
     -fx-pref-height: 20;
 }
 
-.pickup-address {
+.time-label {
+    -fx-pref-width: 140;
+    -fx-pref-height: 20;
+}
+
+.green-label {
     -fx-text-fill: #005B41;
 }
 
-.dropOff-address {
+.red-label {
     -fx-text-fill: #860A35;
 }
 
-.ride-completion-text {
-    -fx-text-fill: #005B41;
+.info-icon {
+    -fx-cursor: hand;
 }
