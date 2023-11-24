@@ -4,12 +4,14 @@ import bd.uber.FXMLFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.Driver;
 import bd.uber.zafor.model.Ride;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -116,15 +118,16 @@ public class DriverViewRidesController implements Initializable {
 
     private void updateRideListView(Stream<Ride> rideStream) {
         rideListView.getChildren().clear();
-        rideStream.forEach(ride -> {
+        Util.getInstance().getWorkers().execute(() -> rideStream.forEach(ride -> {
             FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.RIDE_VIEW);
             try {
-                rideListView.getChildren().add(loader.load());
+                HBox rideView = loader.load();
                 ((RideViewController) loader.getController()).setInitData(ride);
+                Platform.runLater(() -> rideListView.getChildren().add(rideView));
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        });
+        }));
     }
 
     private Predicate<Ride> getRideFilterPredicate(boolean isFromDate, boolean isToDate, boolean isFareLower, boolean isFareUpper) {
@@ -135,7 +138,7 @@ public class DriverViewRidesController implements Initializable {
             return null;
         }
 
-        if (fromDate != null && toDate != null && fromDate.isAfter(toDate)) {
+        if (fromDate != null && toDate != null && (!fromDate.isEqual(toDate) && fromDate.isAfter(toDate))) {
             return null;
         }
 
@@ -167,11 +170,11 @@ public class DriverViewRidesController implements Initializable {
         if (isFromDate && isToDate && toDate != null && isFareLower && isFareUpper) {
             finalFareLower = fareLower;
             finalFareUpper = fareUpper;
-            return ride -> ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getPickupTime().isBefore(LocalDateTime.of(toDate, LocalTime.MIDNIGHT))
                     && ride.getFare() >= finalFareLower && ride.getFare() <= finalFareUpper;
         } else if (isFromDate && isToDate && toDate != null && !isFareLower && !isFareUpper) {
-            return ride -> ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getPickupTime().isBefore(LocalDateTime.of(toDate, LocalTime.MIDNIGHT));
         } else if (!isFromDate && !isToDate && isFareLower && isFareUpper) {
             finalFareLower = fareLower;
@@ -179,10 +182,10 @@ public class DriverViewRidesController implements Initializable {
             return ride -> ride.getFare() >= finalFareLower && ride.getFare() <= finalFareUpper;
         } else if (isFromDate && !isToDate && isFareLower && !isFareUpper) {
             finalFareLower = fareLower;
-            return ride -> ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getFare() >= finalFareLower;
         } else if (isFromDate && !isToDate && !isFareLower && !isFareUpper) {
-            return ride -> ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT));
+            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT));
         } else if (!isFromDate && !isToDate && isFareLower) {
             finalFareLower = fareLower;
             return ride -> ride.getFare() >= finalFareLower;

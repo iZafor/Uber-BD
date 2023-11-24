@@ -17,14 +17,14 @@ Label {
     -fx-pref-height: 20;
 }
 
-.pickup-address {
+.green-label {
     -fx-text-fill: #005B41;
 }
 
-.dropOff-address {
+.red-label {
     -fx-text-fill: #860A35;
 }
 
-.ride-completion-text {
-    -fx-text-fill: #005B41;
+.info-icon {
+    -fx-cursor: hand;
 }

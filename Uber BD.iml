@@ -7,6 +7,16 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/build/empty" />
       <excludeFolder url="file://$MODULE_DIR$/build/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/bd" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/bd/uber/hasibul" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/bd/uber/nishi" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/bd/uber/redwan" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/bd/uber/zafor" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/fxml" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/images" />
+      <excludeFolder url="file://$MODULE_DIR$/build/classes/styles" />
+      <excludeFolder url="file://$MODULE_DIR$/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

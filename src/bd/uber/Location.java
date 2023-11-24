@@ -16,6 +16,6 @@ public final class Location implements Serializable {
     }
 
     public float getDistance(Location other) {
-        return Math.abs(this.distanceFromCentralPoint - other.distanceFromCentralPoint);
+        return Math.round(Math.abs(this.distanceFromCentralPoint - other.distanceFromCentralPoint) * 100) / 100f;
     }
 }
