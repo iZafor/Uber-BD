@@ -103,7 +103,7 @@ public class DriverProfileBasicInfoController {
         String newPPhoneNumber = primaryPhoneNumber.getText();
         String newSPhoneNumber = secondaryPhoneNumber.getText();
 
-        if(newPassword == null || newPassword.isEmpty() || newEmail == null || newEmail.isEmpty() || newPPhoneNumber == null || newPPhoneNumber.isEmpty() || newSPhoneNumber == null || newSPhoneNumber.isEmpty()) {
+        if (newPassword == null || newPassword.isEmpty() || newEmail == null || newEmail.isEmpty() || newPPhoneNumber == null || newPPhoneNumber.isEmpty() || newSPhoneNumber == null || newSPhoneNumber.isEmpty()) {
             Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
             return;
         }
@@ -115,7 +115,9 @@ public class DriverProfileBasicInfoController {
         driver.getContactDetails().setSecondaryPhoneNumber(newSPhoneNumber);
         Util.getInstance().getWorkers().submit(() -> {
             if (Util.getInstance().getDb().updateObject(driver, BinFilePath.DRIVER, d -> d.getId() == driver.getId())) {
-                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info Updated Successfully."));
+                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info updated successfully."));
+            } else {
+                Platform.runLater(() -> Util.getInstance().showError("Failed to update data!"));
             }
         });
     }

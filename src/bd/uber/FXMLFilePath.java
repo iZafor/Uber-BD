@@ -9,6 +9,7 @@ public enum FXMLFilePath {
     DRIVER_VIEW("/fxml/zafor/driver-view.fxml"),
     DRIVER_DASHBOARD_VIEW("/fxml/zafor/driver-dashboard-view.fxml"),
     DRIVER_PROFILE_BASIC_INFO_VIEW("/fxml/zafor/driver-profile-basic-info-view.fxml"),
+    DRIVER_PROFILE_DRIVING_LICENSE_VIEW("/fxml/zafor/driver-profile-driving-license-view.fxml"),
     DRIVER_RIDES_VIEW("/fxml/zafor/driver-rides-view.fxml"),
     DRIVER_REPAIR_REQUEST_VIEW("/fxml/zafor/driver-repair-request-view.fxml"),
     DETAILED_RIDE_VIEW("/fxml/zafor/detailed-ride-view.fxml"),

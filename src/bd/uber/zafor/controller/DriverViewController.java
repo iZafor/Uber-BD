@@ -123,6 +123,11 @@ public class DriverViewController implements Initializable {
                         driverBorderPane.setCenter(loader.load());
                         ((DriverProfileBasicInfoController) loader.getController()).setInitData(driver);
                         break;
+                    case DRIVING_LICENSE:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_DRIVING_LICENSE_VIEW);
+                        driverBorderPane.setCenter(loader.load());
+                        ((DriverProfileDrivingLicenseController) loader.getController()).setInitData(driver);
+                        break;
                     case RIDES:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_RIDES_VIEW);
                         driverBorderPane.setCenter(loader.load());

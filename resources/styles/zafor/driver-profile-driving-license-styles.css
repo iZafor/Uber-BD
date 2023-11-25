@@ -1,0 +1,43 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-fill: #0F0F0F;
+}
+
+.title-text {
+    -fx-font-size: 24;
+}
+
+.subtitle-text {
+    -fx-font-size: 20;
+}
+
+Circle {
+    -fx-fill: transparent;
+    -fx-stroke-width: 2;
+    -fx-stroke: #0F0F0F;
+    -fx-cursor: hand;
+}
+
+TextField, PasswordField, ComboBox, DatePicker, .save-button {
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+}
+
+Button, .save-button {
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DFDFDE;
+    -fx-cursor: hand;
+}
+
+Line {
+    -fx-stroke: #B0A695;
+}

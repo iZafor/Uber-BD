@@ -42,6 +42,8 @@ public class Util {
     private final ObjectProperty<SignupForm> signupFormProperty;
     private List<Location> locationList;
 
+    private final Alert alert = new Alert(Alert.AlertType.NONE);
+
     private Util() {
         db = new DB();
         signupFormProperty = new SimpleObjectProperty<>(SignupForm.BASIC_INFO);
@@ -169,13 +171,19 @@ public class Util {
     }
 
     public void showWarningMessage(String alertMessage) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setAlertType(Alert.AlertType.WARNING);
         alert.setContentText(alertMessage);
         alert.showAndWait();
     }
 
+    public void showError(String errorMessage) {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
     public void showSuccessMessage(String successMessage) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText(successMessage);
         alert.showAndWait();
     }
