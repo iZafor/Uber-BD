@@ -18,3 +18,18 @@ Button {
     -fx-background-color: #FFFAF4;
     -fx-text-fill: #0F0F0F;
 }
+
+.profile-settings-container {
+    -fx-alignment: center;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+}
+
+.profile-settings-container Button {
+    -fx-pref-height: 65;
+    -fx-wrap-text: true;
+    -fx-font-size: 14;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}

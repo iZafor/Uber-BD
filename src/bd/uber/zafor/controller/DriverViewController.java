@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,15 +20,24 @@ import java.util.ResourceBundle;
 
 public class DriverViewController implements Initializable {
     @FXML
+    public VBox mainMenuVBox;
+
+    @FXML
     private BorderPane driverBorderPane;
+
+    @FXML
+    public VBox accountSettingsMenuVBox;
 
     private Driver driver;
 
     private final ObjectProperty<DriverViewMenuOption> menuOptionObjectProperty = new SimpleObjectProperty<>();
 
+    private boolean showAccountSettingsMenuVBox = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureDriverViewMenuOptionProperty();
+        mainMenuVBox.getChildren().remove(2);
     }
 
     public void setInitData(Driver driver) {
@@ -43,7 +53,33 @@ public class DriverViewController implements Initializable {
 
     @FXML
     private void onShowProfileSettings() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.PROFILE_SETTINGS);
+        if (showAccountSettingsMenuVBox) {
+            mainMenuVBox.getChildren().remove(2);
+            showAccountSettingsMenuVBox = false;
+        } else {
+            mainMenuVBox.getChildren().add(2, accountSettingsMenuVBox);
+            showAccountSettingsMenuVBox = true;
+        }
+    }
+
+    @FXML
+    private void onShowBasicInfo() {
+        menuOptionObjectProperty.setValue(DriverViewMenuOption.PROFILE_BASIC_INFO);
+    }
+
+    @FXML
+    private void onShowDrivingLicense() {
+        menuOptionObjectProperty.setValue(DriverViewMenuOption.DRIVING_LICENSE);
+    }
+
+    @FXML
+    private void onShowVehicleInfo() {
+        menuOptionObjectProperty.setValue(DriverViewMenuOption.VEHICLE_INFO);
+    }
+
+    @FXML
+    private void onShowVehicleStatus() {
+        menuOptionObjectProperty.setValue(DriverViewMenuOption.VEHICLE_STATUS);
     }
 
     @FXML
@@ -82,10 +118,10 @@ public class DriverViewController implements Initializable {
                         driverBorderPane.setCenter(loader.load());
                         ((DriverDashboardController) loader.getController()).setInitData(driver);
                         break;
-                    case PROFILE_SETTINGS:
-                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_SETTINGS_VIEW);
+                    case PROFILE_BASIC_INFO:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_BASIC_INFO_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverProfileSettingsController) loader.getController()).setInitData(driver);
+                        ((DriverProfileBasicInfoController) loader.getController()).setInitData(driver);
                         break;
                     case RIDES:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_RIDES_VIEW);

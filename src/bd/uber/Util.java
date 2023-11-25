@@ -40,10 +40,7 @@ public class Util {
 
     private Driver signUpDriver;
     private final ObjectProperty<SignupForm> signupFormProperty;
-
     private List<Location> locationList;
-
-    private final Alert alert = new Alert(Alert.AlertType.WARNING);
 
     private Util() {
         db = new DB();
@@ -172,13 +169,13 @@ public class Util {
     }
 
     public void showWarningMessage(String alertMessage) {
-        alert.setAlertType(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText(alertMessage);
         alert.showAndWait();
     }
 
     public void showSuccessMessage(String successMessage) {
-        alert.setAlertType(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(successMessage);
         alert.showAndWait();
     }
