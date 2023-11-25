@@ -66,5 +66,8 @@
             <VBox fx:id="rideRequestsVBox" prefHeight="200.0" prefWidth="747.0" />
         </ScrollPane>
         <Text layoutX="18.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Current Ride Info:" />
+        <ScrollPane fx:id="searchResultScrollPane" layoutX="557.0" layoutY="288.0" prefHeight="200.0" prefWidth="210.0">
+            <VBox fx:id="searchResultVBox" prefHeight="200.0" prefWidth="199.0"/>
+        </ScrollPane>
     </AnchorPane>
 </AnchorPane>

@@ -48,7 +48,7 @@ public class Util {
     private Util() {
         db = new DB();
         signupFormProperty = new SimpleObjectProperty<>(SignupForm.BASIC_INFO);
-        workers = Executors.newFixedThreadPool(1);
+        workers = Executors.newFixedThreadPool(3);
     }
 
     public static Util getInstance() {

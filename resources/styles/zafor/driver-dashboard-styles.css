@@ -54,7 +54,7 @@ ImageView {
     -fx-pref-width: 80;
 }
 
-.ride-request-scroll-pane {
+ScrollPane {
     -fx-background-color: transparent;
     -fx-border-color: #0F0F0F;
     -fx-border-radius: 4;
@@ -62,7 +62,11 @@ ImageView {
     -fx-hbar-policy: NEVER;
 }
 
-.ride-request-scroll-pane VBox {
+ScrollPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+ScrollPane VBox {
     -fx-padding: 10;
     -fx-spacing: 10;
 }
