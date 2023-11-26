@@ -29,10 +29,9 @@
         <Text layoutX="639.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
         <ComboBox fx:id="mechanicalIssuesComboBox" layoutX="378.0" layoutY="449.0" prefWidth="150.0" AnchorPane.topAnchor="449.0" />
         <Text layoutX="638.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="mandatory" text="*" />
-      <ImageView fitHeight="47.0" fitWidth="42.0" layoutX="591.0" layoutY="569.0" onMouseClicked="#onShowNextView" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="569.0">
-         <image>
-            <Image url="@../../images/next.png" />
-         </image>
-      </ImageView>
+        <ImageView fitHeight="47.0" fitWidth="42.0" layoutX="591.0" layoutY="569.0" onMouseClicked="#onShowNextView"
+                   pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="569.0">
+            <Image url="@../../images/next.png"/>
+        </ImageView>
     </AnchorPane>
 </AnchorPane>

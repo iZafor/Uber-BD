@@ -1,12 +1,10 @@
 package bd.uber.zafor.controller;
 
-import bd.uber.BinFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.Driver;
 import bd.uber.zafor.model.DrivingLicense;
 import bd.uber.zafor.model.InsurancePolicy;
 import bd.uber.zafor.model.LicenseClass;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -84,12 +82,12 @@ public class DriverProfileDrivingLicenseController implements Initializable {
             insuranceAmount = Float.parseFloat(insuranceCoverageAmountTextField.getText());
             insuranceExpirationDate = insurancePolicyExpirationDatePicker.getValue();
         } catch (NumberFormatException | NullPointerException ignored) {
-            showWarning();
+            Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
             return;
         }
 
-        if (licenseNumber == null || licenseNumber.isEmpty() || licenseClass == null || licenseExpirationDate == null || policyNumber == null || policyNumber.isEmpty() || provider == null || provider.isEmpty() || insuranceAmount == 0 || insuranceExpirationDate == null) {
-            showWarning();
+        if (licenseNumber.isEmpty() || licenseExpirationDate == null || policyNumber.isEmpty() || provider.isEmpty() || insuranceAmount <= 0 || insuranceExpirationDate == null) {
+            Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
             return;
         }
 
@@ -104,16 +102,6 @@ public class DriverProfileDrivingLicenseController implements Initializable {
         policy.setCoverageAmount(insuranceAmount);
         policy.setExpirationDate(insuranceExpirationDate);
 
-        Util.getInstance().getWorkers().execute(() -> {
-            if (Util.getInstance().getDb().updateObject(driver, BinFilePath.DRIVER, d -> d.getId() == driver.getId())) {
-                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info updated successfully."));
-            }else {
-                Platform.runLater(() -> Util.getInstance().showError("Failed to update data!"));
-            }
-        });
-    }
-
-    private void showWarning() {
-        Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
+        DriverViewController.updateDriver(driver);
     }
 }

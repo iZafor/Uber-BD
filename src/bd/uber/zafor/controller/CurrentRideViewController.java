@@ -62,16 +62,15 @@ public class CurrentRideViewController implements Initializable {
         pickupLocationDistance.setText(String.valueOf(distance));
         startRideButton.setDisable(!(distance == 0));
 
-        ChangeListener<Location> pickupLocationChangeListenerFor = (observable, oldValue, newValue) -> {
+        ChangeListener<Location> pickupLocationChangeListener = (observable, oldValue, newValue) -> {
             float pickupDistance = rideRequest.getPickupPoint().getDistance(newValue);
             pickupLocationDistance.setText(String.valueOf(pickupDistance));
             if (pickupDistance == 0) {
-                ride.setPickupTime(LocalDateTime.now());
                 startRideButton.setDisable(false);
             }
         };
 
-        ChangeListener<Location> dropOffLocationChangeListenerFor = (observable, oldValue, newValue) -> {
+        ChangeListener<Location> dropOffLocationChangeListener = (observable, oldValue, newValue) -> {
             float dropOffDistance = rideRequest.getDropOffPoint().getDistance(newValue);
             rideDistanceText.setText(String.valueOf(dropOffDistance));
             if (dropOffDistance == 0) {
@@ -79,11 +78,12 @@ public class CurrentRideViewController implements Initializable {
             }
         };
 
-        driverLocationObjectProperty.addListener(pickupLocationChangeListenerFor);
+        driverLocationObjectProperty.addListener(pickupLocationChangeListener);
         startRideButton.setOnMouseClicked(event -> {
+            ride.setPickupTime(LocalDateTime.now());
             startRideButton.setDisable(true);
-            driverLocationObjectProperty.removeListener(pickupLocationChangeListenerFor);
-            driverLocationObjectProperty.addListener(dropOffLocationChangeListenerFor);
+            driverLocationObjectProperty.removeListener(pickupLocationChangeListener);
+            driverLocationObjectProperty.addListener(dropOffLocationChangeListener);
             endRideButton.setDisable(false);
         });
     }

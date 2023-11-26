@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="780.0" prefWidth="780.0"
+            stylesheets="@../../styles/zafor/driver-profile-vehicle-status-styles.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="bd.uber.zafor.controller.DriverProfileVehicleStatusController">
+    <AnchorPane layoutY="14.0" prefHeight="780.0" prefWidth="780.0" styleClass="main-container"
+                AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Text layoutX="106.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Odometer reading:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="155.0"/>
+        <Text layoutX="87.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tire pressure:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="515.0"/>
+        <Text layoutX="106.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exterior damage:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="335.0"/>
+        <Text layoutX="103.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Interior cleanliness:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="395.0"/>
+        <Text layoutX="109.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mechanical issues:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="455.0"/>
+        <Text layoutX="105.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Engineoil level:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="275.0"/>
+        <TextField fx:id="odometerReadingTextField" layoutX="378.0" layoutY="149.0" AnchorPane.topAnchor="149.0"/>
+        <Text layoutX="109.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fuel level:"
+              AnchorPane.leftAnchor="87.0" AnchorPane.topAnchor="215.0"/>
+        <ComboBox fx:id="fuelLevelComboBox" layoutX="378.0" layoutY="209.0" prefWidth="150.0"
+                  AnchorPane.topAnchor="209.0"/>
+        <ComboBox fx:id="engineoilLevelComboBox" layoutX="378.0" layoutY="269.0" prefWidth="150.0"
+                  AnchorPane.topAnchor="269.0"/>
+        <TextField fx:id="interiorCleanlinessTextField" layoutX="378.0" layoutY="389.0" AnchorPane.topAnchor="389.0"/>
+        <TextField fx:id="tirePressureTextField" layoutX="378.0" layoutY="509.0" prefWidth="169.0" styleClass="halfway"
+                   AnchorPane.topAnchor="509.0"/>
+        <Text layoutX="607.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="psi"/>
+        <ComboBox fx:id="exteriorDamageComboBox" layoutX="378.0" layoutY="332.0" prefWidth="150.0"
+                  AnchorPane.topAnchor="329.0"/>
+        <ComboBox fx:id="mechanicalIssuesComboBox" layoutX="378.0" layoutY="449.0" prefWidth="150.0"
+                  AnchorPane.topAnchor="449.0"/>
+        <Button layoutX="378.0" layoutY="571.0" mnemonicParsing="false" onAction="#onSaveChanges"
+                styleClass="save-button" text="Button"/>
+    </AnchorPane>
+</AnchorPane>

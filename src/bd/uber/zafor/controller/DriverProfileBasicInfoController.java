@@ -113,12 +113,7 @@ public class DriverProfileBasicInfoController {
         driver.getContactDetails().setEmail(newEmail);
         driver.getContactDetails().setPrimaryPhoneNumber(newPPhoneNumber);
         driver.getContactDetails().setSecondaryPhoneNumber(newSPhoneNumber);
-        Util.getInstance().getWorkers().submit(() -> {
-            if (Util.getInstance().getDb().updateObject(driver, BinFilePath.DRIVER, d -> d.getId() == driver.getId())) {
-                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info updated successfully."));
-            } else {
-                Platform.runLater(() -> Util.getInstance().showError("Failed to update data!"));
-            }
-        });
+
+        DriverViewController.updateDriver(driver);
     }
 }

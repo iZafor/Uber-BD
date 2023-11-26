@@ -8,6 +8,7 @@ import bd.uber.zafor.model.Driver;
 import bd.uber.zafor.model.DriverStatus;
 import bd.uber.zafor.model.DriverViewMenuOption;
 import bd.uber.zafor.model.Ride;
+import javafx.application.Platform;
 import javafx.beans.property.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -170,6 +171,16 @@ public class DriverViewController implements Initializable {
                         driverBorderPane.setCenter(loader.load());
                         ((DriverProfileDrivingLicenseController) loader.getController()).setInitData(driver);
                         break;
+                    case VEHICLE_INFO:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_VEHICLE_INFO_VIEW);
+                        driverBorderPane.setCenter(loader.load());
+                        ((DriverProfileVehicleInfoController) loader.getController()).setInitData(driver);
+                        break;
+                    case VEHICLE_STATUS:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_VEHICLE_STATUS_VIEW);
+                        driverBorderPane.setCenter(loader.load());
+                        ((DriverProfileVehicleStatusController) loader.getController()).setInitData(driver);
+                        break;
                     case RIDES:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_RIDES_VIEW);
                         driverBorderPane.setCenter(loader.load());
@@ -183,6 +194,16 @@ public class DriverViewController implements Initializable {
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+            }
+        });
+    }
+
+    public static void updateDriver(Driver driver) {
+        Util.getInstance().getWorkers().submit(() -> {
+            if (Util.getInstance().getDb().updateObject(driver, BinFilePath.DRIVER, d -> d.getId() == driver.getId())) {
+                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info updated successfully."));
+            } else {
+                Platform.runLater(() -> Util.getInstance().showError("Failed to update data!"));
             }
         });
     }

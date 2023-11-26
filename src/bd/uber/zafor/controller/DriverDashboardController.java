@@ -251,7 +251,7 @@ public class DriverDashboardController implements Initializable {
                                             ride.setPassengerFeedback(new RideFeedback(5, ""));
                                             driver.cancelRide(ride);
                                             currentRideContainerVBox.getChildren().clear();
-                                            Util.getInstance().getWorkers().execute(this::addRideRequests);
+                                            addRideRequests();
                                         });
                                         currentRideViewController.getEndRideButton().setOnMouseClicked(eEvent -> {
                                             ride.setPassengerFeedback(new RideFeedback(5, ""));

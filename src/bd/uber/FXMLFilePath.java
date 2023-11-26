@@ -10,6 +10,8 @@ public enum FXMLFilePath {
     DRIVER_DASHBOARD_VIEW("/fxml/zafor/driver-dashboard-view.fxml"),
     DRIVER_PROFILE_BASIC_INFO_VIEW("/fxml/zafor/driver-profile-basic-info-view.fxml"),
     DRIVER_PROFILE_DRIVING_LICENSE_VIEW("/fxml/zafor/driver-profile-driving-license-view.fxml"),
+    DRIVER_PROFILE_VEHICLE_INFO_VIEW("/fxml/zafor/driver-profile-vehicle-info-view.fxml"),
+    DRIVER_PROFILE_VEHICLE_STATUS_VIEW("/fxml/zafor/driver-profile-vehicle-status-view.fxml"),
     DRIVER_RIDES_VIEW("/fxml/zafor/driver-rides-view.fxml"),
     DRIVER_REPAIR_REQUEST_VIEW("/fxml/zafor/driver-repair-request-view.fxml"),
     DETAILED_RIDE_VIEW("/fxml/zafor/detailed-ride-view.fxml"),
@@ -23,7 +25,7 @@ public enum FXMLFilePath {
     DRIVER_SIGN_UP_VEHICLE_STATUS_VIEW("/fxml/zafor/driver-sign-up-vehicle-status-view.fxml"),
     DRIVER_SIGN_UP_DRIVING_LICENSE_VIEW("/fxml/zafor/driver-sign-up-driving-license-view.fxml"),
     DRIVER_SIGN_UP_IDENTIFICATION_INFO_VIEW("/fxml/zafor/driver-sign-up-identification-info-view.fxml"),
-    
+
     // Others
     RIDE_VIEW("/fxml/zafor/ride-view.fxml");
 
