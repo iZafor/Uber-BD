@@ -32,7 +32,7 @@
     </ImageView>
     <Text layoutX="112.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fare:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="349.89599990844727" />
     <Text fx:id="fareAmountText" layoutX="378.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="349.89599990844727" />
-    <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="374.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="374.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../../images/star.png" />
     </ImageView>
     <Line endX="152.0" layoutX="355.0" layoutY="125.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />

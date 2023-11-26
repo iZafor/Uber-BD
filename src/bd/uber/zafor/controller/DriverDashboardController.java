@@ -48,10 +48,10 @@ public class DriverDashboardController implements Initializable {
     private TextField currentLocationTextField;
 
     @FXML
-    public ScrollPane searchResultScrollPane;
+    private ScrollPane searchResultScrollPane;
 
     @FXML
-    public VBox searchResultVBox;
+    private VBox searchResultVBox;
 
     @FXML
     private TextField rideRequestAreaTextField;
@@ -69,7 +69,7 @@ public class DriverDashboardController implements Initializable {
     private VBox rideRequestsVBox;
 
     @FXML
-    public VBox currentRideContainerVBox;
+    private VBox currentRideContainerVBox;
 
     private Driver driver;
 
@@ -92,7 +92,7 @@ public class DriverDashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         searchResultScrollPane.setVisible(false);
-        currentDateText.setText(LocalDate.now().toString());
+        currentDateText.setText(LocalDate.now().getDayOfWeek().name() + ", " + LocalDate.now().toString());
         driverStatusComboBox.getItems().addAll(DriverStatus.values());
         driverStatusComboBox.setValue(DriverStatus.INACTIVE);
         Util.getInstance().getWorkers().execute(() -> locationList = Util.getInstance().getLocationList());
@@ -212,6 +212,7 @@ public class DriverDashboardController implements Initializable {
                 } catch (NumberFormatException | NullPointerException ignored) {
                 }
                 rideRequestAreaTextField.clear();
+                rideRequestsVBox.getChildren().clear();
             }
         });
     }

@@ -8,44 +8,59 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="705.0" stylesheets="@../../styles/zafor/ride-request-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.RideRequestViewController">
-    <AnchorPane prefHeight="51.0" prefWidth="379.0">
-        <Label fx:id="pickupLocationLabel" layoutX="6.0" layoutY="17.0" text="Bashundhara R/A" AnchorPane.topAnchor="16.0">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="705.0" stylesheets="@../../styles/zafor/ride-request-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.RideRequestViewController">
+    <AnchorPane prefHeight="80.0" prefWidth="269.0">
+        <Label fx:id="pickupLocationLabel" layoutX="92.0" layoutY="12.0" text="Bashundhara R/A" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="12.0">
             <styleClass>
                 <String fx:value="address-label" />
                 <String fx:value="green-label" />
             </styleClass>
         </Label>
-        <ImageView fitHeight="43.0" fitWidth="42.0" layoutX="156.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../images/right-arrow.png" />
-        </ImageView>
-        <Label fx:id="dropOffLocationLabel" layoutX="219.0" layoutY="17.0" text="Uttara" AnchorPane.topAnchor="16.0">
+        <Label fx:id="dropOffLocationLabel" layoutX="92.0" layoutY="46.0" text="Uttara" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="44.0">
             <styleClass>
                 <String fx:value="address-label" />
                 <String fx:value="red-label" />
             </styleClass>
         </Label>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-        <ImageView fitHeight="41.0" fitWidth="57.0" layoutX="16.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../images/passenger.png" />
+        <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <Image url="@../../images/pickup-point.png"/>
         </ImageView>
-        <Text fx:id="passengerRating" layoutX="64.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4.29" />
-        <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="103.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../images/star.png" />
+        <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="21.0" layoutY="47.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <Image url="@../../images/marker-off.png"/>
         </ImageView>
     </AnchorPane>
     <AnchorPane prefHeight="51.0" prefWidth="192.0">
-        <ImageView fitHeight="33.0" fitWidth="29.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/bangladesh-currency.png" />
         </ImageView>
-        <Text fx:id="fareAmountText" layoutX="47.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999.99" />
+        <Text fx:id="fareAmountText" layoutX="85.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999.99" AnchorPane.topAnchor="12.0" />
+        <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.leftAnchor="14.0">
+            <Image url="@../../images/fare.png"/>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="21.0" layoutX="14.0" layoutY="45.0" pickOnBounds="true"
+                   preserveRatio="true" AnchorPane.leftAnchor="14.0">
+            <Image url="@../../images/distance.png"/>
+        </ImageView>
+      <Text fx:id="rideDistanceText" layoutX="54.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.54" AnchorPane.topAnchor="44.0" />
+      <Text layoutX="103.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Km" AnchorPane.topAnchor="44.0" />
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <ImageView fitHeight="41.0" fitWidth="57.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/passenger.png" />
+        </ImageView>
+        <Text fx:id="passengerRating" layoutX="71.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4.29" />
+        <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="110.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/star.png" />
+        </ImageView>
     </AnchorPane>
     <AnchorPane prefHeight="51.0" prefWidth="132.0">
-        <ImageView fx:id="acceptButton" fitHeight="30.0" fitWidth="35.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
+        <ImageView fx:id="acceptButton" fitHeight="30.0" fitWidth="35.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
             <Image url="@../../images/correct.png" />
         </ImageView>
-        <ImageView fx:id="ignoreButton" fitHeight="35.0" fitWidth="35.0" layoutX="40.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
+        <ImageView fx:id="ignoreButton" fitHeight="35.0" fitWidth="35.0" layoutX="55.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
             <Image url="@../../images/cancel.png" />
         </ImageView>
     </AnchorPane>

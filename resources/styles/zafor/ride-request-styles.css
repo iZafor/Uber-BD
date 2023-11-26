@@ -1,6 +1,7 @@
 HBox {
     -fx-background-color: #DFDFDE;
     -fx-background-radius: 4;
+    -fx-border-color: #0F0F0F;
 }
 
 Label, Text {

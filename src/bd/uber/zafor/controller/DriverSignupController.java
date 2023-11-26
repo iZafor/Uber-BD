@@ -21,16 +21,16 @@ public class DriverSignupController implements Initializable {
     private Button basicInfoButton;
 
     @FXML
-    public Button drivingLicenseButton;
+    private Button drivingLicenseButton;
 
     @FXML
-    public Button vehicleInfoButton;
+    private Button vehicleInfoButton;
 
     @FXML
-    public Button vehicleStatusButton;
+    private Button vehicleStatusButton;
 
     @FXML
-    public Button identificationInfoButton;
+    private Button identificationInfoButton;
 
     private ObjectProperty<SignupForm> signupFormProperty;
 

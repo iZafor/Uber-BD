@@ -14,10 +14,13 @@ public class RideRequestViewController {
     private Label dropOffLocationLabel;
 
     @FXML
-    public Text passengerRating;
+    private Text passengerRating;
 
     @FXML
     private Text fareAmountText;
+
+    @FXML
+    private Text rideDistanceText;
 
     @FXML
     private ImageView ignoreButton;
@@ -30,6 +33,7 @@ public class RideRequestViewController {
         dropOffLocationLabel.setText(rideRequest.getDropOffPoint().getName());
         passengerRating.setText(String.format("%.2f", rideRequest.getPassengerRating()));
         fareAmountText.setText(String.format("%.2f", rideRequest.getFare()));
+        rideDistanceText.setText(String.valueOf(rideRequest.getDropOffPoint().getDistance(rideRequest.getPickupPoint())));
     }
 
     public ImageView getIgnoreButton() {

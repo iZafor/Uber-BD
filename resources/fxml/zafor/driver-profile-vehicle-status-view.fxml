@@ -37,6 +37,6 @@
         <ComboBox fx:id="mechanicalIssuesComboBox" layoutX="378.0" layoutY="449.0" prefWidth="150.0"
                   AnchorPane.topAnchor="449.0"/>
         <Button layoutX="378.0" layoutY="571.0" mnemonicParsing="false" onAction="#onSaveChanges"
-                styleClass="save-button" text="Button"/>
+                styleClass="save-button" text="Save Changes"/>
     </AnchorPane>
 </AnchorPane>

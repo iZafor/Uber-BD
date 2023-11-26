@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -20,16 +21,19 @@ public class RideViewController {
     private Label dropOffLocationLabel;
 
     @FXML
-    public Label pickupDateTimeLabel;
+    private Label pickupDateTimeLabel;
 
     @FXML
-    public Label dropOffDateTimeLabel;
+    private Label dropOffDateTimeLabel;
 
     @FXML
-    public Label statusLabel;
+    private Text rideDistanceText;
 
     @FXML
-    private Label fareText;
+    private Text fareText;
+
+    @FXML
+    private Label statusLabel;
 
     private Ride ride;
 
@@ -41,9 +45,10 @@ public class RideViewController {
         statusLabel.getStyleClass().add(ride.isCompleted() ? "green-label" : "red-label");
         fareText.setText(String.valueOf(ride.getFare()));
 
-        if(ride.isCompleted()) {
+        if (ride.isCompleted()) {
             pickupDateTimeLabel.setText(ride.getPickupTime().format(DateTimeFormatter.ofPattern("hh:mm:ss, yyyy-MM-dd")));
             dropOffDateTimeLabel.setText(ride.getDropOffTime().format(DateTimeFormatter.ofPattern("hh:mm:ss, yyyy-MM-dd")));
+            rideDistanceText.setText(String.valueOf(ride.getRideDistance()));
         }
     }
 
@@ -52,7 +57,7 @@ public class RideViewController {
         FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DETAILED_RIDE_VIEW);
         try {
             Scene scene = new Scene(loader.load());
-            ((DetailedRideViewController)loader.getController()).setInitData(ride);
+            ((DetailedRideViewController) loader.getController()).setInitData(ride);
             Util.getInstance().showScene(scene, mouseEvent, "");
         } catch (IOException e) {
             System.out.println(e.getMessage());

@@ -34,7 +34,7 @@ public class DriverViewController implements Initializable {
     private BorderPane driverBorderPane;
 
     @FXML
-    public VBox accountSettingsMenuVBox;
+    private VBox accountSettingsMenuVBox;
 
     private Driver driver;
 
