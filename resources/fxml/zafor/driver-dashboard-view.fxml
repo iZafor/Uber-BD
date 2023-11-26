@@ -16,7 +16,7 @@
         <Text fx:id="driverNameText" layoutX="180.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Himel" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="11.620000839233398" />
         <Text fx:id="currentDateText" layoutX="661.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Monday, 2023-11-13" AnchorPane.rightAnchor="15.319984436035156" AnchorPane.topAnchor="12.0" />
         <Text layoutX="18.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Availability Status:" AnchorPane.leftAnchor="18.0" />
-        <Text layoutX="16.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Requests:" AnchorPane.leftAnchor="16.0" />
+        <Text layoutX="17.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Requests:" AnchorPane.leftAnchor="17.0" />
         <ComboBox fx:id="driverStatusComboBox" layoutX="207.0" layoutY="237.0" prefWidth="150.0" AnchorPane.topAnchor="237.0" />
         <ImageView fitHeight="132.0" fitWidth="134.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/man.png" />
@@ -24,12 +24,12 @@
         <ImageView fitHeight="35.0" fitWidth="21.0" layoutX="215.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/star.png" />
         </ImageView>
-        <Text fx:id="driverRatingText" layoutX="180.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="2.9" AnchorPane.leftAnchor="180.0">
+        <Text fx:id="driverRatingText" layoutX="180.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="0" AnchorPane.leftAnchor="180.0">
             <font>
                 <Font size="16.0" />
             </font>
         </Text>
-        <Text fx:id="tripsCountText" layoutX="180.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="10" AnchorPane.leftAnchor="180.0">
+        <Text fx:id="tripsCountText" layoutX="180.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="0" AnchorPane.leftAnchor="180.0">
             <font>
                 <Font size="16.0" />
             </font>
@@ -41,19 +41,19 @@
         </Text>
         <Text layoutX="445.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Location:" />
         <TextField fx:id="currentLocationTextField" layoutX="547.0" layoutY="237.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="237.0" />
-        <Text layoutX="16.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Request Area: " />
-        <Text layoutX="304.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="km" />
-        <TextField fx:id="rideRequestAreaTextField" layoutX="207.0" layoutY="306.0" styleClass="ride-request-area" />
+        <Text layoutX="16.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Request Area: " />
+        <Text layoutX="304.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="km" />
+        <TextField fx:id="rideRequestAreaTextField" layoutX="207.0" layoutY="294.0" styleClass="ride-request-area" />
         <Text layoutX="14.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Total Earnings:" />
         <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="164.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/bangladesh-currency.png" />
         </ImageView>
-        <Text fx:id="totalEarningsText" layoutX="191.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
-        <Text layoutX="281.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Earned Today:" />
-        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="426.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+        <Text fx:id="totalEarningsText" layoutX="191.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="0.00" />
+        <Text layoutX="329.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Earned Today:" />
+        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="474.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/bangladesh-currency.png" />
         </ImageView>
-        <Text fx:id="earnedTodayText" layoutX="451.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="100.00" />
+        <Text fx:id="earnedTodayText" layoutX="499.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="0.00" />
         <Text fx:id="vehicleModelText" layoutX="217.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-text" text="Toyota Camry">
             <font>
                 <Font size="16.0" />
@@ -62,12 +62,13 @@
         <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="175.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../images/car.png" />
         </ImageView>
-        <ScrollPane layoutX="18.0" layoutY="421.0" prefHeight="200.0" prefWidth="746.0" styleClass="ride-request-scroll-pane">
+        <ScrollPane layoutX="19.0" layoutY="404.0" prefHeight="167.0" prefWidth="746.0">
             <VBox fx:id="rideRequestsVBox" prefHeight="200.0" prefWidth="747.0" />
         </ScrollPane>
-        <Text layoutX="18.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Current Ride Info:" />
+        <Text layoutX="18.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Current Ride Info:" />
         <ScrollPane fx:id="searchResultScrollPane" layoutX="557.0" layoutY="288.0" prefHeight="200.0" prefWidth="210.0">
-            <VBox fx:id="searchResultVBox" prefHeight="200.0" prefWidth="199.0"/>
+            <VBox fx:id="searchResultVBox" prefHeight="200.0" prefWidth="199.0" />
         </ScrollPane>
+      <VBox fx:id="currentRideContainerVBox" layoutX="18.0" layoutY="623.0" prefHeight="132.0" prefWidth="746.0" styleClass="current-ride-container" />
     </AnchorPane>
 </AnchorPane>

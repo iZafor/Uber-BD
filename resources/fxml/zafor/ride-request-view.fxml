@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="705.0" stylesheets="@../../styles/zafor/ride-request-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.RideRequestViewController">
+    <AnchorPane prefHeight="51.0" prefWidth="379.0">
+        <Label fx:id="pickupLocationLabel" layoutX="6.0" layoutY="17.0" text="Bashundhara R/A" AnchorPane.topAnchor="16.0">
+            <styleClass>
+                <String fx:value="address-label" />
+                <String fx:value="green-label" />
+            </styleClass>
+        </Label>
+        <ImageView fitHeight="43.0" fitWidth="42.0" layoutX="156.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/right-arrow.png" />
+        </ImageView>
+        <Label fx:id="dropOffLocationLabel" layoutX="219.0" layoutY="17.0" text="Uttara" AnchorPane.topAnchor="16.0">
+            <styleClass>
+                <String fx:value="address-label" />
+                <String fx:value="red-label" />
+            </styleClass>
+        </Label>
+    </AnchorPane>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <ImageView fitHeight="41.0" fitWidth="57.0" layoutX="16.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/passenger.png" />
+        </ImageView>
+        <Text fx:id="passengerRating" layoutX="64.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4.29" />
+        <ImageView fitHeight="29.0" fitWidth="21.0" layoutX="103.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/star.png" />
+        </ImageView>
+    </AnchorPane>
+    <AnchorPane prefHeight="51.0" prefWidth="192.0">
+        <ImageView fitHeight="33.0" fitWidth="29.0" layoutX="8.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../../images/bangladesh-currency.png" />
+        </ImageView>
+        <Text fx:id="fareAmountText" layoutX="47.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999.99" />
+    </AnchorPane>
+    <AnchorPane prefHeight="51.0" prefWidth="132.0">
+        <ImageView fx:id="acceptButton" fitHeight="30.0" fitWidth="35.0" layoutX="10.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
+            <Image url="@../../images/correct.png" />
+        </ImageView>
+        <ImageView fx:id="ignoreButton" fitHeight="35.0" fitWidth="35.0" layoutX="40.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" styleClass="action-icon">
+            <Image url="@../../images/cancel.png" />
+        </ImageView>
+    </AnchorPane>
+</HBox>

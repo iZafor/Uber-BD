@@ -2,11 +2,13 @@ package bd.uber.zafor.controller;
 
 import bd.uber.BinFilePath;
 import bd.uber.FXMLFilePath;
+import bd.uber.Location;
 import bd.uber.Util;
 import bd.uber.zafor.model.Driver;
+import bd.uber.zafor.model.DriverStatus;
 import bd.uber.zafor.model.DriverViewMenuOption;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import bd.uber.zafor.model.Ride;
+import javafx.beans.property.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,12 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class DriverViewController implements Initializable {
     @FXML
@@ -32,6 +39,20 @@ public class DriverViewController implements Initializable {
 
     private final ObjectProperty<DriverViewMenuOption> menuOptionObjectProperty = new SimpleObjectProperty<>();
 
+    private final ObjectProperty<Location> driverLocationProperty = new SimpleObjectProperty<>();
+
+    private final FloatProperty totalEarningsProperty = new SimpleFloatProperty(0);
+
+    private final FloatProperty earnedTodayProperty = new SimpleFloatProperty(0);
+
+    private final FloatProperty ratingsProperty = new SimpleFloatProperty(0);
+
+    private final IntegerProperty tripCountProperty = new SimpleIntegerProperty(0);
+
+    private final ObjectProperty<DriverStatus> driverStatusProperty = new SimpleObjectProperty<>(DriverStatus.INACTIVE);
+
+    private final FloatProperty rideRequestAreaProperty = new SimpleFloatProperty(0);
+
     private boolean showAccountSettingsMenuVBox = false;
 
     @Override
@@ -42,7 +63,21 @@ public class DriverViewController implements Initializable {
 
     public void setInitData(Driver driver) {
         this.driver = driver;
-        Util.getInstance().getWorkers().execute(() -> this.driver.setRideList(Util.getInstance().getDb().getObjectList(BinFilePath.RIDE, ride -> ride.getDriverId() == driver.getId())));
+        Util.getInstance().getWorkers().execute(() -> {
+            this.driver.setRideList(Util.getInstance().getDb().getObjectList(BinFilePath.RIDE, ride -> ride.getDriverId() == driver.getId()));
+
+            List<Ride> completedRides = driver.getRideList().stream().filter(Ride::isCompleted).collect(Collectors.toList());
+            ratingsProperty.setValue(completedRides.isEmpty() ? 0 :
+                    (completedRides.stream().mapToInt(ride -> ride.getPassengerFeedback().getRating())
+                            .sum() / (float) completedRides.size())
+            );
+            tripCountProperty.setValue(completedRides.size());
+            totalEarningsProperty.setValue(completedRides.stream().mapToDouble(Ride::getFare).sum());
+            driver.setTotalEarnings(totalEarningsProperty.get());
+            LocalDateTime todayMidnight = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
+            earnedTodayProperty.setValue(completedRides.stream().filter(ride -> ride.getDropOffTime().isAfter(todayMidnight)).mapToDouble(Ride::getFare).sum());
+        });
+        driverLocationProperty.setValue(driver.getContactDetails().getAddress());
         menuOptionObjectProperty.setValue(DriverViewMenuOption.DASHBOARD);
     }
 
@@ -116,7 +151,14 @@ public class DriverViewController implements Initializable {
                     case DASHBOARD:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_DASHBOARD_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverDashboardController) loader.getController()).setInitData(driver);
+                        ((DriverDashboardController) loader.getController()).setInitData(driver,
+                                driverLocationProperty,
+                                totalEarningsProperty,
+                                earnedTodayProperty,
+                                ratingsProperty,
+                                tripCountProperty,
+                                driverStatusProperty,
+                                rideRequestAreaProperty);
                         break;
                     case PROFILE_BASIC_INFO:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_BASIC_INFO_VIEW);

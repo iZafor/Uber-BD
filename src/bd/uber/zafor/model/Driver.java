@@ -1,6 +1,8 @@
 package bd.uber.zafor.model;
 
-import bd.uber.*;
+import bd.uber.ContactDetails;
+import bd.uber.Location;
+import bd.uber.User;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,7 +14,6 @@ public final class Driver extends User implements Serializable {
     private String nidFrontSide;
     private String nidBackSide;
     private DriverStatus driverStatus;
-    private Location currentLocation;
     private VehicleInfo vehicleInfo;
     private List<Ride> rideList;
     private int experienceInYears;
@@ -32,14 +33,13 @@ public final class Driver extends User implements Serializable {
         super(id, password, name, accountCreationDate, contactDetails);
     }
 
-    public Ride confirmRideRequest(RideRequest rideRequest) {
-        return new Ride(rideRequest.getPassengerId(), id, rideRequest.getPickupPoint(), rideRequest.getDropOffPoint(), rideRequest.getFare());
+    public Ride getRideRequest(RideRequest rideRequest) {
+        return new Ride(rideRequest.getPassengerId(), id, rideRequest.getPickupPoint(), rideRequest.getDropOffPoint(), rideRequest.getPaymentMethod(), rideRequest.getFare());
     }
 
-    public Ride cancelRide(Ride ride) { // there should be a cancellation reason
+    public void cancelRide(Ride ride) { // there should be a cancellation reason
         ride.setCancelled(true);
         rideList.add(ride);
-        return ride;
     }
 
     public void completeRide(Ride ride) {
@@ -80,14 +80,6 @@ public final class Driver extends User implements Serializable {
 
     public void setDriverStatus(DriverStatus driverStatus) {
         this.driverStatus = driverStatus;
-    }
-
-    public Location getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
     }
 
     public VehicleInfo getVehicleInfo() {

@@ -14,6 +14,7 @@ public enum BinFilePath {
     // Unknown
     LOCATION("bin/location.bin"),
     RIDE("bin/ride.bin"),
+    RIDE_REQUEST("bin/ride_request.bin"),
 
     // Driver Related Files,
     VEHICLE_INFO("bin/vehicle_info.bin");
@@ -25,6 +26,8 @@ public enum BinFilePath {
     }
 
     public String getPath() {
-        return path;
+        synchronized (this) {
+            return path;
+        }
     }
 }

@@ -54,7 +54,7 @@ ImageView {
     -fx-pref-width: 80;
 }
 
-ScrollPane {
+ScrollPane, .current-ride-container {
     -fx-background-color: transparent;
     -fx-border-color: #0F0F0F;
     -fx-border-radius: 4;
@@ -69,4 +69,8 @@ ScrollPane .scroll-bar {
 ScrollPane VBox {
     -fx-padding: 10;
     -fx-spacing: 10;
+}
+
+.current-ride-container {
+    -fx-padding: 5;
 }

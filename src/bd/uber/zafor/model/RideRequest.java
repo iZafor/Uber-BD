@@ -2,18 +2,22 @@ package bd.uber.zafor.model;
 
 import bd.uber.Location;
 
-public class RideRequest {
+import java.io.Serializable;
+
+public class RideRequest implements Serializable {
     private final int passengerId;
-    private final String passengerName;
+    private final float passengerRating;
     private final Location pickupPoint;
     private final Location dropOffPoint;
+    private final PaymentMethod paymentMethod;
     private final float fare;
 
-    public RideRequest(int passengerId, String passengerName, Location pickupPoint, Location dropOffPoint, float fare) {
+    public RideRequest(int passengerId, float passengerRating, Location pickupPoint, Location dropOffPoint, PaymentMethod paymentMethod, float fare) {
         this.passengerId = passengerId;
-        this.passengerName = passengerName;
+        this.passengerRating = passengerRating;
         this.pickupPoint = pickupPoint;
         this.dropOffPoint = dropOffPoint;
+        this.paymentMethod = paymentMethod;
         this.fare = fare;
     }
 
@@ -21,8 +25,8 @@ public class RideRequest {
         return passengerId;
     }
 
-    public String getPassengerName() {
-        return passengerName;
+    public float getPassengerRating() {
+        return passengerRating;
     }
 
     public Location getPickupPoint() {
@@ -31,6 +35,10 @@ public class RideRequest {
 
     public Location getDropOffPoint() {
         return dropOffPoint;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
     public float getFare() {

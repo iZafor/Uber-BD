@@ -21,11 +21,12 @@ public final class Ride implements Serializable {
     private RideFeedback riderFeedback;
     private RideVehicle vehicle;
 
-    public Ride(int passengerId, int driverId, Location pickupPoint, Location dropOffPoint, float fare) {
+    public Ride(int passengerId, int driverId, Location pickupPoint, Location dropOffPoint, PaymentMethod paymentMethod, float fare) {
         this.passengerId = passengerId;
         this.driverId = driverId;
         this.pickupPoint = pickupPoint;
         this.dropOffPoint = dropOffPoint;
+        this.paymentMethod = paymentMethod;
         this.fare = fare;
         this.isCompleted = false;
         this.isCancelled = false;
