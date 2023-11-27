@@ -1,7 +1,7 @@
 package bd.uber;
 
 
-import bd.uber.zafor.controller.DriverSignupController;
+import bd.uber.zafor.controller.driver.DriverSignupController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

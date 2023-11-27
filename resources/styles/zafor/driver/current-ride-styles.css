@@ -1,0 +1,38 @@
+AnchorPane {
+    -fx-background-color: #DFDFDE;
+    -fx-background-radius: 4;
+    -fx-border-color: #0F0F0F;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DFDFDE;
+    -fx-font-size: 16;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
+}
+
+.cancel-button {
+    -fx-text-fill: #DFDFDE;
+    -fx-background-color: #860A35;
+}
+
+Text {
+    -fx-font-size: 16;
+}
+
+Line {
+    -fx-stroke-width: 2;
+    -fx-stroke: #B0A695;
+}
+
+.green-text {
+    -fx-fill: #005B41;
+}
+
+.red-text {
+    -fx-fill: #860A35;
+}
