@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 public class GetStartedController implements Initializable {
     @FXML
@@ -48,32 +50,25 @@ public class GetStartedController implements Initializable {
         }
     }
 
+
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-        LoginInfo loginInfo;
-        if ((loginInfo = validateInputs()) == null) {
-            showAlert("Invalid Input!");
-            return;
-        }
-
-        User user;
-        if ((user = loginInfo.verifyLoginInfo()) == null) {
-            showAlert("Incorrect Credential!");
-            return;
-        }
-
-        try {
-            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
-            Util.getInstance().showScene(
-                    loader.load(),
-                    actionEvent,
-                    "Driver",
-                    false
-            );
-            ((DriverViewController) loader.getController()).setInitData((Driver) user);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        LoginInfo loginInfo;
+//        if ((loginInfo = validateInputs()) == null) {
+//            showAlert("Invalid Input!");
+//            return;
+//        }
+//
+//        if (loginInfo.verifyLoginInfo() == null) {
+//            showAlert("Incorrect Credential!");
+//            return;
+//        }
+     try{       
+        Parent parent = FXMLLoader.load(getClass().getResource("redwan/MainScene.fxml")) ;
+        Util.getInstance().showScene(parent, actionEvent,"", false);
+     }
+     catch (Exception ignored){}
+    
     }
 
     private LoginInfo validateInputs() {

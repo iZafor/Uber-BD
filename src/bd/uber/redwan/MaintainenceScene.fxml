@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="681.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.redwan.MaintainenceSceneController">
+   <children>
+      <TextArea fx:id="viewMaintainenceRequests" layoutX="27.0" layoutY="58.0" prefHeight="200.0" prefWidth="901.0" />
+      <Label layoutX="27.0" layoutY="29.0" text="Maintainence Requests:" />
+      <DatePicker fx:id="datePickerId" layoutX="21.0" layoutY="310.0" />
+      <Button layoutX="21.0" layoutY="366.0" mnemonicParsing="false" onAction="#scheduleMaintainence" text="Schedule Maintainence" />
+      <Button layoutX="310.0" layoutY="318.0" mnemonicParsing="false" onAction="#generateReportFromMaintenanceInspectionButton" text="Generate Report" />
+      <Button layoutX="622.0" layoutY="326.0" mnemonicParsing="false" onAction="#maintainenceInspectionButton" text="View Maintenance Inspection" />
+      <TextArea fx:id="viewMaintainenceInspection" layoutX="529.0" layoutY="373.0" prefHeight="200.0" prefWidth="399.0" />
+      <Button layoutX="310.0" layoutY="358.0" mnemonicParsing="false" onAction="#viewReport" text="View Report" />
+      <TextArea fx:id="showReport" layoutX="278.0" layoutY="405.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="showScheduledMaintainence" layoutX="21.0" layoutY="418.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
