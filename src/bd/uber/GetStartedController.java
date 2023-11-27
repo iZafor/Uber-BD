@@ -1,7 +1,7 @@
 package bd.uber;
 
-import bd.uber.zafor.controller.DriverViewController;
-import bd.uber.zafor.model.Driver;
+import bd.uber.zafor.controller.driver.DriverViewController;
+import bd.uber.zafor.model.driver.Driver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

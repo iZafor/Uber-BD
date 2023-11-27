@@ -1,7 +1,7 @@
 package bd.uber;
 
-import bd.uber.zafor.model.Driver;
-import bd.uber.zafor.model.SignupForm;
+import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.driver.SignupForm;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
