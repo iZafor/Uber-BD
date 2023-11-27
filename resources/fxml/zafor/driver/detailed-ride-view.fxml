@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="646.0" prefWidth="620.0" stylesheets="@../../../styles/zafor/driver/driver-ride-detailed-view-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.driver.DetailedRideViewController">
+    <Text layoutX="249.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-text" text="Ride Details" />
+    <Text layoutX="112.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pickup Location:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="133.89599990844727" />
+    <Text layoutX="112.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DropOff Location:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="169.89599990844727" />
+    <Text layoutX="112.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pickup Time:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="205.89599990844727" />
+    <Text layoutX="112.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DropOff Time:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="241.89599990844727" />
+    <Text layoutX="112.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ride Distance:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="277.89599990844727" />
+    <Text layoutX="112.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Method:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="313.89599990844727" />
+    <Text layoutX="112.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ratings:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="385.89599990844727" />
+    <Text layoutX="112.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback Message:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="421.89599990844727" />
+    <Text layoutX="112.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ride Status:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="97.89599990844727" />
+    <Text fx:id="pickupLocationText" layoutX="350.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bashundhara R/A" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="133.89599990844727" />
+    <Text fx:id="dropOffLocationText" layoutX="350.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uttara" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="169.89599990844727" />
+    <Text fx:id="pickupTimeText" layoutX="350.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="205.89599990844727" />
+    <Text fx:id="dropOffTimeText" layoutX="350.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="241.89599990844727" />
+    <Text fx:id="rideDistanceText" layoutX="350.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="277.89599990844727" />
+    <Text fx:id="paymentMethodText" layoutX="350.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="313.89599990844727" />
+    <Text fx:id="passengerRatingText" layoutX="350.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="385.89599990844727" />
+    <Text fx:id="rideStatusText" layoutX="350.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Completed" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="97.89599990844727" />
+    <TextArea fx:id="feedBackMessageTextArea" editable="false" layoutX="112.0" layoutY="458.0" prefHeight="124.0" prefWidth="391.0" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="458.0" />
+    <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="350.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="352.0">
+        <Image url="@../../../images/bangladesh-currency.png" />
+    </ImageView>
+    <Text layoutX="112.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fare:" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="349.89599990844727" />
+    <Text fx:id="fareAmountText" layoutX="378.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="349.89599990844727" />
+    <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="374.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/star.png" />
+    </ImageView>
+    <Line endX="152.0" layoutX="355.0" layoutY="125.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="163.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="199.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="235.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="272.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="306.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="343.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="379.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Line endX="152.0" layoutX="355.0" layoutY="417.0" startX="-241.0" AnchorPane.leftAnchor="113.5" />
+    <Text layoutX="393.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Km" />
+</AnchorPane>

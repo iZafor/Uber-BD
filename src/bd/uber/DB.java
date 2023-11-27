@@ -19,14 +19,15 @@ public class DB {
         return false;
     }
 
-    public <E> boolean addObjects(List<E> objectList, BinFilePath binFilePath) {
+    public <E> boolean addObjects(List<E> objectList, BinFilePath binFilePath, boolean overwrite) {
         File objectFile = new File(binFilePath.getPath());
-        boolean append = objectFile.exists();
-        try (FileOutputStream fos = new FileOutputStream(objectFile);
+        boolean append = !overwrite && objectFile.exists();
+        try (FileOutputStream fos = new FileOutputStream(objectFile, append);
              ObjectOutputStream oos = (append ? new AppendableObjectOutputStream(fos) : new ObjectOutputStream(fos))) {
             for (E e : objectList) {
                 oos.writeObject(e);
             }
+            return true;
         } catch (IOException ignored) {
             // log the error
         }
@@ -99,5 +100,19 @@ public class DB {
             // log the error
         }
         return i;
+    }
+
+    public <E> boolean updateObject(E e, BinFilePath binFilePath, Predicate<E> predicate) {
+        List<E> eList = getObjectList(binFilePath);
+        int idxToRemove = -1;
+        for (int i = 0; i < eList.size(); i++) {
+            if(predicate.test(eList.get(i))) {
+                idxToRemove = i;
+                break;
+            }
+        }
+        eList.remove(idxToRemove);
+        eList.add(e);
+        return addObjects(eList, binFilePath, true);
     }
 }

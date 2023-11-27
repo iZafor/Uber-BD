@@ -1,7 +1,7 @@
 package bd.uber;
 
-import bd.uber.zafor.model.Driver;
-import bd.uber.zafor.model.SignupForm;
+import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.driver.SignupForm;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
@@ -40,15 +40,12 @@ public class Util {
 
     private Driver signUpDriver;
     private final ObjectProperty<SignupForm> signupFormProperty;
-
     private List<Location> locationList;
-
-    private final Alert alert = new Alert(Alert.AlertType.WARNING);
 
     private Util() {
         db = new DB();
         signupFormProperty = new SimpleObjectProperty<>(SignupForm.BASIC_INFO);
-        workers = Executors.newFixedThreadPool(1);
+        workers = Executors.newFixedThreadPool(3);
     }
 
     public static Util getInstance() {
@@ -172,13 +169,19 @@ public class Util {
     }
 
     public void showWarningMessage(String alertMessage) {
-        alert.setAlertType(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText(alertMessage);
         alert.showAndWait();
     }
 
+    public void showError(String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
     public void showSuccessMessage(String successMessage) {
-        alert.setAlertType(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(successMessage);
         alert.showAndWait();
     }
