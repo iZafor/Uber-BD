@@ -1,19 +1,17 @@
 package bd.uber.zafor.controller.driver;
 
-import bd.uber.BinFilePath;
-import bd.uber.FXMLFilePath;
-import bd.uber.Location;
-import bd.uber.Util;
-import bd.uber.zafor.model.driver.Driver;
-import bd.uber.zafor.model.driver.DriverStatus;
-import bd.uber.zafor.model.driver.DriverViewMenuOption;
-import bd.uber.zafor.model.driver.Ride;
+import bd.uber.*;
+import bd.uber.zafor.model.driver.*;
 import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -29,30 +27,36 @@ import java.util.stream.Collectors;
 public class DriverViewController implements Initializable {
     @FXML
     public VBox mainMenuVBox;
-
     @FXML
     private BorderPane driverBorderPane;
-
     @FXML
     private VBox accountSettingsMenuVBox;
 
     private Driver driver;
+    private ContactDetails contactDetails;
+    private VehicleInfo vehicleInfo;
+    private VehicleStatus vehicleStatus;
+    private InsurancePolicy insurancePolicy;
+    private DrivingLicense drivingLicense;
+    private final ObservableList<RideFeedback> feedbackList = FXCollections.observableArrayList();
 
-    private final ObjectProperty<DriverViewMenuOption> menuOptionObjectProperty = new SimpleObjectProperty<>();
-
+    private final ObjectProperty<DriverViewMenuOption> menuOptionProperty = new SimpleObjectProperty<>();
     private final ObjectProperty<Location> driverLocationProperty = new SimpleObjectProperty<>();
-
     private final FloatProperty totalEarningsProperty = new SimpleFloatProperty(0);
-
     private final FloatProperty earnedTodayProperty = new SimpleFloatProperty(0);
-
     private final FloatProperty ratingsProperty = new SimpleFloatProperty(0);
-
     private final IntegerProperty tripCountProperty = new SimpleIntegerProperty(0);
-
     private final ObjectProperty<DriverStatus> driverStatusProperty = new SimpleObjectProperty<>(DriverStatus.INACTIVE);
-
     private final FloatProperty rideRequestAreaProperty = new SimpleFloatProperty(0);
+    private final ObjectProperty<AnchorPane> currentRideViewProperty = new SimpleObjectProperty<>(null);
+
+    private final VBox currentRideContainer = new VBox();
+
+    {
+        currentRideContainer.setLayoutX(18);
+        currentRideContainer.setLayoutY(623);
+        currentRideContainer.getStyleClass().add("current-ride-container");
+    }
 
     private boolean showAccountSettingsMenuVBox = false;
 
@@ -64,27 +68,75 @@ public class DriverViewController implements Initializable {
 
     public void setInitData(Driver driver) {
         this.driver = driver;
+
+        driverStatusProperty.setValue(driver.getDriverStatus());
+        rideRequestAreaProperty.setValue(driver.getRideRequestRange());
+
+        // Retrieve DrivingLicense
+        Util.getInstance().getWorkers().execute(() ->
+                drivingLicense = Util.getInstance().getDb().getObject(BinFilePath.DRIVING_LICENSE, d -> d.getDrivingLicenseId() == driver.getId())
+        );
+
+        // Retrieve Rides
         Util.getInstance().getWorkers().execute(() -> {
             this.driver.setRideList(Util.getInstance().getDb().getObjectList(BinFilePath.RIDE, ride -> ride.getDriverId() == driver.getId()));
-
             List<Ride> completedRides = driver.getRideList().stream().filter(Ride::isCompleted).collect(Collectors.toList());
-            ratingsProperty.setValue(completedRides.isEmpty() ? 0 :
-                    (completedRides.stream().mapToInt(ride -> ride.getPassengerFeedback().getRating())
-                            .sum() / (float) completedRides.size())
-            );
-            tripCountProperty.setValue(completedRides.size());
-            totalEarningsProperty.setValue(completedRides.stream().mapToDouble(Ride::getFare).sum());
-            driver.setTotalEarnings(totalEarningsProperty.get());
-            LocalDateTime todayMidnight = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
-            earnedTodayProperty.setValue(completedRides.stream().filter(ride -> ride.getDropOffTime().isAfter(todayMidnight)).mapToDouble(Ride::getFare).sum());
+
+            // Retrieve Feedbacks
+            Util.getInstance().getWorkers().execute(() -> {
+                completedRides.stream()
+                        .mapToInt(Ride::getPassengerFeedbackId)
+                        .forEach(id ->
+                                feedbackList.add(
+                                        Util.getInstance()
+                                                .getDb()
+                                                .getObject(
+                                                        BinFilePath.PASSENGER_FEEDBACK,
+                                                        f -> f.getRideFeedBackId() == id
+                                                )
+                                )
+                        );
+                configureRatingsAutoUpdating();
+                Platform.runLater(() ->
+                        ratingsProperty.setValue(feedbackList.isEmpty() ? 0 : feedbackList.stream().mapToInt(RideFeedback::getRating)
+                                .sum() / feedbackList.size()));
+            });
+
+            Platform.runLater(() -> {
+                tripCountProperty.setValue(completedRides.size());
+                totalEarningsProperty.setValue(completedRides.stream().mapToDouble(Ride::getFare).sum());
+                driver.setTotalEarnings(totalEarningsProperty.get());
+                LocalDateTime todayMidnight = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
+                earnedTodayProperty.setValue(completedRides.stream().filter(ride -> ride.getDropOffTime().isAfter(todayMidnight)).mapToDouble(Ride::getFare).sum());
+            });
         });
-        driverLocationProperty.setValue(driver.getContactDetails().getAddress());
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.DASHBOARD);
+
+        // Retrieve ContactDetails
+        Util.getInstance().getWorkers().execute(() -> {
+            contactDetails = Util.getInstance().getDb().getObject(BinFilePath.CONTACT_DETAILS, c -> c.getContactDetailsId() == driver.getContactDetailsId());
+            driverLocationProperty.setValue(Util.getInstance().getLocationList().stream().filter(l -> l.getLocationId() == driver.getCurrentLocationId()).findFirst().orElse(null));
+            Platform.runLater(() -> menuOptionProperty.setValue(DriverViewMenuOption.DASHBOARD));
+        });
+
+        // Retrieve VehicleInfo
+        Util.getInstance().getWorkers().execute(() -> {
+            vehicleInfo = Util.getInstance().getDb().getObject(BinFilePath.VEHICLE_INFO, v -> v.getVehicleInfoId() == driver.getVehicleInfoId());
+
+            Util.getInstance().getWorkers().execute(() ->
+                    vehicleStatus = Util.getInstance().getDb().getObject(BinFilePath.VEHICLE_STATUS, v -> v.getVehicleStatusId() == vehicleInfo.getVehicleStatusId())
+            );
+
+            Util.getInstance().getWorkers().execute(() ->
+                    insurancePolicy = Util.getInstance().getDb().getObject(BinFilePath.INSURANCE_POLICY, e -> e.getInsurancePolicyId() == vehicleInfo.getInsurancePolicyId())
+            );
+        });
+
+        Platform.runLater(this::configureOnClose);
     }
 
     @FXML
     private void onShowDashboard() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.DASHBOARD);
+        menuOptionProperty.setValue(DriverViewMenuOption.DASHBOARD);
     }
 
     @FXML
@@ -100,32 +152,32 @@ public class DriverViewController implements Initializable {
 
     @FXML
     private void onShowBasicInfo() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.PROFILE_BASIC_INFO);
+        menuOptionProperty.setValue(DriverViewMenuOption.PROFILE_BASIC_INFO);
     }
 
     @FXML
     private void onShowDrivingLicense() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.DRIVING_LICENSE);
+        menuOptionProperty.setValue(DriverViewMenuOption.DRIVING_LICENSE);
     }
 
     @FXML
     private void onShowVehicleInfo() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.VEHICLE_INFO);
+        menuOptionProperty.setValue(DriverViewMenuOption.VEHICLE_INFO);
     }
 
     @FXML
     private void onShowVehicleStatus() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.VEHICLE_STATUS);
+        menuOptionProperty.setValue(DriverViewMenuOption.VEHICLE_STATUS);
     }
 
     @FXML
     private void onViewRides() {
-        menuOptionObjectProperty.setValue(DriverViewMenuOption.RIDES);
+        menuOptionProperty.setValue(DriverViewMenuOption.RIDES);
     }
 
     @FXML
     private void onRequestForRepair() {
-        menuOptionObjectProperty.set(DriverViewMenuOption.REPAIR_REQUEST);
+        menuOptionProperty.set(DriverViewMenuOption.REPAIR_REQUEST);
     }
 
     @FXML
@@ -145,46 +197,52 @@ public class DriverViewController implements Initializable {
     }
 
     private void configureDriverViewMenuOptionProperty() {
-        menuOptionObjectProperty.addListener((observable, oldValue, newValue) -> {
+        menuOptionProperty.addListener((observable, oldValue, newValue) -> {
             try {
                 FXMLLoader loader;
                 switch (newValue) {
                     case DASHBOARD:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_DASHBOARD_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverDashboardController) loader.getController()).setInitData(driver,
+                        ((DriverDashboardController) loader.getController()).setInitData(
+                                driver,
+                                vehicleInfo,
+                                feedbackList,
                                 driverLocationProperty,
                                 totalEarningsProperty,
                                 earnedTodayProperty,
                                 ratingsProperty,
                                 tripCountProperty,
                                 driverStatusProperty,
-                                rideRequestAreaProperty);
+                                rideRequestAreaProperty,
+                                currentRideViewProperty,
+                                currentRideContainer
+                        );
                         break;
                     case PROFILE_BASIC_INFO:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_BASIC_INFO_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverProfileBasicInfoController) loader.getController()).setInitData(driver);
+                        ((DriverProfileBasicInfoController) loader.getController()).setInitData(driver, contactDetails);
                         break;
                     case DRIVING_LICENSE:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_DRIVING_LICENSE_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverProfileDrivingLicenseController) loader.getController()).setInitData(driver);
+                        ((DriverProfileDrivingLicenseController) loader.getController()).setInitData(drivingLicense, insurancePolicy);
                         break;
                     case VEHICLE_INFO:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_VEHICLE_INFO_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverProfileVehicleInfoController) loader.getController()).setInitData(driver);
+                        ((DriverProfileVehicleInfoController) loader.getController()).setInitData(vehicleInfo);
                         break;
                     case VEHICLE_STATUS:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_PROFILE_VEHICLE_STATUS_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverProfileVehicleStatusController) loader.getController()).setInitData(driver);
+                        ((DriverProfileVehicleStatusController) loader.getController()).setInitData(vehicleStatus);
                         break;
                     case RIDES:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_RIDES_VIEW);
                         driverBorderPane.setCenter(loader.load());
-                        ((DriverViewRidesController) loader.getController()).setInitData(driver);
+                        ((DriverViewRidesController) loader.getController()).setInitData(driver, feedbackList);
                         break;
                     case REPAIR_REQUEST:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_REPAIR_REQUEST_VIEW);
@@ -192,19 +250,36 @@ public class DriverViewController implements Initializable {
                         ((DriverRepairRequestController) loader.getController()).setInitData(driver);
                         break;
                 }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
+            } catch (IOException ignored) {
+                // log the error
             }
         });
     }
 
-    public static void updateDriver(Driver driver) {
-        Util.getInstance().getWorkers().submit(() -> {
-            if (Util.getInstance().getDb().updateObject(driver, BinFilePath.DRIVER, d -> d.getId() == driver.getId())) {
-                Platform.runLater(() -> Util.getInstance().showSuccessMessage("Info updated successfully."));
-            } else {
-                Platform.runLater(() -> Util.getInstance().showError("Failed to update data!"));
-            }
+    private void configureRatingsAutoUpdating() {
+        feedbackList.addListener((ListChangeListener<? super RideFeedback>) c -> {
+                    ratingsProperty.setValue(feedbackList.stream().mapToInt(RideFeedback::getRating)
+                            .sum() / (float) feedbackList.size());
+                }
+        );
+    }
+
+    private void configureOnClose() {
+        mainMenuVBox.getParent().getScene().getWindow().setOnHiding(event -> commitChanges());
+        mainMenuVBox.getParent().getScene().getWindow().setOnCloseRequest(event -> commitChanges());
+    }
+
+    private void commitChanges() {
+        Util.getInstance().getWorkers().execute(() -> {
+            driver.setCurrentLocationId(driverLocationProperty.getValue().getLocationId());
+            driver.setDriverStatus(driverStatusProperty.get());
+            driver.setRideRequestRange(rideRequestAreaProperty.get());
+            Util.getInstance().getDb().updateObjectFile(
+                    driver,
+                    BinFilePath.DRIVER,
+                    d -> d.getId() == driver.getId(),
+                    false
+            );
         });
     }
 }

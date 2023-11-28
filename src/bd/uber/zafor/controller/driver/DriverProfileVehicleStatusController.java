@@ -1,5 +1,6 @@
 package bd.uber.zafor.controller.driver;
 
+import bd.uber.BinFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.*;
 import javafx.event.ActionEvent;
@@ -14,26 +15,20 @@ import java.util.ResourceBundle;
 public class DriverProfileVehicleStatusController implements Initializable {
     @FXML
     private TextField odometerReadingTextField;
-
     @FXML
     private ComboBox<FuelLevel> fuelLevelComboBox;
-
     @FXML
     private ComboBox<EngineOilLevel> engineoilLevelComboBox;
-
     @FXML
     private TextField interiorCleanlinessTextField;
-
     @FXML
     private TextField tirePressureTextField;
-
     @FXML
     private ComboBox<ExteriorDamage> exteriorDamageComboBox;
-
     @FXML
     private ComboBox<MechanicalIssue> mechanicalIssuesComboBox;
 
-    private Driver driver;
+    private VehicleStatus vehicleStatus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,9 +39,8 @@ public class DriverProfileVehicleStatusController implements Initializable {
     }
 
 
-    public void setInitData(Driver driver) {
-        this.driver = driver;
-        VehicleStatus vehicleStatus = driver.getVehicleInfo().getVehicleStatus();
+    public void setInitData(VehicleStatus vehicleStatus) {
+        this.vehicleStatus = vehicleStatus;
 
         odometerReadingTextField.setText(String.valueOf(vehicleStatus.getOdometerReading()));
         fuelLevelComboBox.setValue(vehicleStatus.getFuelLevel());
@@ -74,7 +68,6 @@ public class DriverProfileVehicleStatusController implements Initializable {
         ExteriorDamage exteriorDamage = exteriorDamageComboBox.getValue();
         String interiorCleanliness = interiorCleanlinessTextField.getText();
 
-        VehicleStatus vehicleStatus = driver.getVehicleInfo().getVehicleStatus();
         vehicleStatus.setOdometerReading(odometerReading);
         vehicleStatus.setFuelLevel(fuelLevel);
         vehicleStatus.setInteriorCleanliness(interiorCleanliness);
@@ -82,6 +75,12 @@ public class DriverProfileVehicleStatusController implements Initializable {
         vehicleStatus.setExteriorDamage(exteriorDamage);
         vehicleStatus.setTirePressure(tirePressure);
 
-        DriverViewController.updateDriver(driver);
+        Util.getInstance().updateObject(
+                vehicleStatus,
+                BinFilePath.VEHICLE_STATUS,
+                v -> v.getVehicleStatusId() == vehicleStatus.getVehicleStatusId(),
+                "Vehicle status updated successfully",
+                "Failed to update vehicle status!"
+        );
     }
 }

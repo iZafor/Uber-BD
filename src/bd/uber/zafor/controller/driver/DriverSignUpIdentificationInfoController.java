@@ -1,9 +1,10 @@
 package bd.uber.zafor.controller.driver;
 
 import bd.uber.BinFilePath;
+import bd.uber.ContactDetails;
 import bd.uber.FXMLFilePath;
 import bd.uber.Util;
-import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.driver.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,10 +26,8 @@ import java.util.concurrent.TimeUnit;
 public class DriverSignUpIdentificationInfoController implements Initializable {
     @FXML
     private Circle profileImageCircle;
-
     @FXML
     private Rectangle nidFrontSideRectangle;
-
     @FXML
     private Rectangle nidBackSideRectangle;
 
@@ -66,14 +65,57 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
     @FXML
     private void onSignup(ActionEvent event) {
         if (validateInputs()) {
-            // Store to the bin file
-            if (!Util.getInstance().getDb().addObject(signupDriver, BinFilePath.DRIVER)) {
+            // Connect other objects
+            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
+            VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
+            DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
+            VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
+            InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+
+            signupDriver.setRideRequestRange(1);
+            signupDriver.setContactDetailsId(contactDetails.getContactDetailsId());
+            signupDriver.setVehicleInfoId(vehicleInfo.getVehicleInfoId());
+            signupDriver.setDrivingLicenseId(drivingLicense.getDrivingLicenseId());
+            signupDriver.setCurrentLocationId(contactDetails.getLocationId());
+            signupDriver.setDriverStatus(DriverStatus.INACTIVE);
+            vehicleInfo.setVehicleStatusId(vehicleStatus.getVehicleStatusId());
+            vehicleInfo.setInsurancePolicyId(insurancePolicy.getInsurancePolicyId());
+
+            // Store objects to the respective bin files
+            if (!Util.getInstance().getDb().addObject(contactDetails, BinFilePath.CONTACT_DETAILS)
+                    || !Util.getInstance().getDb().addObject(vehicleInfo, BinFilePath.VEHICLE_INFO)
+                    || !Util.getInstance().getDb().addObject(drivingLicense, BinFilePath.DRIVING_LICENSE)
+                    || !Util.getInstance().getDb().addObject(vehicleStatus, BinFilePath.VEHICLE_STATUS)
+                    || !Util.getInstance().getDb().addObject(insurancePolicy, BinFilePath.INSURANCE_POLICY)
+                    || !Util.getInstance().getDb().addObject(signupDriver, BinFilePath.DRIVER)) {
+
+                // Delete stored objects
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(contactDetails, BinFilePath.CONTACT_DETAILS, c -> c.getContactDetailsId() == contactDetails.getContactDetailsId(), true)
+                );
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(vehicleInfo, BinFilePath.VEHICLE_INFO, v -> v.getVehicleInfoId() == vehicleInfo.getVehicleInfoId(), true)
+                );
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(drivingLicense, BinFilePath.DRIVING_LICENSE, d -> d.getDrivingLicenseId() == drivingLicense.getDrivingLicenseId(), true)
+                );
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(vehicleStatus, BinFilePath.VEHICLE_STATUS, v -> v.getVehicleStatusId() == vehicleStatus.getVehicleStatusId(), true)
+                );
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(insurancePolicy, BinFilePath.INSURANCE_POLICY, i -> i.getInsurancePolicyId() == insurancePolicy.getInsurancePolicyId(), true)
+                );
+                Util.getInstance().getWorkers().execute(() ->
+                        Util.getInstance().getDb().updateObjectFile(signupDriver, BinFilePath.DRIVER, d -> d.getId() == signupDriver.getId(), true)
+                );
+
+                // Show warning
                 Util.getInstance().showWarningMessage("Signup failed!");
                 return;
             }
 
             // Reset the signup instance
-            Util.getInstance().setSignUpDriver(null);
+            Util.getInstance().resetSignupDriverObjects();
 
             // Switch to the get started view
             Util.getInstance().showSuccessMessage("Signup successful.\n Your login id is " + signupDriver.getId());

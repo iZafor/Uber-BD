@@ -14,22 +14,16 @@ import java.util.ResourceBundle;
 public class DriverSignUpVehicleStatusController implements Initializable {
     @FXML
     private TextField odometerReadingTextField;
-
     @FXML
     private ComboBox<FuelLevel> fuelLevelComboBox;
-
     @FXML
     private ComboBox<EngineOilLevel> engineoilLevelComboBox;
-
     @FXML
     private TextField interiorCleanlinessTextField;
-
     @FXML
     private TextField tirePressureTextField;
-
     @FXML
     private ComboBox<ExteriorDamage> exteriorDamageComboBox;
-
     @FXML
     private ComboBox<MechanicalIssue> mechanicalIssuesComboBox;
 
@@ -51,14 +45,14 @@ public class DriverSignUpVehicleStatusController implements Initializable {
 
     private void restoreData() {
         try {
-            Driver driver = Util.getInstance().getSignUpDriver();
-            odometerReadingTextField.setText(String.valueOf(driver.getVehicleInfo().getVehicleStatus().getOdometerReading()));
-            fuelLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getFuelLevel());
-            engineoilLevelComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getEngineOilLevel());
-            interiorCleanlinessTextField.setText(driver.getVehicleInfo().getVehicleStatus().getInteriorCleanliness());
-            tirePressureTextField.setText(String.valueOf(driver.getVehicleInfo().getVehicleStatus().getTirePressure()));
-            exteriorDamageComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getExteriorDamage());
-            mechanicalIssuesComboBox.setValue(driver.getVehicleInfo().getVehicleStatus().getMechanicalIssues());
+            VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
+            odometerReadingTextField.setText(String.valueOf(vehicleStatus.getOdometerReading()));
+            fuelLevelComboBox.setValue(vehicleStatus.getFuelLevel());
+            engineoilLevelComboBox.setValue(vehicleStatus.getEngineOilLevel());
+            interiorCleanlinessTextField.setText(vehicleStatus.getInteriorCleanliness());
+            tirePressureTextField.setText(String.valueOf(vehicleStatus.getTirePressure()));
+            exteriorDamageComboBox.setValue(vehicleStatus.getExteriorDamage());
+            mechanicalIssuesComboBox.setValue(vehicleStatus.getMechanicalIssues());
         } catch (Exception ignored) {
 
         }
@@ -105,19 +99,14 @@ public class DriverSignUpVehicleStatusController implements Initializable {
             return false;
         }
 
-        Driver driver = Util.getInstance().getSignUpDriver();
-        driver.getVehicleInfo().setVehicleStatus(
-                new VehicleStatus(
-                        odometerReading,
-                        fuelLevel,
-                        tirePressure,
-                        exteriorDamage,
-                        interiorCleanlinessTextField.getText(),
-                        mechanicalIssue,
-                        engineOilLevel,
-                        LocalDate.now()
-                )
-        );
+        VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
+        vehicleStatus.setOdometerReading(odometerReading);
+        vehicleStatus.setFuelLevel(fuelLevel);
+        vehicleStatus.setTirePressure(tirePressure);
+        vehicleStatus.setExteriorDamage(exteriorDamage);
+        vehicleStatus.setInteriorCleanliness(interiorCleanlinessTextField.getText());
+        vehicleStatus.setMechanicalIssues(mechanicalIssue);
+        vehicleStatus.setEngineOilLevel(engineOilLevel);
 
         return true;
     }

@@ -15,22 +15,16 @@ import java.util.ResourceBundle;
 public class DriverSignUpDrivingLicenseController implements Initializable {
     @FXML
     private TextField licenseNumberTextField;
-
     @FXML
     private ComboBox<LicenseClass> licenseClassComboBox;
-
     @FXML
     private TextField policyNumberTextField;
-
     @FXML
     private TextField policyProviderTextField;
-
     @FXML
     private TextField insuranceCoverageAmountTextField;
-
     @FXML
     private DatePicker insurancePolicyExpirationDatePicker;
-
     @FXML
     private DatePicker drivingLicenseExpirationDatePicker;
 
@@ -99,36 +93,33 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
             return false;
         }
 
-        Driver driver = Util.getInstance().getSignUpDriver();
-        driver.setDrivingLicense(new DrivingLicense(
-                licenseNumber,
-                drivingLicenseExpirationDate,
-                licenseClass
-        ));
-        driver.getVehicleInfo().setInsurancePolicy(
-                new InsurancePolicy(
-                        policyNumber,
-                        insuranceProvider,
-                        insuranceCoverageAmount,
-                        insurancePolicyExpirationDate
-                )
-        );
+        DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
+        drivingLicense.setLicenseNumber(licenseNumber);
+        drivingLicense.setExpirationDate(drivingLicenseExpirationDate);
+        drivingLicense.setLicenseClass(licenseClass);
+
+        InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+        insurancePolicy.setPolicyNumber(policyNumber);
+        insurancePolicy.setProvider(insuranceProvider);
+        insurancePolicy.setCoverageAmount(insuranceCoverageAmount);
+        insurancePolicy.setExpirationDate(insurancePolicyExpirationDate);
         return true;
     }
 
     private void restoreData() {
         try {
-            Driver driver = Util.getInstance().getSignUpDriver();
+            DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
             // DrivingLicense
-            licenseNumberTextField.setText(driver.getDrivingLicense().getLicenseNumber());
-            licenseClassComboBox.setValue(driver.getDrivingLicense().getLicenseClass());
-            drivingLicenseExpirationDatePicker.setValue(driver.getDrivingLicense().getExpirationDate());
+            licenseNumberTextField.setText(drivingLicense.getLicenseNumber());
+            licenseClassComboBox.setValue(drivingLicense.getLicenseClass());
+            drivingLicenseExpirationDatePicker.setValue(drivingLicense.getExpirationDate());
 
             // InsurancePolicy
-            policyNumberTextField.setText(driver.getVehicleInfo().getInsurancePolicy().getPolicyNumber());
-            policyProviderTextField.setText(driver.getVehicleInfo().getInsurancePolicy().getProvider());
-            insuranceCoverageAmountTextField.setText(String.valueOf(driver.getVehicleInfo().getInsurancePolicy().getCoverageAmount()));
-            insurancePolicyExpirationDatePicker.setValue(driver.getVehicleInfo().getInsurancePolicy().getExpirationDate());
+            InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+            policyNumberTextField.setText(insurancePolicy.getPolicyNumber());
+            policyProviderTextField.setText(insurancePolicy.getProvider());
+            insuranceCoverageAmountTextField.setText(String.valueOf(insurancePolicy.getCoverageAmount()));
+            insurancePolicyExpirationDatePicker.setValue(insurancePolicy.getExpirationDate());
         } catch (NullPointerException ignored) {
 
         }

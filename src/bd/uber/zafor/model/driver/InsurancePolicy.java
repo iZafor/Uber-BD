@@ -4,16 +4,18 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class InsurancePolicy implements Serializable {
+    private final int insurancePolicyId;
     private String policyNumber;
     private String provider;
     private float coverageAmount;
     private LocalDate expirationDate;
 
-    public InsurancePolicy(String policyNumber, String provider, float coverageAmount, LocalDate expirationDate) {
-        this.policyNumber = policyNumber;
-        this.provider = provider;
-        this.coverageAmount = coverageAmount;
-        this.expirationDate = expirationDate;
+    public InsurancePolicy(int insurancePolicyId) {
+        this.insurancePolicyId = insurancePolicyId;
+    }
+
+    public int getInsurancePolicyId() {
+        return insurancePolicyId;
     }
 
     public String getPolicyNumber() {

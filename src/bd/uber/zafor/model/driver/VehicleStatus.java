@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public final class VehicleStatus implements Serializable {
+    private final int vehicleStatusId;
     private int odometerReading;
     private FuelLevel fuelLevel;
     private float tirePressure;
@@ -13,15 +14,12 @@ public final class VehicleStatus implements Serializable {
     private EngineOilLevel engineOilLevel;
     private LocalDate lastUpdated;
 
-    public VehicleStatus(int odometerReading, FuelLevel fuelLevel, float tirePressure, ExteriorDamage exteriorDamage, String interiorCleanliness, MechanicalIssue mechanicalIssues, EngineOilLevel engineOilLevel, LocalDate lastUpdated) {
-        this.odometerReading = odometerReading;
-        this.fuelLevel = fuelLevel;
-        this.tirePressure = tirePressure;
-        this.exteriorDamage = exteriorDamage;
-        this.interiorCleanliness = interiorCleanliness;
-        this.mechanicalIssues = mechanicalIssues;
-        this.engineOilLevel = engineOilLevel;
-        this.lastUpdated = lastUpdated;
+    public VehicleStatus(int vehicleStatusId) {
+        this.vehicleStatusId = vehicleStatusId;
+    }
+
+    public int getVehicleStatusId() {
+        return vehicleStatusId;
     }
 
     public int getOdometerReading() {

@@ -1,7 +1,7 @@
 package bd.uber;
 
-import bd.uber.zafor.model.driver.Driver;
-import bd.uber.zafor.model.driver.SignupForm;
+import bd.uber.zafor.model.driver.*;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +19,7 @@ import java.util.EventObject;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Predicate;
 
 public class Util {
     private static Util util;
@@ -35,10 +36,14 @@ public class Util {
     };
 
     private final DB db;
-
     private final ExecutorService workers;
 
     private Driver signUpDriver;
+    private ContactDetails signupDriverContactDetails;
+    private VehicleInfo signupDriverVehicleInfo;
+    private VehicleStatus signUpDriverVehicleStatus;
+    private InsurancePolicy signUpDriverInsurancePolicy;
+    private DrivingLicense signUpDriverDrivingLicense;
     private final ObjectProperty<SignupForm> signupFormProperty;
     private List<Location> locationList;
 
@@ -65,14 +70,53 @@ public class Util {
 
     public Driver getSignUpDriver() {
         if (signUpDriver == null) {
-            signUpDriver = new Driver();
-            signUpDriver.setId(db.getObjectCount(BinFilePath.DRIVER) + 1);
+            signUpDriver = new Driver(db.getObjectCount(BinFilePath.DRIVER) + 1);
         }
         return signUpDriver;
     }
 
-    public void setSignUpDriver(Driver signUpDriver) {
-        this.signUpDriver = signUpDriver;
+    public ContactDetails getSignupDriverContactDetails() {
+        if (signupDriverContactDetails == null) {
+            signupDriverContactDetails = new ContactDetails(db.getObjectCount(BinFilePath.CONTACT_DETAILS) + 1);
+        }
+        return signupDriverContactDetails;
+    }
+
+    public VehicleInfo getSignupDriverVehicleInfo() {
+        if (signupDriverVehicleInfo == null) {
+            signupDriverVehicleInfo = new VehicleInfo(db.getObjectCount(BinFilePath.VEHICLE_INFO) + 1);
+        }
+        return signupDriverVehicleInfo;
+    }
+
+    public VehicleStatus getSignupDriverVehicleStatus() {
+        if (signUpDriverVehicleStatus == null) {
+            signUpDriverVehicleStatus = new VehicleStatus(db.getObjectCount(BinFilePath.VEHICLE_STATUS) + 1);
+        }
+        return signUpDriverVehicleStatus;
+    }
+
+    public InsurancePolicy getSignUpDriverInsurancePolicy() {
+        if (signUpDriverInsurancePolicy == null) {
+            signUpDriverInsurancePolicy = new InsurancePolicy(db.getObjectCount(BinFilePath.INSURANCE_POLICY) + 1);
+        }
+        return signUpDriverInsurancePolicy;
+    }
+
+    public DrivingLicense getSignUpDriverDrivingLicense() {
+        if (signUpDriverDrivingLicense == null) {
+            signUpDriverDrivingLicense = new DrivingLicense(db.getObjectCount(BinFilePath.DRIVING_LICENSE) + 1);
+        }
+        return signUpDriverDrivingLicense;
+    }
+
+    public void resetSignupDriverObjects() {
+        signUpDriver = null;
+        signupDriverContactDetails = null;
+        signupDriverVehicleInfo = null;
+        signUpDriverInsurancePolicy = null;
+        signUpDriverVehicleStatus = null;
+        signUpDriverDrivingLicense = null;
     }
 
     public ObjectProperty<SignupForm> getSignupFormProperty() {
@@ -184,5 +228,19 @@ public class Util {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(successMessage);
         alert.showAndWait();
+    }
+
+    public <E> void updateObject(E e, BinFilePath binFilePath, Predicate<E> predicate, String successMessage, String failureMessage) {
+        workers.execute(() -> {
+            if (db.updateObjectFile(e, binFilePath, predicate, false) && successMessage != null) {
+                Platform.runLater(() -> showSuccessMessage(successMessage));
+            } else {
+                Platform.runLater(() -> {
+                    if (failureMessage != null) {
+                        showError(failureMessage);
+                    }
+                });
+            }
+        });
     }
 }

@@ -33,5 +33,17 @@ ScrollPane {
 
 VBox {
     -fx-background-color: transparent;
-    -fx-spacing: 10;
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}
+
+.search-location {
+    -fx-pref-width: 238;
+    -fx-pref-height: 35;
+    -fx-font-size: 20;
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 8;
+    -fx-cursor: hand;
 }
