@@ -4,9 +4,10 @@
  */
 package bd.uber.redwan;
 
-import bd.uber.zafor.model.DamageReport;
-import bd.uber.zafor.model.VehicleOwner;
-import bd.uber.zafor.model.VehicleStatus;
+
+import bd.uber.zafor.model.driver.DamageReport;
+import bd.uber.zafor.model.driver.VehicleOwner;
+import bd.uber.zafor.model.driver.VehicleStatus;
 
 /**
  *
@@ -14,16 +15,16 @@ import bd.uber.zafor.model.VehicleStatus;
  */
 public class MaintenanceRequest {
     private String model;
-    private VehicleOwner owner;
+    
     private VehicleStatus vehicleStatus;
     private MaintainenceStatus maintenanceStatus;
     private DamageReport damageReport;
 
     // Constructor
-    public MaintenanceRequest(String model, VehicleOwner owner, VehicleStatus vehicleStatus,
+    public MaintenanceRequest(String model, VehicleStatus vehicleStatus,
                               MaintainenceStatus maintenanceStatus, DamageReport damageReport) {
         this.model = model;
-        this.owner = owner;
+        
         this.vehicleStatus = vehicleStatus;
         this.maintenanceStatus = maintenanceStatus;
         this.damageReport = damageReport;
@@ -38,13 +39,9 @@ public class MaintenanceRequest {
         this.model = model;
     }
 
-    public VehicleOwner getOwner() {
-        return owner;
-    }
 
-    public void setOwner(VehicleOwner owner) {
-        this.owner = owner;
-    }
+
+
 
     public VehicleStatus getVehicleStatus() {
         return vehicleStatus;

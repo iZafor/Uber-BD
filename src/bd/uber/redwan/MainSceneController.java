@@ -30,28 +30,20 @@ public class MainSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-@FXML
-private void maintainenceButton(ActionEvent event) {   
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MaintainenceScene.fxml"));
-        Parent root = loader.load();
-        
-        // Get the controller associated with the MaintainenceScene.fxml
-       // MaintainenceSceneController maintainenceSceneController = loader.getController();
-        
-//        Scene scene = new Scene(root);
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.show();
-           
-        Util.getInstance().showScene(root, event,"", false);
-    } catch (IOException e) {
-        e.printStackTrace();
-        // Handle the exception
     }
-}
+
+    @FXML
+    private void maintainenceButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MaintainenceScene.fxml"));
+            Parent root = loader.load();
+
+            Util.getInstance().showScene(root, event, "", false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
+    }
 
     @FXML
     private void repairButton(ActionEvent event) {
@@ -59,9 +51,23 @@ private void maintainenceButton(ActionEvent event) {
 
     @FXML
     private void inventoryButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("InventoryScene.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene inventoryScene = new Scene(root);
+            stage.setScene(inventoryScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
+
     }
 
-    @FXML    private void retirementButton(ActionEvent event) {
+    @FXML
+    private void retirementButton(ActionEvent event) {
     }
 
 }

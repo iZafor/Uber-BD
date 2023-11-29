@@ -1,23 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bd.uber.redwan;
 
-/**
- *
- * @author Redwan
- */
+import java.io.Serializable;
 
 // Class representing a vehicle component
-class VehicleComponent {
-    private String componentName;
+public class VehicleComponent implements Serializable {
+    private final String componentName;
+    private final ComponentCategory category;
+    private final int quantity;
 
-    public VehicleComponent(String componentName) {
+    public VehicleComponent(String componentName, ComponentCategory category, int quantity) {
         this.componentName = componentName;
+        this.category = category;
+        this.quantity = quantity;
     }
 
     public String getComponentName() {
         return componentName;
+    }
+
+    public ComponentCategory getCategory() {
+        return category;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

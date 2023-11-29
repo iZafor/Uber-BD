@@ -17,7 +17,10 @@ public enum BinFilePath {
     RIDE_REQUEST("bin/ride_request.bin"),
 
     // Driver Related Files,
-    VEHICLE_INFO("bin/vehicle_info.bin");
+    VEHICLE_INFO("bin/vehicle_info.bin"),
+
+    INVENTORY("bin/inventory.bin"),
+    PLACED_ORDER("bin/placed_order.bin");
 
     private final String path;
 

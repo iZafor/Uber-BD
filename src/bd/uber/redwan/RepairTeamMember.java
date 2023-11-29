@@ -4,8 +4,7 @@
  */
 package bd.uber.redwan;
 
-import bd.uber.zafor.model.Driver;
-
+import bd.uber.zafor.model.driver.Driver;
 import java.util.List;
 
 /**

@@ -4,7 +4,9 @@
  */
 package bd.uber.redwan;
 
-import bd.uber.zafor.model.DamageReport;
+
+
+import bd.uber.zafor.model.driver.DamageReport;
 
 import java.util.List;
 
