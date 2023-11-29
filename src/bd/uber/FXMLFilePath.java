@@ -22,7 +22,19 @@ public enum FXMLFilePath {
     DRIVER_SIGN_UP_IDENTIFICATION_INFO_VIEW("/fxml/zafor/driver-sign-up-identification-info-view.fxml"),
     
     // Others
-    RIDE_VIEW("/fxml/zafor/ride-view.fxml");
+    RIDE_VIEW("/fxml/zafor/ride-view.fxml"),
+    //HRM Signup
+    HRM_Dashboard("/fxml/nisi/HRM/HRM_Dashboard.fxml"),
+    Employee_Performance("/fxml/nisi/HRM/EmployeePerformance.fxml"),
+    Employee_Reports("/fxml/nisi/HRM/EmployeeReports.fxml"),
+    Manage_Meeting("/fxml/nisi/HRM/ManageMeeting.fxml"),
+    Monthly_Supling_Salary("/fxml/nisi/HRM/MonthlySuplingSalary.fxml"),
+    Notice_To_Employee("/fxml/nisi/HRM/NoticeToEmployee.fxml"),
+    Stor_Employee_Details("/fxml/nisi/HRM/StorEmployeeDetails.fxml"),
+    Working_Schedule("/fxml/nisi/HRM/WorkingSchedule.fxml"),
+    Add_Update_Employee_Details("/fxml/nisi/HRM/AddUpdateEmployeeDetails.fxml");
+    //Passenger Signup
+    
 
     private final String path;
 

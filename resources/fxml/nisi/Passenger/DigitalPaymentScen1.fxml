@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="899.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.DigitalPaymentScen1Controller">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="471.0" prefWidth="999.0">
+         <children>
+            <Label layoutX="45.0" layoutY="33.0" text="Pay On Digital  Account">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Text layoutX="30.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1) Users paying with digital payment for the first time: Enter digital Number and OTP for successful account saving. ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="30.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2) For all subsequent users: Enter PIN to make payment ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="30.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disclaimer: you will be redirected back to Checkout for first transaction to complete payment">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="31.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Note">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="45.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. You have an activated digital account " />
+            <Text layoutX="45.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" 2. Ensure you have sufficient balance in your digital account to cover the total cost of the order" />
+            <Text layoutX="45.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" 3. Ensure you are able to receive your OTP (one-time-password) on your mobile and have digital PIN" />
+            <Text layoutX="31.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="***Please note that one digital account.***" />
+            <Button layoutX="876.0" layoutY="397.0" mnemonicParsing="false" onAction="#PayNowButtonOnAction" text="Pay Now" />
+            <Button fx:id="backButton" layoutX="707.0" layoutY="397.0" mnemonicParsing="false" onAction="#goBackScen1ButtonOnAction" prefHeight="31.0" prefWidth="134.0" text="Go Back Scen 1" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -16,8 +16,9 @@ public enum BinFilePath {
     RIDE("bin/ride.bin"),
 
     // Driver Related Files,
-    VEHICLE_INFO("bin/vehicle_info.bin");
-
+    VEHICLE_INFO("bin/vehicle_info.bin"),
+    
+    EMPLOYEE_DETAILS("bin/Employee_Details");
     private final String path;
 
     BinFilePath(String path) {

@@ -50,27 +50,27 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-        LoginInfo loginInfo;
-        if ((loginInfo = validateInputs()) == null) {
-            showAlert("Invalid Input!");
-            return;
-        }
-
-        User user;
-        if ((user = loginInfo.verifyLoginInfo()) == null) {
-            showAlert("Incorrect Credential!");
-            return;
-        }
+        //LoginInfo loginInfo;
+//        if ((loginInfo = validateInputs()) == null) {
+//            showAlert("Invalid Input!");
+//            return;
+//        }
+//
+//        User user;
+//        if ((user = loginInfo.verifyLoginInfo()) == null) {
+//            showAlert("Incorrect Credential!");
+//            return;
+//        }
 
         try {
-            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
+            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.HRM_Dashboard);
             Util.getInstance().showScene(
                     loader.load(),
                     actionEvent,
-                    "Driver",
+                    "HRM_Dashboard",
                     false
             );
-            ((DriverViewController) loader.getController()).setInitData((Driver) user);
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
