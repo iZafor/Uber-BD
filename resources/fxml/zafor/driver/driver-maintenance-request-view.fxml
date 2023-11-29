@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="208.0" prefWidth="584.0" styleClass="main-container" stylesheets="@../../../styles/zafor/driver/driver-maintenance-request-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.driver.DriverMaintenanceRequestController">
+    <Text layoutX="43.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a preferred date:" AnchorPane.leftAnchor="43.0" />
+    <DatePicker fx:id="preferredTimeDatePicker" layoutX="294.0" layoutY="25.0" />
+    <Text layoutX="42.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time slot:" AnchorPane.leftAnchor="43.0" />
+    <ComboBox fx:id="timeSlotComboBox" layoutX="294.0" layoutY="85.0" prefWidth="150.0" />
+   <Button layoutX="294.0" layoutY="144.0" mnemonicParsing="false" onAction="#onMakeRequest" styleClass="request-button" text="Make Request" />
+</AnchorPane>

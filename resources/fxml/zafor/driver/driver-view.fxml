@@ -19,7 +19,7 @@
                 </VBox>
             <Button layoutX="26.0" layoutY="380.0" mnemonicParsing="false" onAction="#onViewRides" text="View Rides" />
             <Button layoutX="26.0" layoutY="602.0" mnemonicParsing="false" onAction="#onReportDamage" text="Report Damage" />
-            <Button layoutX="26.0" layoutY="407.0" mnemonicParsing="false" onAction="#onRequestForRepair" text="Reuquest For Repair" />
+            <Button layoutX="26.0" layoutY="407.0" mnemonicParsing="false" onAction="#onRequestForMaintenance" text="Request For Maintainance" />
                 <Button layoutX="97.0" layoutY="386.0" mnemonicParsing="false" onAction="#onLogout" styleClass="log-out-button" text="Logout" />
             </VBox>
         </AnchorPane>

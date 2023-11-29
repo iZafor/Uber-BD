@@ -11,9 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -181,8 +183,19 @@ public class DriverViewController implements Initializable {
     }
 
     @FXML
-    private void onRequestForRepair() {
-        menuOptionProperty.set(DriverViewMenuOption.REPAIR_REQUEST);
+    private void onRequestForMaintenance(ActionEvent event) {
+        try {
+            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_MAINTENANCE_REQUEST_VIEW);
+            AnchorPane anchorPane = loader.load();
+            ((DriverMaintenanceRequestController) loader.getController()).setInitData(vehicleInfo.getVehicleInfoId());
+            Util.getInstance().showScene(
+                    new Scene(anchorPane),
+                    event,
+                    ""
+            );
+        } catch (IOException ignored) {
+            // log the error
+        }
     }
 
     @FXML
@@ -254,11 +267,6 @@ public class DriverViewController implements Initializable {
                         driverBorderPane.setCenter(loader.load());
                         ((DriverReportDamageController) loader.getController()).setInitData(vehicleInfo);
                         break;
-                    case REPAIR_REQUEST:
-                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_REPAIR_REQUEST_VIEW);
-                        driverBorderPane.setCenter(loader.load());
-                        ((DriverRepairRequestController) loader.getController()).setInitData(driver);
-                        break;
                 }
             } catch (IOException ignored) {
                 // log the error
@@ -275,11 +283,17 @@ public class DriverViewController implements Initializable {
     }
 
     private void configureOnClose() {
-        mainMenuVBox.getParent().getScene().getWindow().setOnHiding(event -> commitChanges());
-        mainMenuVBox.getParent().getScene().getWindow().setOnCloseRequest(event -> commitChanges());
+        mainMenuVBox.getParent().getScene().getWindow().setOnHiding(this::commitChanges);
+        mainMenuVBox.getParent().getScene().getWindow().setOnCloseRequest(this::commitChanges);
     }
 
-    private void commitChanges() {
+    private void commitChanges(WindowEvent event) {
+        if (driverStatusProperty.get().equals(DriverStatus.SHARING_RIDE)) {
+            Util.getInstance().showWarningMessage("You haven't finish your current ride yet!");
+            event.consume();
+            return;
+        }
+
         Util.getInstance().getWorkers().execute(() -> {
             driver.setCurrentLocationId(driverLocationProperty.getValue().getLocationId());
             driver.setDriverStatus(driverStatusProperty.get());

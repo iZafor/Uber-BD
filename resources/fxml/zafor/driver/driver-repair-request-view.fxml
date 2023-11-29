@@ -1,9 +1,0 @@
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="780.0" prefWidth="780.0" stylesheets="@../../../styles/zafor/driver/driver-repair-request-styles.css"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="bd.uber.zafor.controller.driver.DriverRepairRequestController">
-    <AnchorPane layoutY="14.0" prefHeight="780.0" prefWidth="780.0" styleClass="main-container"
-                AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="10.0">
-
-    </AnchorPane>
-</AnchorPane>
