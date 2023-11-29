@@ -176,6 +176,11 @@ public class DriverViewController implements Initializable {
     }
 
     @FXML
+    private void onReportDamage() {
+        menuOptionProperty.set(DriverViewMenuOption.REPORT_DAMAGE);
+    }
+
+    @FXML
     private void onRequestForRepair() {
         menuOptionProperty.set(DriverViewMenuOption.REPAIR_REQUEST);
     }
@@ -244,6 +249,11 @@ public class DriverViewController implements Initializable {
                         driverBorderPane.setCenter(loader.load());
                         ((DriverViewRidesController) loader.getController()).setInitData(driver, feedbackList);
                         break;
+                    case REPORT_DAMAGE:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_REPORT_DAMAGE_VIEW);
+                        driverBorderPane.setCenter(loader.load());
+                        ((DriverReportDamageController) loader.getController()).setInitData(vehicleInfo);
+                        break;
                     case REPAIR_REQUEST:
                         loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_REPAIR_REQUEST_VIEW);
                         driverBorderPane.setCenter(loader.load());
@@ -281,5 +291,14 @@ public class DriverViewController implements Initializable {
                     false
             );
         });
+
+        Util.getInstance().getWorkers().execute(() ->
+                Util.getInstance().getDb().updateObjectFile(
+                        vehicleInfo,
+                        BinFilePath.VEHICLE_INFO,
+                        v -> v.getVehicleInfoId() == vehicleInfo.getVehicleInfoId(),
+                        false
+                )
+        );
     }
 }

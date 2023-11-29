@@ -17,6 +17,7 @@ public enum FXMLFilePath {
     DETAILED_RIDE_VIEW("/fxml/zafor/driver/detailed-ride-view.fxml"),
     RIDE_REQUEST_VIEW("/fxml/zafor/driver/ride-request-view.fxml"),
     CURRENT_RIDE_VIEW("/fxml/zafor/driver/current-ride-view.fxml"),
+    DRIVER_REPORT_DAMAGE_VIEW("/fxml/zafor/driver/driver-report-damage-view.fxml"),
 
     // Driver Signup
     DRIVER_SIGN_UP_VIEW("/fxml/zafor/driver/driver-sign-up-view.fxml"),

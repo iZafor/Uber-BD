@@ -167,6 +167,7 @@ public class DriverDashboardController implements Initializable {
                 String currentLocation = currentLocationTextField.getText();
                 if (currentLocation == null || currentLocation.isEmpty() || Util.getInstance().getLocationList().stream().noneMatch(location -> location.getName().equals(currentLocation))) {
                     currentLocationTextField.clear();
+                    rideRequestsVBox.getChildren().clear();
                 }
                 currentLocationTextField.getParent().requestFocus();
             }

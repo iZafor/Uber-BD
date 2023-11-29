@@ -1,7 +1,5 @@
 package bd.uber.zafor.model.driver;
 
-import bd.uber.Location;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -9,13 +7,13 @@ public class DamageReport implements Serializable {
     private final int damageReportId;
     private final String description;
     private final LocalDate reportDate;
-    private final Location location;
+    private final int locationId;
 
-    public DamageReport(int damageReportId, String description, LocalDate reportDate, Location location) {
+    public DamageReport(int damageReportId, String description, LocalDate reportDate, int locationId) {
         this.damageReportId = damageReportId;
         this.description = description;
         this.reportDate = reportDate;
-        this.location = location;
+        this.locationId = locationId;
     }
 
     public int getDamageReportId() {
@@ -30,7 +28,7 @@ public class DamageReport implements Serializable {
         return reportDate;
     }
 
-    public Location getLocation() {
-        return location;
+    public int getLocationId() {
+        return locationId;
     }
 }

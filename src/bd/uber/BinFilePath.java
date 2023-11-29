@@ -24,7 +24,8 @@ public enum BinFilePath {
     DRIVING_LICENSE("bin/driving_license.bin"),
     RIDE_VEHICLE("bin/ride_vehicle.bin"),
     PASSENGER_FEEDBACK("bin/passenger_feedback.bin"),
-    DRIVER_FEEDBACK("bin/driver_feedback.bin");
+    DRIVER_FEEDBACK("bin/driver_feedback.bin"),
+    DAMAGE_REPORT("bin/damage_report.bin");
 
     private final String path;
 
