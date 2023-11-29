@@ -111,7 +111,11 @@ public class DB {
                 break;
             }
         }
-        eList.remove(idxToRemove);
+        try {
+            eList.remove(idxToRemove);
+        } catch (IndexOutOfBoundsException ignored) {
+            return false;
+        }
         if (!delete) {
             eList.add(e);
         }
