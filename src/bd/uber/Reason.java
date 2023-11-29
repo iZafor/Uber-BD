@@ -1,10 +1,17 @@
 package bd.uber;
 
-public class Reason {
+import java.io.Serializable;
+
+public class Reason implements Serializable {
+    private final int reasonId;
     private String reasonDescription;
 
-    public Reason(String reasonDescription) {
-        this.reasonDescription = reasonDescription;
+    public Reason(int reasonId) {
+        this.reasonId = reasonId;
+    }
+
+    public int getReasonId() {
+        return reasonId;
     }
 
     public String getReasonDescription() {

@@ -26,7 +26,11 @@ public enum BinFilePath {
     PASSENGER_FEEDBACK("bin/passenger_feedback.bin"),
     DRIVER_FEEDBACK("bin/driver_feedback.bin"),
     DAMAGE_REPORT("bin/damage_report.bin"),
-    MAINTENANCE_REQUEST("bin/maintenance_request.bin");
+    MAINTENANCE_REQUEST("bin/maintenance_request.bin"),
+
+    // Others
+    LEAVE_REQUEST("bin/leave_request.bin"),
+    REASON("bin/reason.bin");
 
     private final String path;
 
