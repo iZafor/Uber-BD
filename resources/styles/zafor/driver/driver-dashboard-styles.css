@@ -1,0 +1,99 @@
+.dashboard-container {
+    -fx-background-color: #DFDFDE;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.subtitle-text {
+    -fx-font-size: 16;
+}
+
+Circle {
+    -fx-fill: transparent;
+    -fx-stroke: #0F0F0F;
+}
+
+ComboBox {
+    -fx-background-color: #0F0F0F;
+    -fx-pref-height: 40;
+    -fx-pref-width: 210;
+    -fx-font-size: 20;
+    -fx-background-radius: 4;
+}
+
+TextField {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-pref-height: 40;
+    -fx-pref-width: 210;
+    -fx-font-size: 20;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell {
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #FFFAF4;
+}
+
+ComboBox .combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #9DB2BF;
+}
+
+ComboBox .text {
+    -fx-fill: #FFFAF4;
+}
+
+ComboBox .arrow {
+    -fx-background-color: #FFFAF4;
+}
+
+ImageView {
+    -fx-fit-width: 100;
+    -fx-fit-height: 100;
+}
+
+.ride-request-area {
+    -fx-pref-width: 80;
+}
+
+ScrollPane, .current-ride-container {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-hbar-policy: NEVER;
+}
+
+ScrollPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+.ride-request-container {
+    -fx-padding: 8;
+    -fx-spacing: 8;
+}
+
+.search-location-container {
+    -fx-padding: 5;
+    -fx-spacing: 5;
+}
+
+.current-ride-container {
+    -fx-padding: 5;
+    -fx-pref-width: 746;
+    -fx-pref-height: 125;
+}
+
+.search-location {
+    -fx-pref-width: 178;
+    -fx-pref-height: 35;
+    -fx-font-size: 18;
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}

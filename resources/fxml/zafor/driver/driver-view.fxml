@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="driverBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1027.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.driver.DriverViewController">
+    <left>
+        <AnchorPane prefHeight="800.0" prefWidth="241.0" stylesheets="@../../../styles/zafor/driver/driver-menu-styles.css" BorderPane.alignment="CENTER">
+            <VBox fx:id="mainMenuVBox" alignment="CENTER" layoutX="-4.0" layoutY="3.0" prefHeight="780.0" prefWidth="230.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+                <Button mnemonicParsing="false" onAction="#onShowDashboard" text="Dashboard" />
+                <Button layoutX="26.0" layoutY="358.0" mnemonicParsing="false" onAction="#onShowProfileSettings" text="Account Settings" />
+                <VBox fx:id="accountSettingsMenuVBox" prefHeight="322.0" prefWidth="231.0" styleClass="profile-settings-container">
+                    <Button mnemonicParsing="false" onAction="#onShowBasicInfo" text="Basic Informations" />
+                    <Button alignment="CENTER" layoutX="26.0" layoutY="90.0" mnemonicParsing="false" onAction="#onShowDrivingLicense" text="Driving License &amp; Insurance Policy" />
+                    <Button alignment="CENTER" layoutX="26.0" layoutY="117.0" mnemonicParsing="false" onAction="#onShowVehicleInfo" text="Vehicle Informations" />
+                    <Button alignment="CENTER" layoutX="26.0" layoutY="152.0" mnemonicParsing="false" onAction="#onShowVehicleStatus" prefHeight="70.0" text="Vehicle Status" />
+                </VBox>
+            <Button layoutX="26.0" layoutY="380.0" mnemonicParsing="false" onAction="#onViewRides" text="View Rides" />
+            <Button layoutX="26.0" layoutY="602.0" mnemonicParsing="false" onAction="#onReportDamage" text="Report Damage" />
+            <Button layoutX="26.0" layoutY="407.0" mnemonicParsing="false" onAction="#onRequestForMaintenance" text="Request For Maintainance" />
+                <Button layoutX="97.0" layoutY="386.0" mnemonicParsing="false" onAction="#onLogout" styleClass="log-out-button" text="Logout" />
+            </VBox>
+        </AnchorPane>
+    </left>
+    <center>
+        <fx:include source="driver-dashboard-view.fxml" />
+    </center>
+</BorderPane>

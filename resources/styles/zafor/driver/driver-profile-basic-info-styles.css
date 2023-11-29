@@ -1,0 +1,63 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 20;
+    -fx-fill: #0F0F0F;
+}
+
+Circle {
+    -fx-fill: transparent;
+    -fx-stroke-width: 2;
+    -fx-stroke: #0F0F0F;
+    -fx-cursor: hand;
+}
+
+TextField, PasswordField {
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+}
+
+Button {
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-font-size: 20;
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DFDFDE;
+    -fx-cursor: hand;
+}
+
+ScrollPane {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-hbar-policy: NEVER;
+}
+
+ScrollPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+ScrollPane VBox {
+    -fx-padding: 5;
+    -fx-spacing: 5;
+}
+
+.search-location {
+    -fx-pref-width: 188;
+    -fx-pref-height: 35;
+    -fx-font-size: 18;
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}

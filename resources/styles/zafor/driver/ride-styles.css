@@ -1,0 +1,31 @@
+HBox {
+    -fx-background-color: #DFDFDE;
+    -fx-background-radius: 4;
+    -fx-border-color: #0F0F0F;
+}
+
+Label {
+    -fx-font-size: 14;
+}
+
+.address-label {
+    -fx-pref-width: 115;
+    -fx-pref-height: 20;
+}
+
+.time-label {
+    -fx-pref-width: 140;
+    -fx-pref-height: 20;
+}
+
+.green-label {
+    -fx-text-fill: #005B41;
+}
+
+.red-label {
+    -fx-text-fill: #860A35;
+}
+
+.info-icon {
+    -fx-cursor: hand;
+}

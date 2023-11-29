@@ -14,11 +14,27 @@ public enum BinFilePath {
     // Unknown
     LOCATION("bin/location.bin"),
     RIDE("bin/ride.bin"),
+    RIDE_REQUEST("bin/ride_request.bin"),
+    CONTACT_DETAILS("bin/contact_details"),
 
     // Driver Related Files,
-    VEHICLE_INFO("bin/vehicle_info.bin"),
+
     
-    EMPLOYEE_DETAILS("bin/Employee_Details");
+    EMPLOYEE_DETAILS("bin/Employee_Details"),
+    VEHICLE_INFO("bin/vehicle_info.bin"),
+    VEHICLE_STATUS("bin/vehicle_status.bin"),
+    INSURANCE_POLICY("bin/insurance_policy.bin"),
+    DRIVING_LICENSE("bin/driving_license.bin"),
+    RIDE_VEHICLE("bin/ride_vehicle.bin"),
+    PASSENGER_FEEDBACK("bin/passenger_feedback.bin"),
+    DRIVER_FEEDBACK("bin/driver_feedback.bin"),
+    DAMAGE_REPORT("bin/damage_report.bin"),
+    MAINTENANCE_REQUEST("bin/maintenance_request.bin"),
+
+    // Others
+    LEAVE_REQUEST("bin/leave_request.bin"),
+    REASON("bin/reason.bin");
+
     private final String path;
 
     BinFilePath(String path) {

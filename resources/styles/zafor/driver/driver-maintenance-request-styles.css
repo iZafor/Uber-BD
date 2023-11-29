@@ -1,0 +1,23 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 20;
+}
+
+DatePicker, ComboBox, .request-button {
+    -fx-font-size: 20;
+    -fx-pref-width: 220;
+    -fx-pref-height: 40;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+}
+
+Button, .request-button {
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
