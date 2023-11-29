@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class DrivingLicense implements Serializable {
+    private final int drivingLicenseId;
     private String licenseNumber;
     private LocalDate expirationDate;
     private LicenseClass licenseClass;
 
-    public DrivingLicense(String licenseNumber, LocalDate expirationDate, LicenseClass licenseClass) {
-        this.licenseNumber = licenseNumber;
-        this.expirationDate = expirationDate;
-        this.licenseClass = licenseClass;
+    public DrivingLicense(int drivingLicenseId) {
+        this.drivingLicenseId = drivingLicenseId;
+    }
+
+    public int getDrivingLicenseId() {
+        return drivingLicenseId;
     }
 
     public String getLicenseNumber() {

@@ -1,7 +1,5 @@
 package bd.uber.zafor.model.driver;
 
-import bd.uber.Location;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -10,27 +8,28 @@ public final class Ride implements Serializable {
     private boolean isCompleted;
     private int passengerId;
     private int driverId;
-    private final Location pickupPoint;
-    private final Location dropOffPoint;
+    private final int pickupPointId;
+    private final int dropOffPointId;
     private LocalDateTime pickupTime;
     private LocalDateTime dropOffTime;
     private final float rideDistance;
     private float fare;
     private PaymentMethod paymentMethod;
-    private RideFeedback passengerFeedback;
-    private RideFeedback riderFeedback;
-    private RideVehicle vehicle;
+    private int passengerFeedbackId;
+    private int riderFeedbackId;
+    private final int rideVehicleInfoId;
 
-    public Ride(int passengerId, int driverId, Location pickupPoint, Location dropOffPoint, PaymentMethod paymentMethod, float fare) {
+    public Ride(int passengerId, int driverId, int pickupPointId, int dropOffPointId, float rideDistance, PaymentMethod paymentMethod, float fare, int rideVehicleInfoId) {
         this.passengerId = passengerId;
         this.driverId = driverId;
-        this.pickupPoint = pickupPoint;
-        this.dropOffPoint = dropOffPoint;
+        this.pickupPointId = pickupPointId;
+        this.dropOffPointId = dropOffPointId;
+        this.rideDistance = rideDistance;
         this.paymentMethod = paymentMethod;
         this.fare = fare;
+        this.rideVehicleInfoId = rideVehicleInfoId;
         this.isCompleted = false;
         this.isCancelled = false;
-        this.rideDistance = pickupPoint.getDistance(dropOffPoint);
     }
 
     public boolean isCancelled() {
@@ -65,12 +64,12 @@ public final class Ride implements Serializable {
         this.driverId = driverId;
     }
 
-    public Location getPickupPoint() {
-        return pickupPoint;
+    public Integer getPickupPointId() {
+        return pickupPointId;
     }
 
-    public Location getDropOffPoint() {
-        return dropOffPoint;
+    public Integer getDropOffPointId() {
+        return dropOffPointId;
     }
 
     public float getRideDistance() {
@@ -109,27 +108,23 @@ public final class Ride implements Serializable {
         this.paymentMethod = paymentMethod;
     }
 
-    public RideFeedback getPassengerFeedback() {
-        return passengerFeedback;
+    public int getPassengerFeedbackId() {
+        return passengerFeedbackId;
     }
 
-    public void setPassengerFeedback(RideFeedback passengerFeedback) {
-        this.passengerFeedback = passengerFeedback;
+    public void setPassengerFeedbackId(int passengerFeedbackId) {
+        this.passengerFeedbackId = passengerFeedbackId;
     }
 
-    public RideFeedback getRiderFeedback() {
-        return riderFeedback;
+    public int getRiderFeedbackId() {
+        return riderFeedbackId;
     }
 
-    public void setRiderFeedback(RideFeedback riderFeedback) {
-        this.riderFeedback = riderFeedback;
+    public void setRiderFeedbackId(int riderFeedbackId) {
+        this.riderFeedbackId = riderFeedbackId;
     }
 
-    public RideVehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(RideVehicle vehicle) {
-        this.vehicle = vehicle;
+    public int getRideVehicleInfoId() {
+        return rideVehicleInfoId;
     }
 }

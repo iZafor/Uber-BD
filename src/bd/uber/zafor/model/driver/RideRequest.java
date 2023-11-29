@@ -1,24 +1,27 @@
 package bd.uber.zafor.model.driver;
 
-import bd.uber.Location;
-
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class RideRequest implements Serializable {
     private final int passengerId;
     private final float passengerRating;
-    private final Location pickupPoint;
-    private final Location dropOffPoint;
+    private final int pickupPointId;
+    private final int dropOffPointId;
     private final PaymentMethod paymentMethod;
     private final float fare;
+    private final float rideDistance;
+    private final LocalDateTime requestTime;
 
-    public RideRequest(int passengerId, float passengerRating, Location pickupPoint, Location dropOffPoint, PaymentMethod paymentMethod, float fare) {
+    public RideRequest(int passengerId, float passengerRating, int pickupPointId, int dropOffPointId, PaymentMethod paymentMethod, float fare, float rideDistance, LocalDateTime requestTime) {
         this.passengerId = passengerId;
         this.passengerRating = passengerRating;
-        this.pickupPoint = pickupPoint;
-        this.dropOffPoint = dropOffPoint;
+        this.pickupPointId = pickupPointId;
+        this.dropOffPointId = dropOffPointId;
         this.paymentMethod = paymentMethod;
         this.fare = fare;
+        this.rideDistance = rideDistance;
+        this.requestTime = requestTime;
     }
 
     public int getPassengerId() {
@@ -29,12 +32,12 @@ public class RideRequest implements Serializable {
         return passengerRating;
     }
 
-    public Location getPickupPoint() {
-        return pickupPoint;
+    public int getPickupPointId() {
+        return pickupPointId;
     }
 
-    public Location getDropOffPoint() {
-        return dropOffPoint;
+    public int getDropOffPointId() {
+        return dropOffPointId;
     }
 
     public PaymentMethod getPaymentMethod() {
@@ -43,5 +46,13 @@ public class RideRequest implements Serializable {
 
     public float getFare() {
         return fare;
+    }
+
+    public float getRideDistance() {
+        return rideDistance;
+    }
+
+    public LocalDateTime getRequestTime() {
+        return requestTime;
     }
 }

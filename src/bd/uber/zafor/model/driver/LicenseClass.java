@@ -1,6 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-public enum LicenseClass {
+import java.io.Serializable;
+
+public enum LicenseClass implements Serializable {
     LICENSE_FOR_MOTORCYCLE("License for MotorCycle"),
     LICENSE_FOR_AUTO_TEMPO_MOTOR("License for Auto/Tempo"),
     LICENSE_FOR_MICROBUS_JEEP("License for MicroBus/Jeep"),

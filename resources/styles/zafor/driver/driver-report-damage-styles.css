@@ -1,0 +1,69 @@
+.main-container {
+    -fx-background-color: #DFDFDE;
+}
+
+Text {
+    -fx-font-size: 20;
+}
+
+TextField {
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-text-fill: #0F0F0F;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 3;
+    -fx-pref-width: 260;
+    -fx-pref-height: 35;
+}
+
+TextArea {
+    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-text-fill: #0F0F0F;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-pref-width: 260;
+    -fx-pref-height: 260;
+    -fx-wrap-text: true;
+}
+
+Button {
+    -fx-font-size: 20;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-background-radius: 4;
+    -fx-pref-width: 260;
+    -fx-pref-height: 35;
+    -fx-cursor: hand;
+}
+
+ScrollPane {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-hbar-policy: NEVER;
+    -fx-pref-width: 260;
+}
+
+ScrollPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+ScrollPane VBox {
+    -fx-padding: 5;
+    -fx-spacing: 5;
+    -fx-pref-width: 260;
+}
+
+.search-location {
+    -fx-pref-width: 226;
+    -fx-pref-height: 35;
+    -fx-font-size: 18;
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}

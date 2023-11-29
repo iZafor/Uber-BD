@@ -1,7 +1,7 @@
 package bd.uber.zafor.controller.driver;
 
+import bd.uber.BinFilePath;
 import bd.uber.Util;
-import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.VehicleInfo;
 import bd.uber.zafor.model.driver.VehicleType;
 import javafx.fxml.FXML;
@@ -15,32 +15,26 @@ import java.util.ResourceBundle;
 public class DriverProfileVehicleInfoController implements Initializable {
     @FXML
     private TextField modelTextField;
-
     @FXML
     private TextField colorTextField;
-
     @FXML
     private TextField registrationNumberTextField;
-
     @FXML
     private TextField passengerCapacityTextField;
-
     @FXML
     private TextField numberOfEnginesTextField;
-
     @FXML
     private ComboBox<VehicleType> vehicleTypeComboBox;
 
-    private Driver driver;
-    
+    private VehicleInfo vehicleInfo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         vehicleTypeComboBox.getItems().addAll(VehicleType.values());
     }
 
-    public void setInitData(Driver driver) {
-        this.driver = driver;
-        VehicleInfo vehicleInfo = driver.getVehicleInfo();
+    public void setInitData(VehicleInfo vehicleInfo) {
+        this.vehicleInfo = vehicleInfo;
         modelTextField.setText(vehicleInfo.getModel());
         colorTextField.setText(vehicleInfo.getColor());
         registrationNumberTextField.setText(vehicleInfo.getRegistrationNumber());
@@ -72,7 +66,6 @@ public class DriverProfileVehicleInfoController implements Initializable {
             return;
         }
 
-        VehicleInfo vehicleInfo = driver.getVehicleInfo();
         vehicleInfo.setModel(model);
         vehicleInfo.setColor(color);
         vehicleInfo.setRegistrationNumber(registrationNumber);
@@ -80,6 +73,12 @@ public class DriverProfileVehicleInfoController implements Initializable {
         vehicleInfo.setPassengerCapacity(passengerCapacity);
         vehicleInfo.setVehicleType(vehicleType);
 
-        DriverViewController.updateDriver(driver);
+        Util.getInstance().updateObject(
+                vehicleInfo,
+                BinFilePath.VEHICLE_INFO,
+                v -> v.getVehicleInfoId() == vehicleInfo.getVehicleInfoId(),
+                "Vehicle info updated successfully.",
+                "Failed to update vehicle info!"
+        );
     }
 }
