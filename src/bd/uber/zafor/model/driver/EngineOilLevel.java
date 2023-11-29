@@ -1,6 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-public enum EngineOilLevel {
+import java.io.Serializable;
+
+public enum EngineOilLevel implements Serializable {
     BELOW_MIN_LEVEL("Below min level"),
     BETWEEN_MIN_AND_MAX_LEVEL("Between min and max level"),
     ABOVE_MAX_LEVEL("Above max level");

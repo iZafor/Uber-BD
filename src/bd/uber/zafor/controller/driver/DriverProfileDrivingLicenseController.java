@@ -1,10 +1,11 @@
 package bd.uber.zafor.controller.driver;
 
+import bd.uber.BinFilePath;
 import bd.uber.Util;
-import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.DrivingLicense;
 import bd.uber.zafor.model.driver.InsurancePolicy;
 import bd.uber.zafor.model.driver.LicenseClass;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -18,26 +19,21 @@ import java.util.ResourceBundle;
 public class DriverProfileDrivingLicenseController implements Initializable {
     @FXML
     private TextField licenseNumberTextField;
-
     @FXML
     private ComboBox<LicenseClass> licenseClassComboBox;
-
     @FXML
     private DatePicker drivingLicenseExpirationDatePicker;
-
     @FXML
     private TextField policyNumberTextField;
-
     @FXML
     private TextField policyProviderTextField;
-
     @FXML
     private TextField insuranceCoverageAmountTextField;
-
     @FXML
     private DatePicker insurancePolicyExpirationDatePicker;
 
-    private Driver driver;
+    private DrivingLicense drivingLicense;
+    private InsurancePolicy insurancePolicy;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,19 +44,17 @@ public class DriverProfileDrivingLicenseController implements Initializable {
         insurancePolicyExpirationDatePicker.setDayCellFactory(param -> Util.getInstance().getConstrainedDateCell(LocalDate.now(), null));
     }
 
-    public void setInitData(Driver driver) {
-        this.driver = driver;
-
-        DrivingLicense drivingLicense = driver.getDrivingLicense();
+    public void setInitData(DrivingLicense drivingLicense, InsurancePolicy insurancePolicy) {
+        this.drivingLicense = drivingLicense;
         licenseNumberTextField.setText(drivingLicense.getLicenseNumber());
         licenseClassComboBox.setValue(drivingLicense.getLicenseClass());
         drivingLicenseExpirationDatePicker.setValue(drivingLicense.getExpirationDate());
 
-        InsurancePolicy policy = driver.getVehicleInfo().getInsurancePolicy();
-        policyNumberTextField.setText(policy.getPolicyNumber());
-        policyProviderTextField.setText(policy.getProvider());
-        insuranceCoverageAmountTextField.setText(String.valueOf(policy.getCoverageAmount()));
-        insurancePolicyExpirationDatePicker.setValue(policy.getExpirationDate());
+        this.insurancePolicy = insurancePolicy;
+        policyNumberTextField.setText(insurancePolicy.getPolicyNumber());
+        policyProviderTextField.setText(insurancePolicy.getProvider());
+        insuranceCoverageAmountTextField.setText(String.valueOf(insurancePolicy.getCoverageAmount()));
+        insurancePolicyExpirationDatePicker.setValue(insurancePolicy.getExpirationDate());
     }
 
     @FXML
@@ -91,17 +85,36 @@ public class DriverProfileDrivingLicenseController implements Initializable {
             return;
         }
 
-        DrivingLicense drivingLicense = driver.getDrivingLicense();
         drivingLicense.setLicenseNumber(licenseNumber);
         drivingLicense.setLicenseClass(licenseClass);
         drivingLicense.setExpirationDate(licenseExpirationDate);
 
-        InsurancePolicy policy = driver.getVehicleInfo().getInsurancePolicy();
-        policy.setPolicyNumber(policyNumber);
-        policy.setProvider(provider);
-        policy.setCoverageAmount(insuranceAmount);
-        policy.setExpirationDate(insuranceExpirationDate);
+        insurancePolicy.setProvider(provider);
+        insurancePolicy.setCoverageAmount(insuranceAmount);
+        insurancePolicy.setExpirationDate(insuranceExpirationDate);
+        insurancePolicy.setPolicyNumber(policyNumber);
 
-        DriverViewController.updateDriver(driver);
+        Util.getInstance().getWorkers().execute(() -> {
+            if (!Util.getInstance().getDb().updateObjectFile(
+                    drivingLicense,
+                    BinFilePath.DRIVING_LICENSE,
+                    d -> d.getDrivingLicenseId() == drivingLicense.getDrivingLicenseId(),
+                    false
+            ) ||
+                    !Util.getInstance().getDb().updateObjectFile(
+                            insurancePolicy,
+                            BinFilePath.INSURANCE_POLICY,
+                            i -> i.getInsurancePolicyId() == insurancePolicy.getInsurancePolicyId(),
+                            false
+                    )) {
+                Platform.runLater(() ->
+                        Util.getInstance().showError("Failed to update data!")
+                );
+            } else {
+                Platform.runLater(() ->
+                        Util.getInstance().showError("Data updated successfully.")
+                );
+            }
+        });
     }
 }

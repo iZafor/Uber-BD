@@ -103,17 +103,23 @@ public class DB {
         return i;
     }
 
-    public <E> boolean updateObject(E e, BinFilePath binFilePath, Predicate<E> predicate) {
+    public <E> boolean updateObjectFile(E e, BinFilePath binFilePath, Predicate<E> predicate, boolean delete) {
         List<E> eList = getObjectList(binFilePath);
         int idxToRemove = -1;
         for (int i = 0; i < eList.size(); i++) {
-            if(predicate.test(eList.get(i))) {
+            if (predicate.test(eList.get(i))) {
                 idxToRemove = i;
                 break;
             }
         }
-        eList.remove(idxToRemove);
-        eList.add(e);
+        try {
+            eList.remove(idxToRemove);
+        } catch (IndexOutOfBoundsException ignored) {
+            return false;
+        }
+        if (!delete) {
+            eList.add(e);
+        }
         return addObjects(eList, binFilePath, true);
     }
 }

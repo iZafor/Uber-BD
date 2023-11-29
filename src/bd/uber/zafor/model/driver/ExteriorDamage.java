@@ -1,6 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-public enum ExteriorDamage {
+import java.io.Serializable;
+
+public enum ExteriorDamage implements Serializable {
     SCRATCH("Scratch"),
     DENT("Dent"),
     CRACK("Crack"),

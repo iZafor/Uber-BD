@@ -16,19 +16,14 @@ import java.util.ResourceBundle;
 public class DriverSignupController implements Initializable {
     @FXML
     private BorderPane signupBorderPane;
-
     @FXML
     private Button basicInfoButton;
-
     @FXML
     private Button drivingLicenseButton;
-
     @FXML
     private Button vehicleInfoButton;
-
     @FXML
     private Button vehicleStatusButton;
-
     @FXML
     private Button identificationInfoButton;
 

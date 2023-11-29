@@ -10,7 +10,12 @@
     -fx-font-size: 16;
 }
 
-ComboBox {;
+Circle {
+    -fx-fill: transparent;
+    -fx-stroke: #0F0F0F;
+}
+
+ComboBox {
     -fx-background-color: #0F0F0F;
     -fx-pref-height: 40;
     -fx-pref-width: 210;
@@ -66,11 +71,29 @@ ScrollPane .scroll-bar {
     -fx-pref-width: 15;
 }
 
-ScrollPane VBox {
-    -fx-padding: 10;
-    -fx-spacing: 10;
+.ride-request-container {
+    -fx-padding: 8;
+    -fx-spacing: 8;
+}
+
+.search-location-container {
+    -fx-padding: 5;
+    -fx-spacing: 5;
 }
 
 .current-ride-container {
     -fx-padding: 5;
+    -fx-pref-width: 746;
+    -fx-pref-height: 125;
+}
+
+.search-location {
+    -fx-pref-width: 178;
+    -fx-pref-height: 35;
+    -fx-font-size: 18;
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 8;
+    -fx-cursor: hand;
 }

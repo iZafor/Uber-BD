@@ -1,6 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-public enum MechanicalIssue {
+import java.io.Serializable;
+
+public enum MechanicalIssue implements Serializable {
     ENGINE_ISSUE("Engine issue"),
     TRANSMISSION_PROBLEM("Transmission problem"),
     BRAKE_SYSTEM_TROUBLE("Brake system trouble"),

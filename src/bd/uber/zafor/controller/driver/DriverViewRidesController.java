@@ -4,7 +4,9 @@ import bd.uber.FXMLFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.Ride;
+import bd.uber.zafor.model.driver.RideFeedback;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,43 +17,39 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.lang.management.MemoryUsage;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class DriverViewRidesController implements Initializable {
     @FXML
     private VBox rideListView;
-
     @FXML
     private CheckBox fromDateCheckBox;
-
     @FXML
     private DatePicker fromDatePicker;
-
     @FXML
     private CheckBox toDateCheckBox;
-
     @FXML
     private DatePicker toDatePicker;
-
     @FXML
     private CheckBox fareLowerCheckBox;
-
     @FXML
     private CheckBox fareUpperCheckBox;
-
     @FXML
     private TextField fareLowerTextField;
-
     @FXML
     private TextField fareUpperTextField;
 
     private Driver driver;
+    private ObservableList<RideFeedback> feedbackList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,8 +70,9 @@ public class DriverViewRidesController implements Initializable {
         fareUpperCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> fareUpperTextField.setDisable(!newValue));
     }
 
-    public void setInitData(Driver driver) {
+    public void setInitData(Driver driver, ObservableList<RideFeedback> feedbackList) {
         this.driver = driver;
+        this.feedbackList = feedbackList;
         updateRideListView(driver.getRideList().stream());
     }
 
@@ -122,9 +121,9 @@ public class DriverViewRidesController implements Initializable {
             FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.RIDE_VIEW);
             try {
                 HBox rideView = loader.load();
-                ((RideViewController) loader.getController()).setInitData(ride);
+                ((RideViewController) loader.getController()).setInitData(ride, feedbackList.stream().filter(f -> f.getRideFeedBackId() == ride.getPassengerFeedbackId()).findFirst().orElse(null));
                 Platform.runLater(() -> rideListView.getChildren().add(rideView));
-            } catch (IOException e) {
+            } catch (IOException | OutOfMemoryError e) {
                 System.out.println(e.getMessage());
             }
         }));

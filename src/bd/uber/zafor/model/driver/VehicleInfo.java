@@ -5,19 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class VehicleInfo implements Serializable {
+    private final int vehicleInfoId;
     private String model;
     private String registrationNumber;
     private int passengerCapacity;
     private int numberOfEngines;
     private String color;
     private VehicleType vehicleType;
-    private VehicleStatus vehicleStatus;
+    private int vehicleStatusId;
     private MaintenanceStatus maintenanceStatus;
-    private List<DamageReport> damageReports;
-    private InsurancePolicy insurancePolicy;
+    private List<Integer> damageReportIds;
+    private int insurancePolicyId;
 
-    public VehicleInfo() {
-        damageReports = new ArrayList<>();
+    public VehicleInfo(int vehicleInfoId) {
+        this.vehicleInfoId = vehicleInfoId;
+        damageReportIds = new ArrayList<>();
+    }
+
+    public int getVehicleInfoId() {
+        return vehicleInfoId;
     }
 
     public String getModel() {
@@ -68,12 +74,12 @@ public final class VehicleInfo implements Serializable {
         this.vehicleType = vehicleType;
     }
 
-    public VehicleStatus getVehicleStatus() {
-        return vehicleStatus;
+    public int getVehicleStatusId() {
+        return vehicleStatusId;
     }
 
-    public void setVehicleStatus(VehicleStatus vehicleStatus) {
-        this.vehicleStatus = vehicleStatus;
+    public void setVehicleStatusId(int vehicleStatusId) {
+        this.vehicleStatusId = vehicleStatusId;
     }
 
     public MaintenanceStatus getMaintenanceStatus() {
@@ -84,19 +90,19 @@ public final class VehicleInfo implements Serializable {
         this.maintenanceStatus = maintenanceStatus;
     }
 
-    public List<DamageReport> getDamageReports() {
-        return damageReports;
+    public List<Integer> getDamageReportIds() {
+        return damageReportIds;
     }
 
-    public void setDamageReports(List<DamageReport> damageReports) {
-        this.damageReports = damageReports;
+    public void setDamageReportIds(List<Integer> damageReportIds) {
+        this.damageReportIds = damageReportIds;
     }
 
-    public InsurancePolicy getInsurancePolicy() {
-        return insurancePolicy;
+    public int getInsurancePolicyId() {
+        return insurancePolicyId;
     }
 
-    public void setInsurancePolicy(InsurancePolicy insurancePolicy) {
-        this.insurancePolicy = insurancePolicy;
+    public void setInsurancePolicyId(int insurancePolicyId) {
+        this.insurancePolicyId = insurancePolicyId;
     }
 }

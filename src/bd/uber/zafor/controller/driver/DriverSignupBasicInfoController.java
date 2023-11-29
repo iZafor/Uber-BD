@@ -7,11 +7,12 @@ import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.SignupForm;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,31 +20,22 @@ import java.util.ResourceBundle;
 public class DriverSignupBasicInfoController implements Initializable {
     @FXML
     private TextField nameTextField;
-
     @FXML
     private PasswordField passwordTextField;
-
     @FXML
     private PasswordField confirmPasswordTextField;
-
     @FXML
     private TextField emailTextField;
-
     @FXML
     private TextField addressTextField;
-
     @FXML
     private TextField primaryPhoneNumberTextField;
-
     @FXML
     private TextField secondaryPhoneNumberTextField;
-
     @FXML
     private TextField drivingExperienceTextField;
-
     @FXML
     private ScrollPane scrollPane;
-
     @FXML
     private VBox searchResultVBox;
 
@@ -102,12 +94,11 @@ public class DriverSignupBasicInfoController implements Initializable {
             Driver driver = Util.getInstance().getSignUpDriver();
             driver.setName(name);
             driver.setPassword(password);
-            driver.setContactDetails(new ContactDetails(
-                    primaryPhoneNumber,
-                    secondaryPhoneNumber,
-                    email,
-                    tempLocation
-            ));
+            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
+            contactDetails.setEmail(email);
+            contactDetails.setLocationId(tempLocation.getLocationId());
+            contactDetails.setPrimaryPhoneNumber(primaryPhoneNumber);
+            contactDetails.setSecondaryPhoneNumber(secondaryPhoneNumber);
             driver.setExperienceInYears(Integer.parseInt(drivingExperienceTextField.getText()));
             return true;
         } catch (Exception ignored) {
@@ -117,8 +108,17 @@ public class DriverSignupBasicInfoController implements Initializable {
     }
 
     private void addSearchFunctionality() {
+        addressTextField.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
+                String currentLocation = addressTextField.getText();
+                if (currentLocation == null || currentLocation.isEmpty() || Util.getInstance().getLocationList().stream().noneMatch(location -> location.getName().equals(currentLocation))) {
+                    addressTextField.clear();
+                }
+                addressTextField.getParent().requestFocus();
+            }
+        });
         addressTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!scrollPane.focusedProperty().getValue()) {
+            if (!scrollPane.isFocused()) {
                 scrollPane.visibleProperty().setValue(newValue);
             }
         });
@@ -130,14 +130,14 @@ public class DriverSignupBasicInfoController implements Initializable {
             }
             for (Location location : Util.getInstance().getLocationList()) {
                 if (location.getName().toLowerCase().contains(lower)) {
-                    Text locationText = new Text(location.getName());
-                    locationText.setStyle("-fx-cursor: hand");
-                    locationText.setOnMouseClicked(event -> {
+                    Label label = new Label(location.getName());
+                    label.getStyleClass().add("search-location");
+                    label.setOnMouseClicked(event -> {
                         tempLocation = location;
                         addressTextField.setText(location.getName());
-                        scrollPane.visibleProperty().setValue(false);
+                        scrollPane.setVisible(false);
                     });
-                    searchResultVBox.getChildren().add(locationText);
+                    searchResultVBox.getChildren().add(label);
                 }
             }
         });
@@ -149,10 +149,12 @@ public class DriverSignupBasicInfoController implements Initializable {
             nameTextField.setText(driver.getName());
             passwordTextField.setText(driver.getPassword());
             confirmPasswordTextField.setText(driver.getPassword());
-            emailTextField.setText(driver.getContactDetails().getEmail());
-            addressTextField.setText(driver.getContactDetails().getAddress().getName());
-            primaryPhoneNumberTextField.setText(driver.getContactDetails().getPrimaryPhoneNumber());
-            secondaryPhoneNumberTextField.setText(driver.getContactDetails().getSecondaryPhoneNumber());
+
+            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
+            emailTextField.setText(contactDetails.getEmail());
+            addressTextField.setText(Util.getInstance().getLocationList().stream().filter(l -> l.getLocationId() == contactDetails.getLocationId()).findFirst().get().getName());
+            primaryPhoneNumberTextField.setText(contactDetails.getPrimaryPhoneNumber());
+            secondaryPhoneNumberTextField.setText(contactDetails.getSecondaryPhoneNumber());
             drivingExperienceTextField.setText(String.valueOf(driver.getExperienceInYears()));
         } catch (Exception ignored) {
             // log the error

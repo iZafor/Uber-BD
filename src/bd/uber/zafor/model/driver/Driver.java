@@ -1,7 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-import bd.uber.ContactDetails;
+import bd.uber.BinFilePath;
 import bd.uber.User;
+import bd.uber.Util;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,33 +13,33 @@ public final class Driver extends User implements Serializable {
     private String profileImage;
     private String nidFrontSide;
     private String nidBackSide;
+    private int currentLocationId;
     private DriverStatus driverStatus;
-    private VehicleInfo vehicleInfo;
-    private List<Ride> rideList;
+    private int vehicleInfoId;
+    private transient List<Ride> rideList;
     private int experienceInYears;
     private float distanceDriven;
     private float totalEarnings;
     private List<Language> languagesSpeak;
-    private DrivingLicense drivingLicense;
+    private int drivingLicenseId;
     private float rideRequestRange;
 
-    public Driver() {
+    public Driver(int id) {
+        super(id);
         rideList = new ArrayList<>();
-        vehicleInfo = new VehicleInfo();
         languagesSpeak = new ArrayList<>();
     }
 
-    public Driver(int id, String name, String password, LocalDate accountCreationDate, ContactDetails contactDetails) {
-        super(id, password, name, accountCreationDate, contactDetails);
-    }
-
-    public Ride getRideRequest(RideRequest rideRequest) {
-        return new Ride(rideRequest.getPassengerId(), id, rideRequest.getPickupPoint(), rideRequest.getDropOffPoint(), rideRequest.getPaymentMethod(), rideRequest.getFare());
+    public Ride acceptRideRequest(RideRequest rideRequest) {
+        return new Ride(rideRequest.getPassengerId(), id, rideRequest.getPickupPointId(), rideRequest.getDropOffPointId(), rideRequest.getRideDistance(), rideRequest.getPaymentMethod(), rideRequest.getFare(), vehicleInfoId);
     }
 
     public void cancelRide(Ride ride) { // there should be a cancellation reason
         ride.setCancelled(true);
         rideList.add(ride);
+        Util.getInstance().getWorkers().execute(() ->
+                Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE)
+        );
     }
 
     public void completeRide(Ride ride) {
@@ -46,7 +47,9 @@ public final class Driver extends User implements Serializable {
         rideList.add(ride);
         totalEarnings += ride.getFare();
         distanceDriven += ride.getRideDistance();
-//        Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE); // unsure
+        Util.getInstance().getWorkers().execute(() ->
+                Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE)
+        );
     }
 
     public String getProfileImage() {
@@ -73,6 +76,14 @@ public final class Driver extends User implements Serializable {
         this.nidBackSide = nidBackSide;
     }
 
+    public int getCurrentLocationId() {
+        return currentLocationId;
+    }
+
+    public void setCurrentLocationId(int currentLocationId) {
+        this.currentLocationId = currentLocationId;
+    }
+
     public DriverStatus getDriverStatus() {
         return driverStatus;
     }
@@ -81,12 +92,12 @@ public final class Driver extends User implements Serializable {
         this.driverStatus = driverStatus;
     }
 
-    public VehicleInfo getVehicleInfo() {
-        return vehicleInfo;
+    public int getVehicleInfoId() {
+        return vehicleInfoId;
     }
 
-    public void setVehicleInfo(VehicleInfo vehicleInfo) {
-        this.vehicleInfo = vehicleInfo;
+    public void setVehicleInfoId(int vehicleInfoId) {
+        this.vehicleInfoId = vehicleInfoId;
     }
 
     public List<Ride> getRideList() {
@@ -129,12 +140,12 @@ public final class Driver extends User implements Serializable {
         this.languagesSpeak = languagesSpeak;
     }
 
-    public DrivingLicense getDrivingLicense() {
-        return drivingLicense;
+    public int getDrivingLicenseId() {
+        return drivingLicenseId;
     }
 
-    public void setDrivingLicense(DrivingLicense drivingLicense) {
-        this.drivingLicense = drivingLicense;
+    public void setDrivingLicenseId(int drivingLicenseId) {
+        this.drivingLicenseId = drivingLicenseId;
     }
 
     public float getRideRequestRange() {

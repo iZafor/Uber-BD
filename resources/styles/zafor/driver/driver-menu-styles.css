@@ -7,11 +7,14 @@ VBox {
 Button {
     -fx-background-color: #0F0F0F;
     -fx-pref-width: 200;
-    -fx-pref-height: 40;
+    -fx-pref-height: 58;
     -fx-text-fill: #FFFAF4;
     -fx-font-size: 16;
     -fx-background-radius: 4;
+    -fx-wrap-text: true;
     -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
 }
 
 .log-out-button {
@@ -27,7 +30,7 @@ Button {
 }
 
 .profile-settings-container Button {
-    -fx-pref-height: 65;
+    -fx-pref-height: 58;
     -fx-wrap-text: true;
     -fx-font-size: 14;
     -fx-text-alignment: center;

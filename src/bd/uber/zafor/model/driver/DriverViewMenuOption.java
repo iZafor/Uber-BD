@@ -7,5 +7,5 @@ public enum DriverViewMenuOption {
     VEHICLE_INFO,
     VEHICLE_STATUS,
     RIDES,
-    REPAIR_REQUEST
+    REPORT_DAMAGE
 }

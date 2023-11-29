@@ -3,16 +3,19 @@ package bd.uber;
 import java.io.Serializable;
 
 public class ContactDetails implements Serializable {
+    private final int contactDetailsId;
     private String primaryPhoneNumber;
     private String secondaryPhoneNumber;
     private String email;
-    private Location address;
+    private int locationId;
 
-    public ContactDetails(String primaryPhoneNumber, String secondaryPhoneNumber, String email, Location address) {
-        this.primaryPhoneNumber = primaryPhoneNumber;
-        this.secondaryPhoneNumber = secondaryPhoneNumber;
-        this.email = email;
-        this.address = address;
+    public ContactDetails(int contactDetailsId) {
+        this.contactDetailsId = contactDetailsId;
+        this.locationId = -1;
+    }
+
+    public int getContactDetailsId() {
+        return contactDetailsId;
     }
 
     public String getPrimaryPhoneNumber() {
@@ -39,11 +42,11 @@ public class ContactDetails implements Serializable {
         this.email = email;
     }
 
-    public Location getAddress() {
-        return address;
+    public int getLocationId() {
+        return locationId;
     }
 
-    public void setAddress(Location address) {
-        this.address = address;
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 }

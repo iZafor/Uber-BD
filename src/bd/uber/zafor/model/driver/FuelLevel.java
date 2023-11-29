@@ -1,6 +1,8 @@
 package bd.uber.zafor.model.driver;
 
-public enum FuelLevel {
+import java.io.Serializable;
+
+public enum FuelLevel implements Serializable {
     FULL("Full"),
     THREE_QUARTERS("3/4"),
     HALF("1/2"),

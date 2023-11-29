@@ -3,6 +3,7 @@ package bd.uber.zafor.controller.driver;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.SignupForm;
+import bd.uber.zafor.model.driver.VehicleInfo;
 import bd.uber.zafor.model.driver.VehicleType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,19 +16,14 @@ import java.util.ResourceBundle;
 public class DriverSignUpVehicleInfoController implements Initializable {
     @FXML
     private TextField modelTextField;
-
     @FXML
     private TextField colorTextField;
-
     @FXML
     private TextField registrationNumberTextField;
-
     @FXML
     private TextField passengerCapacityTextField;
-
     @FXML
     private TextField numberOfEnginesTextField;
-
     @FXML
     private ComboBox<VehicleType> vehicleTypeComboBox;
 
@@ -86,28 +82,28 @@ public class DriverSignUpVehicleInfoController implements Initializable {
             return false;
         }
 
-        Driver driver = Util.getInstance().getSignUpDriver();
-        driver.getVehicleInfo().setModel(model);
-        driver.getVehicleInfo().setColor(color);
-        driver.getVehicleInfo().setRegistrationNumber(registrationNumber);
-        driver.getVehicleInfo().setPassengerCapacity(passengerCapacity);
-        driver.getVehicleInfo().setNumberOfEngines(numberOfEngines);
-        driver.getVehicleInfo().setVehicleType(vehicleType);
+        VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
+        vehicleInfo.setModel(model);
+        vehicleInfo.setColor(color);
+        vehicleInfo.setRegistrationNumber(registrationNumber);
+        vehicleInfo.setPassengerCapacity(passengerCapacity);
+        vehicleInfo.setNumberOfEngines(numberOfEngines);
+        vehicleInfo.setVehicleType(vehicleType);
 
         return true;
     }
 
     private void restoreData() {
         try {
-            Driver driver = Util.getInstance().getSignUpDriver();
-            int passengerCapacity = driver.getVehicleInfo().getPassengerCapacity();
-            int numberOfEngines = driver.getVehicleInfo().getNumberOfEngines();
-            modelTextField.setText(driver.getVehicleInfo().getModel());
-            colorTextField.setText(driver.getVehicleInfo().getColor());
-            registrationNumberTextField.setText(driver.getVehicleInfo().getRegistrationNumber());
+            VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
+            int passengerCapacity = vehicleInfo.getPassengerCapacity();
+            int numberOfEngines = vehicleInfo.getNumberOfEngines();
+            modelTextField.setText(vehicleInfo.getModel());
+            colorTextField.setText(vehicleInfo.getColor());
+            registrationNumberTextField.setText(vehicleInfo.getRegistrationNumber());
             passengerCapacityTextField.setText(passengerCapacity == 0 ? "" : String.valueOf(passengerCapacity));
             numberOfEnginesTextField.setText(numberOfEngines == 0 ? "" : String.valueOf(numberOfEngines));
-            vehicleTypeComboBox.setValue(driver.getVehicleInfo().getVehicleType());
+            vehicleTypeComboBox.setValue(vehicleInfo.getVehicleType());
         } catch (Exception ignored) {
             // log the error
         }
