@@ -4,6 +4,8 @@
  */
 package bd.uber.redwan;
 
+import bd.uber.zafor.model.driver.MaintenanceRequest;
+
 /**
  *
  * @author Redwan

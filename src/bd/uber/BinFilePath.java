@@ -27,6 +27,9 @@ public enum BinFilePath {
     DRIVER_FEEDBACK("bin/driver_feedback.bin"),
     DAMAGE_REPORT("bin/damage_report.bin"),
     MAINTENANCE_REQUEST("bin/maintenance_request.bin"),
+    PLACED_ORDER("bin/placed_order.bin"),
+    INVENTORY("bin/inventory.bin"),
+
 
     // Others
     LEAVE_REQUEST("bin/leave_request.bin"),
