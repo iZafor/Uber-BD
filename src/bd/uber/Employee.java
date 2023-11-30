@@ -15,9 +15,9 @@ public class Employee extends User implements Serializable {
         super(id);
     }
 
-    public boolean submitLeaveRequest(int reasonId, LocalDate startDate, LocalDate endDate) {
+    public boolean submitLeaveRequest(String reason, LocalDate startDate, LocalDate endDate) {
         return Util.getInstance().getDb().addObject(
-                new LeaveRequest(id, reasonId, startDate, endDate),
+                new LeaveRequest(id, reason, startDate, endDate),
                 BinFilePath.LEAVE_REQUEST
         );
     }

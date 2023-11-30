@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Driver extends User implements Serializable {
-    private String profileImage;
-    private String nidFrontSide;
-    private String nidBackSide;
     private int currentLocationId;
     private DriverStatus driverStatus;
     private int vehicleInfoId;
@@ -50,30 +47,6 @@ public final class Driver extends User implements Serializable {
         Util.getInstance().getWorkers().execute(() ->
                 Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE)
         );
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public String getNidFrontSide() {
-        return nidFrontSide;
-    }
-
-    public void setNidFrontSide(String nidFrontSide) {
-        this.nidFrontSide = nidFrontSide;
-    }
-
-    public String getNidBackSide() {
-        return nidBackSide;
-    }
-
-    public void setNidBackSide(String nidBackSide) {
-        this.nidBackSide = nidBackSide;
     }
 
     public int getCurrentLocationId() {

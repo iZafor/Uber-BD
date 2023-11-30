@@ -5,36 +5,33 @@ import java.time.LocalDate;
 
 public class LeaveRequest implements Serializable {
     private final int employeeId;
-    private final int reasonId;
+    private final String reason;
     private final LocalDate startDate;
     private final LocalDate endDate;
-    private boolean isPending;
-    private boolean isApproved;
+    private LeaveRequestStatus status;
 
-    public LeaveRequest(int employeeId, int reasonId, LocalDate startDate, LocalDate endDate) {
+    public LeaveRequest(int employeeId, String reason, LocalDate startDate, LocalDate endDate) {
         this.employeeId = employeeId;
-        this.reasonId = reasonId;
+        this.reason = reason;
         this.startDate = startDate;
         this.endDate = endDate;
-        isPending = true;
+        this.status = LeaveRequestStatus.PENDING;
     }
 
     public void approve() {
-        isApproved = true;
-        isPending = false;
+        status = LeaveRequestStatus.APPROVED;
     }
 
     public void reject() {
-        isApproved = false;
-        isPending = false;
+        status = LeaveRequestStatus.REJECTED;
     }
 
     public int getEmployeeId() {
         return employeeId;
     }
 
-    public int getReasonId() {
-        return reasonId;
+    public String getReason() {
+        return reason;
     }
 
     public LocalDate getStartDate() {
@@ -43,21 +40,5 @@ public class LeaveRequest implements Serializable {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public boolean isPending() {
-        return isPending;
-    }
-
-    public void setPending(boolean pending) {
-        isPending = pending;
-    }
-
-    public boolean isApproved() {
-        return isApproved;
-    }
-
-    public void setApproved(boolean approved) {
-        isApproved = approved;
     }
 }
