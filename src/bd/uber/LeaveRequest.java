@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class LeaveRequest implements Serializable {
-    private int employeeId;
-    private Reason reason;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private final int employeeId;
+    private final int reasonId;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
     private boolean isPending;
     private boolean isApproved;
 
-    public LeaveRequest() {
+    public LeaveRequest(int employeeId, int reasonId, LocalDate startDate, LocalDate endDate) {
+        this.employeeId = employeeId;
+        this.reasonId = reasonId;
+        this.startDate = startDate;
+        this.endDate = endDate;
         isPending = true;
     }
 
@@ -29,32 +33,16 @@ public class LeaveRequest implements Serializable {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Reason getReason() {
-        return reason;
-    }
-
-    public void setReason(Reason reason) {
-        this.reason = reason;
+    public int getReasonId() {
+        return reasonId;
     }
 
     public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
     }
 
     public boolean isPending() {
