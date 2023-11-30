@@ -18,5 +18,6 @@
       <Button layoutX="310.0" layoutY="358.0" mnemonicParsing="false" onAction="#viewReport" text="View Report" />
       <TextArea fx:id="showReport" layoutX="278.0" layoutY="405.0" prefHeight="200.0" prefWidth="200.0" />
       <TextArea fx:id="showScheduledMaintainence" layoutX="21.0" layoutY="418.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="863.0" layoutY="636.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
    </children>
 </AnchorPane>
