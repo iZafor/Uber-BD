@@ -22,8 +22,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class DriverViewController implements Initializable {
@@ -51,6 +53,9 @@ public class DriverViewController implements Initializable {
     private final ObjectProperty<DriverStatus> driverStatusProperty = new SimpleObjectProperty<>(DriverStatus.INACTIVE);
     private final FloatProperty rideRequestAreaProperty = new SimpleFloatProperty(0);
     private final ObjectProperty<AnchorPane> currentRideViewProperty = new SimpleObjectProperty<>(null);
+    private final ObjectProperty<RideRequest> acceptedRideRequestProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<Ride> ongoingRideProperty = new SimpleObjectProperty<>();
+    private final BooleanProperty rideStartedProperty = new SimpleBooleanProperty(false);
 
     private final VBox currentRideContainer = new VBox();
 
@@ -132,6 +137,26 @@ public class DriverViewController implements Initializable {
                     insurancePolicy = Util.getInstance().getDb().getObject(BinFilePath.INSURANCE_POLICY, e -> e.getInsurancePolicyId() == vehicleInfo.getInsurancePolicyId())
             );
         });
+
+        // Retrieve ongoing ride if there is any
+        if (driverStatusProperty.get().equals(DriverStatus.SHARING_RIDE)) {
+            Util.getInstance().getWorkers().submit(() -> {
+                OngoingRide ongoingRide = Util.getInstance().getDb().<OngoingRide>getObjectList(BinFilePath.ONGOING_RIDE).get(0);
+
+                try {
+                    // Wait for dashboard
+                    TimeUnit.MILLISECONDS.sleep(300);
+
+                    Platform.runLater(() -> {
+                        acceptedRideRequestProperty.setValue(ongoingRide.getRideRequest());
+                        ongoingRideProperty.setValue(ongoingRide.getRide());
+                        rideStartedProperty.setValue(ongoingRide.hasStarted());
+                    });
+                } catch (InterruptedException ignored) {
+
+                }
+            });
+        }
 
         Platform.runLater(this::configureOnClose);
     }
@@ -234,7 +259,10 @@ public class DriverViewController implements Initializable {
                                 driverStatusProperty,
                                 rideRequestAreaProperty,
                                 currentRideViewProperty,
-                                currentRideContainer
+                                currentRideContainer,
+                                acceptedRideRequestProperty,
+                                ongoingRideProperty,
+                                rideStartedProperty
                         );
                         break;
                     case PROFILE_BASIC_INFO:
@@ -275,10 +303,9 @@ public class DriverViewController implements Initializable {
     }
 
     private void configureRatingsAutoUpdating() {
-        feedbackList.addListener((ListChangeListener<? super RideFeedback>) c -> {
-                    ratingsProperty.setValue(feedbackList.stream().mapToInt(RideFeedback::getRating)
-                            .sum() / (float) feedbackList.size());
-                }
+        feedbackList.addListener((ListChangeListener<? super RideFeedback>) c ->
+                ratingsProperty.setValue(feedbackList.stream().mapToInt(RideFeedback::getRating)
+                        .sum() / (float) feedbackList.size())
         );
     }
 
@@ -289,9 +316,18 @@ public class DriverViewController implements Initializable {
 
     private void commitChanges(WindowEvent event) {
         if (driverStatusProperty.get().equals(DriverStatus.SHARING_RIDE)) {
-            Util.getInstance().showWarningMessage("You haven't finish your current ride yet!");
-            event.consume();
-            return;
+            Util.getInstance().getWorkers().submit(() -> {
+                OngoingRide ongoingRide = new OngoingRide(
+                        acceptedRideRequestProperty.get(),
+                        ongoingRideProperty.get(),
+                        rideStartedProperty.get());
+                Util.getInstance().getDb()
+                        .addObjects(Collections.singletonList(
+                                        ongoingRide
+                                ),
+                                BinFilePath.ONGOING_RIDE,
+                                true);
+            });
         }
 
         Util.getInstance().getWorkers().execute(() -> {

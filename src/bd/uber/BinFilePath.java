@@ -30,7 +30,10 @@ public enum BinFilePath {
 
     // Others
     LEAVE_REQUEST("bin/leave_request.bin"),
-    REASON("bin/reason.bin");
+    REASON("bin/reason.bin"),
+
+    // Temp files
+    ONGOING_RIDE("bin/ongoing_ride.bin");
 
     private final String path;
 

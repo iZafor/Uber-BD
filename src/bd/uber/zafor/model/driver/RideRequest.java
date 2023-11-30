@@ -12,6 +12,7 @@ public class RideRequest implements Serializable {
     private final float fare;
     private final float rideDistance;
     private final LocalDateTime requestTime;
+    private boolean isResolved;
 
     public RideRequest(int passengerId, float passengerRating, int pickupPointId, int dropOffPointId, PaymentMethod paymentMethod, float fare, float rideDistance, LocalDateTime requestTime) {
         this.passengerId = passengerId;
@@ -22,6 +23,7 @@ public class RideRequest implements Serializable {
         this.fare = fare;
         this.rideDistance = rideDistance;
         this.requestTime = requestTime;
+        this.isResolved = false;
     }
 
     public int getPassengerId() {
@@ -54,5 +56,13 @@ public class RideRequest implements Serializable {
 
     public LocalDateTime getRequestTime() {
         return requestTime;
+    }
+
+    public boolean isResolved() {
+        return isResolved;
+    }
+
+    public void setResolved(boolean resolved) {
+        isResolved = resolved;
     }
 }

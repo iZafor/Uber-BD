@@ -4,6 +4,7 @@ import bd.uber.Location;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.Ride;
 import bd.uber.zafor.model.driver.RideRequest;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class CurrentRideViewController implements Initializable {
         endRideButton.setDisable(true);
     }
 
-    public void setInitData(RideRequest rideRequest, Ride ride, ObjectProperty<Location> driverLocationObjectProperty) {
+    public void setInitData(RideRequest rideRequest, BooleanProperty hasStartedProperty, Ride ride, ObjectProperty<Location> driverLocationObjectProperty) {
         List<Location> locationList = Util.getInstance().getLocationList();
         driverLocationText.setText(driverLocationObjectProperty.getValue().getName());
         pickupLocationText.setText(locationList.stream().filter(l -> l.getLocationId() == ride.getPickupPointId()).findFirst().get().getName());
@@ -56,6 +57,9 @@ public class CurrentRideViewController implements Initializable {
 
         pickupLocationDistance.setText(String.format("%.2f", distance));
         startRideButton.setDisable(!(distance == 0));
+
+        hasStartedProperty.bindBidirectional(startRideButton.disableProperty());
+        hasStartedProperty.addListener((observable, oldValue, newValue) -> endRideButton.setDisable(!newValue));
 
         ChangeListener<Location> pickupLocationChangeListener = (observable, oldValue, newValue) -> {
             float pickupDistance = locationList.stream().filter(l -> l.getLocationId() == rideRequest.getPickupPointId()).findFirst().get().getDistance(newValue);

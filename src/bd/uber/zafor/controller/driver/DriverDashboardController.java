@@ -6,6 +6,7 @@ import bd.uber.Location;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.*;
 import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -81,13 +82,16 @@ public class DriverDashboardController implements Initializable {
     private ObjectProperty<DriverStatus> driverStatusProperty;
     private FloatProperty rideRequestAreaProperty;
     private ObjectProperty<AnchorPane> currentRideViewProperty;
+    private ObjectProperty<RideRequest> acceptedRideRequestProperty;
+    private ObjectProperty<Ride> ongoingRideProperty;
+    private BooleanProperty rideStartedProperty;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         searchResultScrollPane.setVisible(false);
         currentDateText.setText(LocalDate.now().getDayOfWeek().name() + ", " + LocalDate.now().toString());
         driverStatusComboBox.getItems().addAll(DriverStatus.values());
-        driverStatusComboBox.setValue(DriverStatus.INACTIVE);
+        driverStatusComboBox.getItems().remove(DriverStatus.SHARING_RIDE);
         Util.getInstance().getWorkers().execute(() -> locationList = Util.getInstance().getLocationList());
     }
 
@@ -102,7 +106,10 @@ public class DriverDashboardController implements Initializable {
                             ObjectProperty<DriverStatus> driverStatusProperty,
                             FloatProperty rideRequestAreaProperty,
                             ObjectProperty<AnchorPane> currentRideViewProperty,
-                            VBox currentRideContainer
+                            VBox currentRideContainer,
+                            ObjectProperty<RideRequest> acceptedRideRequestProperty,
+                            ObjectProperty<Ride> ongoingRideProperty,
+                            BooleanProperty rideStartedProperty
     ) {
         this.driver = driver;
         this.feedbackList = feedbackList;
@@ -116,6 +123,9 @@ public class DriverDashboardController implements Initializable {
 
         this.currentRideViewProperty = currentRideViewProperty;
         this.currentRideContainer = currentRideContainer;
+        this.acceptedRideRequestProperty = acceptedRideRequestProperty;
+        this.ongoingRideProperty = ongoingRideProperty;
+        this.rideStartedProperty = rideStartedProperty;
 
         // Load profile image
         Util.getInstance().getWorkers().execute(() -> {
@@ -137,6 +147,7 @@ public class DriverDashboardController implements Initializable {
         tripCountProperty.addListener((observable, oldValue, newValue) -> tripsCountText.setText(String.valueOf(newValue.intValue())));
 
         driverStatusComboBox.setValue(driverStatusProperty.get());
+        driverStatusComboBox.setDisable(driverStatusProperty.get() == DriverStatus.SHARING_RIDE);
         driverStatusProperty.bindBidirectional(driverStatusComboBox.valueProperty());
 
         driverNameText.setText(driver.getName());
@@ -159,6 +170,7 @@ public class DriverDashboardController implements Initializable {
         configureRideRequestArea();
         configureAvailabilityStatus();
         addRideRequests();
+        configureOngoingRideProperty();
     }
 
     private void configureSearchFunctionality() {
@@ -249,7 +261,7 @@ public class DriverDashboardController implements Initializable {
                 Platform.runLater(() -> rideRequestsVBox.getChildren().clear());
                 Util.getInstance().getDb().<RideRequest>getObjectList(BinFilePath.RIDE_REQUEST)
                         .stream()
-                        .filter(rideRequest -> locationList.stream().filter(l -> l.getLocationId() == rideRequest.getPickupPointId()).findFirst().get().getDistance(driverLocationProperty.getValue()) <= rideArea)
+                        .filter(rideRequest -> !rideRequest.isResolved() && locationList.stream().filter(l -> l.getLocationId() == rideRequest.getPickupPointId()).findFirst().get().getDistance(driverLocationProperty.getValue()) <= rideArea)
                         .forEach(rideRequest -> {
                             try {
                                 FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.RIDE_REQUEST_VIEW);
@@ -258,71 +270,20 @@ public class DriverDashboardController implements Initializable {
                                 controller.setInitData(rideRequest);
                                 controller.getIgnoreButton().setOnMouseClicked(event -> rideRequestsVBox.getChildren().remove(hBox));
                                 controller.getAcceptButton().setOnMouseClicked(event -> {
-                                    try {
-                                        // Delete the instance from file
-                                        Util.getInstance().getWorkers().execute(() ->
-                                                Util.getInstance().getDb().updateObjectFile(
-                                                        rideRequest,
-                                                        BinFilePath.RIDE_REQUEST,
-                                                        r -> r.getPickupPointId() == rideRequest.getPickupPointId() && r.getDropOffPointId() == rideRequest.getDropOffPointId() && r.getRequestTime().equals(rideRequest.getRequestTime()),
-                                                        true
-                                                )
-                                        );
-
-                                        driverStatusProperty.setValue(DriverStatus.SHARING_RIDE);
-                                        // Configure current ride
-                                        FXMLLoader currentRideLoader = Util.getInstance().getLoader(FXMLFilePath.CURRENT_RIDE_VIEW);
-                                        AnchorPane pane = currentRideLoader.load();
-                                        currentRideViewProperty.set(pane);
-
-                                        // Configure the controller
-                                        CurrentRideViewController currentRideViewController = currentRideLoader.getController();
-                                        Ride ride = driver.acceptRideRequest(rideRequest);
-                                        currentRideViewController.setInitData(rideRequest, ride, driverLocationProperty);
-
-                                        // Add event listeners
-                                        currentRideViewController.getCancelButton().setOnMouseClicked(mEvent -> {
-                                            driver.cancelRide(ride);
-                                            currentRideContainer.getChildren().clear();
-                                            driverStatusProperty.setValue(DriverStatus.ACTIVE);
-                                            addRideRequests();
-                                        });
-                                        currentRideViewController.getEndRideButton().setOnMouseClicked(eEvent -> {
-                                            RideFeedback passengerFeedBack = new RideFeedback(
-                                                    Util.getInstance().getDb().getObjectCount(BinFilePath.PASSENGER_FEEDBACK),
-                                                    5,
-                                                    5,
-                                                    "");
-
-                                            feedbackList.add(passengerFeedBack);
-                                            Util.getInstance().getWorkers().submit(() -> {
-                                                Util.getInstance().getDb().addObject(passengerFeedBack, BinFilePath.PASSENGER_FEEDBACK);
-                                            });
-
-                                            ride.setPassengerFeedbackId(passengerFeedBack.getRideFeedBackId());
-                                            ride.setDropOffTime(LocalDateTime.now());
-                                            driver.completeRide(ride);
-
-                                            // Update observable properties
-                                            totalEarningsProperty.setValue(driver.getTotalEarnings());
-                                            earnedTodayProperty.setValue(earnedTodayProperty.get() + ride.getFare());
-                                            tripCountProperty.setValue(tripCountProperty.get() + 1);
-
-                                            currentRideContainer.getChildren().clear();
-                                            driverStatusProperty.setValue(DriverStatus.ACTIVE);
-
-                                            // Show ride requests
-                                            addRideRequests();
-                                        });
-
-                                        // Show the current ride node
-                                        Platform.runLater(() -> {
-                                            rideRequestsVBox.getChildren().clear();
-                                            currentRideContainer.getChildren().add(pane);
-                                        });
-                                    } catch (IOException ignored) {
-                                        // log the error
-                                    }
+                                    // Delete the instance from file
+                                    rideRequest.setResolved(true);
+                                    Util.getInstance().getWorkers().execute(() ->
+                                            Util.getInstance().getDb().updateObjectFile(
+                                                    rideRequest,
+                                                    BinFilePath.RIDE_REQUEST,
+                                                    r -> r.getPickupPointId() == rideRequest.getPickupPointId() && r.getDropOffPointId() == rideRequest.getDropOffPointId() && r.getRequestTime().equals(rideRequest.getRequestTime()),
+                                                    false
+                                            )
+                                    );
+                                    Ride ride = driver.acceptRideRequest(rideRequest);
+                                    acceptedRideRequestProperty.setValue(rideRequest);
+                                    ongoingRideProperty.setValue(ride);
+                                    driverStatusProperty.setValue(DriverStatus.SHARING_RIDE);
                                 });
                                 Platform.runLater(() -> rideRequestsVBox.getChildren().add(hBox));
                             } catch (IOException ignored) {
@@ -330,6 +291,64 @@ public class DriverDashboardController implements Initializable {
                             }
                         });
             } catch (NumberFormatException | NullPointerException | InterruptedException | OutOfMemoryError ignored) {
+                // log the error
+            }
+        });
+    }
+
+    private void configureOngoingRideProperty() {
+        ongoingRideProperty.addListener((observable, oldValue, newValue) -> {
+            try {
+                FXMLLoader currentRideLoader = Util.getInstance().getLoader(FXMLFilePath.CURRENT_RIDE_VIEW);
+                AnchorPane pane = currentRideLoader.load();
+                currentRideViewProperty.set(pane);
+
+                // Configure the controller
+                CurrentRideViewController currentRideViewController = currentRideLoader.getController();
+                currentRideViewController.setInitData(acceptedRideRequestProperty.get(), rideStartedProperty, newValue, driverLocationProperty);
+
+                // Add event listeners
+                currentRideViewController.getCancelButton().setOnMouseClicked(mEvent -> {
+                    driver.cancelRide(newValue);
+                    currentRideContainer.getChildren().clear();
+                    driverStatusProperty.setValue(DriverStatus.ACTIVE);
+                    addRideRequests();
+                });
+                currentRideViewController.getEndRideButton().setOnMouseClicked(eEvent -> {
+                    RideFeedback passengerFeedBack = new RideFeedback(
+                            Util.getInstance().getDb().getObjectCount(BinFilePath.PASSENGER_FEEDBACK),
+                            5,
+                            5,
+                            "");
+
+                    feedbackList.add(passengerFeedBack);
+                    Util.getInstance().getWorkers().submit(() -> {
+                        Util.getInstance().getDb().addObject(passengerFeedBack, BinFilePath.PASSENGER_FEEDBACK);
+                    });
+
+                    newValue.setPassengerFeedbackId(passengerFeedBack.getRideFeedBackId());
+                    newValue.setDropOffTime(LocalDateTime.now());
+                    driver.completeRide(newValue);
+
+                    // Update observable properties
+                    totalEarningsProperty.setValue(driver.getTotalEarnings());
+                    earnedTodayProperty.setValue(earnedTodayProperty.get() + newValue.getFare());
+                    tripCountProperty.setValue(tripCountProperty.get() + 1);
+
+                    currentRideContainer.getChildren().clear();
+                    driverStatusProperty.setValue(DriverStatus.ACTIVE);
+
+                    // Show ride requests
+                    addRideRequests();
+                });
+
+                // Show the current ride node
+                Platform.runLater(() -> {
+                    rideRequestsVBox.getChildren().clear();
+                    currentRideContainer.getChildren().add(pane);
+                });
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
                 // log the error
             }
         });
