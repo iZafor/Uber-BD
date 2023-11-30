@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,8 +25,6 @@ import javafx.stage.Stage;
 
 
 public class InventorySceneController implements Initializable {
-    @FXML
-    private Label notificationLabel;
     @FXML
     private TableView<VehicleComponent> inventoryTable;
     @FXML
@@ -78,12 +76,7 @@ public class InventorySceneController implements Initializable {
         )) {
             Util.getInstance().showSuccessMessage("Order placed");
         }
-//        if (selectedCategory != null && selectedComponent != null) {
-//            inventoryTeamMember.placeOrderForInventory(selectedCategory, new VehicleComponent(selectedComponent, selectedCategory, quantity));
-//            refreshInventoryDisplay(); // Update the inventory display
-//            notificationLabel.setText("Ordered " + selectedComponent + " in category " + selectedCategory);
-//        } else {
-//            notificationLabel.setText("Please select both category and component to place an order.");
+
     }
 
     private void loadFromBinFile() {

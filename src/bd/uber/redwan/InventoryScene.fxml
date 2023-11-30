@@ -13,7 +13,7 @@
 
     <top>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10">
-            <Label text="Inventory Management" />
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="134.0" text="Current Inventory:" />
             <!-- Other headings or information -->
         </VBox>
     </top>
@@ -29,6 +29,7 @@
                     <!-- Additional columns for quantity, etc., if needed -->
                 </columns>
             </TableView>
+         <Label text="Order Components:" />
 
             <!-- Order Placement Section -->
             <HBox spacing="10">
@@ -40,13 +41,6 @@
             </HBox>
         </VBox>
     </center>
-
-    <bottom>
-        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="730.0" style="-fx-background-color: white;">
-            <Label fx:id="notificationLabel" />
-            <!-- Other notifications or information -->
-        </VBox>
-    </bottom>
    <right>
       <Button mnemonicParsing="false" onAction="#backButton" prefHeight="112.0" prefWidth="55.0" text="Back" wrapText="true" BorderPane.alignment="CENTER" />
    </right>
