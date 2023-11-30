@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="663.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.RentalController">
+<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.RentalController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="753.0" prefWidth="694.0">
+      <AnchorPane id="AnchorPane" prefHeight="753.0" prefWidth="694.0" style="-fx-background-color: e47eeb;">
          <children>
             <Label layoutX="295.0" layoutY="40.0" text="Rental">
                <font>

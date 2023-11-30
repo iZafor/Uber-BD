@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.GetRideController">
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.GetRideController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="622.0">
+      <AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="622.0" style="-fx-background-color: e47eeb;">
          <children>
             <Label layoutX="272.0" layoutY="64.0" text="Get Ride">
                <font>
@@ -36,7 +35,7 @@
             <TextField fx:id="dropOffLocationTextField" layoutX="266.0" layoutY="194.0" />
             <TextField fx:id="searchTextField" layoutX="72.0" layoutY="312.0" prefHeight="31.0" prefWidth="478.0" promptText="Search" />
             <ComboBox fx:id="pickUpNowComboBox" layoutX="264.0" layoutY="247.0" prefHeight="31.0" prefWidth="187.0" />
-            <Button layoutX="485.0" layoutY="413.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
+            <Button layoutX="485.0" layoutY="413.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#eeeaea" />
          </children>
       </AnchorPane>
    </children>

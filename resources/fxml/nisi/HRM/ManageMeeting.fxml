@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="743.0" style="-fx-background-color: f0f27a;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="nisi.controller.ManageMeetingController">
+<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="743.0" style="-fx-background-color: ccfc7f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nisi.controller.ManageMeetingController">
    <children>
       <Label layoutX="248.0" layoutY="46.0" text="Manage Meeting" textFill="#323230">
          <font>
@@ -25,7 +24,7 @@
          </children>
       </AnchorPane>
       <TextArea fx:id="arrangeMeetingTextArea" layoutX="379.0" layoutY="173.0" prefHeight="303.0" prefWidth="315.0" />
-      <Button layoutX="472.0" layoutY="521.0" mnemonicParsing="false" onAction="#sendButtonOnClick" text="Send" />
-      <Button layoutX="595.0" layoutY="521.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
+      <Button layoutX="472.0" layoutY="521.0" mnemonicParsing="false" onAction="#sendButtonOnClick" style="-fx-background-color: black;" text="Send" textFill="#f5efef" />
+      <Button layoutX="595.0" layoutY="521.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#f8f4f4" />
    </children>
 </AnchorPane>

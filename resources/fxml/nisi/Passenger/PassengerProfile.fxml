@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.PassengerProfileController">
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.PassengerProfileController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="743.0">
+      <AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="743.0" style="-fx-background-color: e47eeb;">
          <children>
-            <Button layoutX="82.0" layoutY="189.0" mnemonicParsing="false" onAction="#onBookIntercityButtonOnClick" text="Book Intercity" />
-            <Button layoutX="306.0" layoutY="296.0" mnemonicParsing="false" onAction="#feedbackButtonOnClick" text="Feedback" />
-            <Button layoutX="470.0" layoutY="296.0" mnemonicParsing="false" onAction="#paymentButtonOnClick" text="Payment" />
-            <Button layoutX="236.0" layoutY="189.0" mnemonicParsing="false" onAction="#onBookTransportTrackButtonOnClick" text="Book Transport Track" />
-            <Button layoutX="81.0" layoutY="296.0" mnemonicParsing="false" onAction="#rentalButtonOnClick" text="Rental" />
+            <Button layoutX="82.0" layoutY="189.0" mnemonicParsing="false" onAction="#onBookIntercityButtonOnClick" style="-fx-background-color: black;" text="Book Intercity" textFill="#eeebeb" />
+            <Button layoutX="375.0" layoutY="281.0" mnemonicParsing="false" onAction="#feedbackButtonOnClick" style="-fx-background-color: black;" text="Feedback" textFill="#fcf9f9" />
+            <Button layoutX="543.0" layoutY="281.0" mnemonicParsing="false" onAction="#paymentButtonOnClick" style="-fx-background-color: black;" text="Payment" textFill="#f5f3f3" />
+            <Button layoutX="236.0" layoutY="189.0" mnemonicParsing="false" onAction="#onBookTransportTrackButtonOnClick" style="-fx-background-color: black;" text="Book Transport Track" textFill="#fff9f9" />
+            <Button layoutX="458.0" layoutY="189.0" mnemonicParsing="false" onAction="#rentalButtonOnClick" style="-fx-background-color: black;" text="Rental" textFill="#f8f7f7" />
             <Button layoutX="600.0" layoutY="445.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
             <ImageView fitHeight="55.0" fitWidth="65.0" layoutX="549.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="464.0" layoutY="189.0" mnemonicParsing="false" onAction="#shownDriverLocationButtonOnClick" text="Shown Driver Location" />
-            <Label layoutX="241.0" layoutY="51.0" text="Passenger Profile">
+            <Button layoutX="135.0" layoutY="281.0" mnemonicParsing="false" onAction="#shownDriverLocationButtonOnClick" style="-fx-background-color: black;" text="Shown Driver Location" textFill="#f8f4f4" />
+            <Label layoutX="219.0" layoutY="41.0" prefHeight="62.0" prefWidth="251.0" style="-fx-background-color: white;" text="Passenger Profile">
                <font>
-                  <Font size="28.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="176.0" layoutY="296.0" mnemonicParsing="false" onAction="#getRideButtonOnClick" text="Get Ride" />
+            <Button layoutX="582.0" layoutY="189.0" mnemonicParsing="false" onAction="#getRideButtonOnClick" style="-fx-background-color: black;" text="Get Ride" textFill="#f2eeee" />
          </children>
       </AnchorPane>
    </children>

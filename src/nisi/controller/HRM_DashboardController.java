@@ -164,20 +164,20 @@ public class HRM_DashboardController implements Initializable {
 //        sameStage.setTitle("Operations of Hamdard Laboratories");
     }
 
-    @FXML
-    private void employeeReportsButtonOnClck(ActionEvent event) {
-        try {
-            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.Employee_Reports);
-            Util.getInstance().showScene(
-                    loader.load(),
-                    event,
-                    "HRM_Dashboard",
-                    false
-            );
-            
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//    @FXML
+//    private void employeeReportsButtonOnClck(ActionEvent event) {
+//        try {
+//            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.Employee_Reports);
+//            Util.getInstance().showScene(
+//                    loader.load(),
+//                    event,
+//                    "HRM_Dashboard",
+//                    false
+//            );
+//            
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         //        FXMLLoader loader = new FXMLLoader();
 //        Parent nextSceneParent;
 //        loader.setLocation(getClass().getResource("U0LoginScene.fxml"));
@@ -187,7 +187,7 @@ public class HRM_DashboardController implements Initializable {
 //        sameStage.setScene(nextScene);
 //        sameStage.show();
 //        sameStage.setTitle("Operations of Hamdard Laboratories");
-    }
+    //}
 
     @FXML
     private void employeePerformanceButtonOnClck(ActionEvent event) throws IOException {
@@ -236,6 +236,22 @@ public class HRM_DashboardController implements Initializable {
 //        Stage sameStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //        sameStage.setScene(nextScene);
 //        sameStage.show();
+    }
+
+    @FXML
+    private void leaveRequestButtonOnClck(ActionEvent event) {
+        try {
+            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.LEAVE_REQUEST);
+            Util.getInstance().showScene(
+                    loader.load(),
+                    event,
+                    "HRM_Dashboard",
+                    false
+            );
+            
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
 }

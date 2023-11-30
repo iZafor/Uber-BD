@@ -8,6 +8,8 @@ import bd.uber.FXMLFilePath;
 import bd.uber.Util;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -24,32 +27,43 @@ import javafx.scene.control.TableView;
 public class StorEmployeeDetailsController implements Initializable {
 
     @FXML
-    private TableView<Employee> employeeTable;
+    private TableView<Details> employeeTable;
     @FXML
-    private TableColumn<Employee, Integer> idTableColumn;
+    private TableColumn<Details, Integer> idTableColumn;
     @FXML
-    private TableColumn<Employee, String> nameTableColumn;
+    private TableColumn<Details, String> nameTableColumn;
     @FXML
-    private TableColumn<Employee, Float> salaryTableColumn;
+    private TableColumn<Details, Float> salaryTableColumn;
     @FXML
-    private TableColumn<Employee, String> genderTableColumn;
+    private TableColumn<Details, String> genderTableColumn;
     @FXML
-    private TableColumn<Employee, String> designationTableColumn;
+    private TableColumn<Details, String> designationTableColumn;
     @FXML
-    private TableColumn<Employee, String> departmentTableColumn;
+    private TableColumn<Details, String> departmentTableColumn;
     @FXML
-    private TableColumn<Employee, String> dobTableColumn;
+    private TableColumn<Details, String> dobTableColumn;
     @FXML
-    private TableColumn<Employee, String> dojTableColumn;
+    private TableColumn<Details, String> dojTableColumn;
 
     /**
      * Initializes the controller class.
      */
+    private final List<Details> DetailsList = new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        configureTableColumns();
     }    
-
+    private void configureTableColumns() {
+        idTableColumn.setCellValueFactory(new PropertyValueFactory<Details, Integer>("id"));
+        nameTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("name"));
+        salaryTableColumn.setCellValueFactory(new PropertyValueFactory<Details, Float>("salary"));
+        genderTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("gender"));
+        departmentTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("department"));
+        designationTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("designation"));
+        dobTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("dob"));
+        dojTableColumn.setCellValueFactory(new PropertyValueFactory<Details, String>("doj"));
+    }
     @FXML
     private void goBackButtonOnClick(ActionEvent event) {
         try {

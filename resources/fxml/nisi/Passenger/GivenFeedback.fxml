@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.GivenFeedbackController">
+<AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.GivenFeedbackController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="495.0" prefWidth="653.0">
+      <AnchorPane id="AnchorPane" prefHeight="495.0" prefWidth="653.0" style="-fx-background-color: e47eeb;">
          <children>
             <Label layoutX="219.0" layoutY="49.0" text="Given Feedback">
                <font>
@@ -23,8 +22,8 @@
                </font>
             </Label>
             <TextArea fx:id="messageTextArea" layoutX="38.0" layoutY="218.0" prefHeight="149.0" prefWidth="527.0" />
-            <Button layoutX="500.0" layoutY="407.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
-            <Button layoutX="381.0" layoutY="407.0" mnemonicParsing="false" onAction="#submitButtonOnClick" text="Submit" />
+            <Button layoutX="500.0" layoutY="407.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#f2eeee" />
+            <Button layoutX="381.0" layoutY="407.0" mnemonicParsing="false" onAction="#submitButtonOnClick" style="-fx-background-color: black;" text="Submit" textFill="#eeebeb" />
             <Label layoutX="38.0" layoutY="118.0" text="Rating:">
                <font>
                   <Font size="20.0" />

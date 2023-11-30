@@ -32,15 +32,24 @@ public enum FXMLFilePath {
     //HRM Signup
     HRM_Dashboard("/fxml/nisi/HRM/HRM_Dashboard.fxml"),
     Employee_Performance("/fxml/nisi/HRM/EmployeePerformance.fxml"),
-    Employee_Reports("/fxml/nisi/HRM/EmployeeReports.fxml"),
+    LEAVE_REQUEST("/fxml/nisi/HRM/LeaveRequest.fxml"),
     Manage_Meeting("/fxml/nisi/HRM/ManageMeeting.fxml"),
     Monthly_Supling_Salary("/fxml/nisi/HRM/MonthlySuplingSalary.fxml"),
     Notice_To_Employee("/fxml/nisi/HRM/NoticeToEmployee.fxml"),
     Stor_Employee_Details("/fxml/nisi/HRM/StorEmployeeDetails.fxml"),
     Working_Schedule("/fxml/nisi/HRM/WorkingSchedule.fxml"),
-    Add_Update_Employee_Details("/fxml/nisi/HRM/AddUpdateEmployeeDetails.fxml");
+    Add_Update_Employee_Details("/fxml/nisi/HRM/AddUpdateEmployeeDetails.fxml"),
     //Passenger Signup
-
+    BOOK_INTERCITY_UBER("/fxml/nisi/Passenger/BookIntercityUber.fxml"),
+    BOOK_TRANSPORT_TRACK_UBER("/fxml/nisi/Passenger/BookTransportTrackUber.fxml"),
+    GET_RIDE("/fxml/nisi/Passenger/GetRide.fxml"),
+    GIVEN_FEEDBACK("/fxml/nisi/Passenger/GivenFeedback.fxml"),
+    RENTAL("/fxml/nisi/Passenger/Rental.fxml"),
+    SHOWN_DRIVER_LOCATION("/fxml/nisi/Passenger/ShownDriverLocation.fxml"),
+    PAYMENT_PROCEDURE("/fxml/nisi/Passenger/PaymentProcedure.fxml"),
+    DIGITAL_PAYMENT_SCEN1("/fxml/nisi/Passenger/DigitalPaymentScen1.fxml"),
+    DIGITAL_PAYMENT_SCEN2("/fxml/nisi/Passenger/DigitalPaymentScen2.fxml"),
+    PASSENGER_PROFILE("/fxml/nisi/Passenger/PassengerProfile.fxml");
 
     private final String path;
 

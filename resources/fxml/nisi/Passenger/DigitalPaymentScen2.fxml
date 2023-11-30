@@ -6,23 +6,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.DigitalPaymentScen2Controller">
+<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.DigitalPaymentScen2Controller">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="620.0">
+      <AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="620.0" style="-fx-background-color: e47eeb;">
          <children>
-            <Label layoutX="59.0" layoutY="49.0" text="Payment on Digital Account">
+            <Label layoutX="150.0" layoutY="40.0" text="Payment on Digital Account">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label layoutX="59.0" layoutY="115.0" text="Account Number" />
-            <Label layoutX="59.0" layoutY="155.0" text="Program OTP Code" />
-            <TextField fx:id="accountNumberTextField" layoutX="205.0" layoutY="110.0" />
-            <TextField fx:id="programOTPTextField" layoutX="205.0" layoutY="150.0" />
+            <Label layoutX="59.0" layoutY="115.0" text="Account Number">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="59.0" layoutY="155.0" text="Program OTP Code">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="accountNumberTextField" layoutX="235.0" layoutY="113.0" />
+            <TextField fx:id="programOTPTextField" layoutX="235.0" layoutY="153.0" />
             <Button fx:id="confirmButton" layoutX="59.0" layoutY="223.0" mnemonicParsing="false" onAction="#confirmButtonOnAction" text="Confirm" />
-            <Button fx:id="goBackButton" layoutX="328.0" layoutY="337.0" mnemonicParsing="false" onAction="#goBackScem1ButtonOnAction" prefHeight="31.0" prefWidth="128.0" text="Go Back Scen 1" />
-            <Button fx:id="backbutton" layoutX="489.0" layoutY="337.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
+            <Button fx:id="goBackButton" layoutX="328.0" layoutY="337.0" mnemonicParsing="false" onAction="#goBackScem1ButtonOnAction" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: black;" text="Go Back Scen 1" textFill="#f2eeee" />
+            <Button fx:id="backbutton" layoutX="489.0" layoutY="337.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#f8f3f3" />
          </children>
       </AnchorPane>
    </children>

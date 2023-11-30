@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="727.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="nisi.controller.NoticeToEmployeeController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="727.0" style="-fx-background-color: ccfc7f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nisi.controller.NoticeToEmployeeController">
    <children>
       <Label layoutX="235.0" layoutY="55.0" text="Notice To Employee">
          <font>
@@ -27,7 +26,7 @@
       </Label>
       <TextField fx:id="tropicNameTextField" layoutX="208.0" layoutY="131.0" />
       <TextArea fx:id="noticeDetailsTextArea" layoutX="64.0" layoutY="221.0" prefHeight="200.0" prefWidth="606.0" />
-      <Button layoutX="479.0" layoutY="459.0" mnemonicParsing="false" onAction="#submiteButtonOnClick" text="Submite" />
-      <Button layoutX="590.0" layoutY="459.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
+      <Button layoutX="479.0" layoutY="459.0" mnemonicParsing="false" onAction="#submiteButtonOnClick" style="-fx-background-color: black;" text="Submite" textFill="#f8f4f4" />
+      <Button layoutX="590.0" layoutY="459.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#fffbfb" />
    </children>
 </AnchorPane>

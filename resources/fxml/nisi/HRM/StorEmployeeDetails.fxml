@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="848.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="nisi.controller.StorEmployeeDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nisi.controller.StorEmployeeDetailsController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="884.0">
+      <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="884.0" style="-fx-background-color: ccfc7f;">
          <children>
             <TableView fx:id="employeeTable" layoutX="33.0" layoutY="123.0" prefHeight="348.0" prefWidth="797.0">
                <columns>
@@ -24,7 +23,7 @@
                   <TableColumn fx:id="dojTableColumn" minWidth="0.0" prefWidth="138.0" text="DATE OF JOINIG" />
                </columns>
             </TableView>
-            <Button layoutX="206.0" layoutY="488.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" prefHeight="68.0" prefWidth="391.0" style="-fx-background-color: black;" text="Go Back" textFill="#f8f5f5" />
+            <Button layoutX="721.0" layoutY="524.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" prefHeight="41.0" prefWidth="109.0" style="-fx-background-color: black;" text="Go Back" textFill="#f8f5f5" />
             <Label layoutX="240.0" layoutY="48.0" text="Stor Employee Details">
                <font>
                   <Font size="37.0" />

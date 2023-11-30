@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="643.0" prefWidth="599.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="nisi.controller.WorkingScheduleController">
+<AnchorPane id="AnchorPane" prefHeight="643.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nisi.controller.WorkingScheduleController">
    <children>
-      <AnchorPane layoutY="-4.0" prefHeight="643.0" prefWidth="602.0">
+      <AnchorPane prefHeight="646.0" prefWidth="602.0" style="-fx-background-color: ccfc7f;">
          <children>
             <Label layoutX="200.0" layoutY="14.0" text="Working Schedule">
                <padding>
@@ -46,7 +45,7 @@
             <ComboBox fx:id="shiftComboBox" layoutX="167.0" layoutY="156.0" prefHeight="31.0" prefWidth="151.0" />
             <TextField fx:id="idTextField" layoutX="167.0" layoutY="95.0" prefWidth="100.0" />
             <Button layoutX="395.0" layoutY="91.0" onAction="#addShiftButtonOnClick" prefHeight="105.0" prefWidth="141.0" text="Add Shift" />
-            <Button layoutX="444.0" layoutY="567.0" onAction="#goBackButtonOnclick" prefHeight="31.0" prefWidth="92.0" text="Go Back" />
+            <Button layoutX="444.0" layoutY="567.0" onAction="#goBackButtonOnclick" prefHeight="31.0" prefWidth="92.0" style="-fx-background-color: black;" text="Go Back" textFill="#fffbfb" />
             <Label layoutX="46.0" layoutY="100.0" text="Id:" />
             <ComboBox fx:id="periodComboBox" layoutX="167.0" layoutY="219.0" prefHeight="31.0" prefWidth="151.0" />
             <Label layoutX="46.0" layoutY="161.0" text="Select Shift:" />

@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="708.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="nisi.controller.MonthlySuplingSalaryController">
+<AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nisi.controller.MonthlySuplingSalaryController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="713.0">
+      <AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="713.0" style="-fx-background-color: ccfc7f;">
          <children>
             <Label layoutX="195.0" layoutY="43.0" text="Monthly Supling Salary">
                <font>
@@ -35,7 +34,7 @@
             <ComboBox fx:id="monthComboBox" layoutX="209.0" layoutY="541.0" prefHeight="31.0" prefWidth="187.0" />
             <ComboBox fx:id="salaryComboBox" layoutX="209.0" layoutY="587.0" prefHeight="31.0" prefWidth="187.0" />
             <Button layoutX="530.0" layoutY="587.0" mnemonicParsing="false" onAction="#loadLineChartButtonOnClick" text="Load Line Chart" />
-            <Button layoutX="592.0" layoutY="674.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" text="Go Back" />
+            <Button layoutX="592.0" layoutY="674.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#f2eeee" />
             <Button layoutX="423.0" layoutY="587.0" mnemonicParsing="false" onAction="#addSalaryButtonOnClick" text="Add Salary" />
          </children>
       </AnchorPane>

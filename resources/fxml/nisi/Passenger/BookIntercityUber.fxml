@@ -8,18 +8,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="492.0" prefWidth="571.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.BookIntercityUberController">
+<AnchorPane id="AnchorPane" prefHeight="492.0" prefWidth="571.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.nisi.controller.BookIntercityUberController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="2.0" prefHeight="507.0" prefWidth="569.0">
+      <AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="571.0" style="-fx-background-color: e47eeb;">
          <children>
             <Label layoutX="59.0" layoutY="201.0" text="Destination:">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Button layoutX="412.0" layoutY="403.0" mnemonicParsing="false" onAction="#findRidesButtonOnClick" text="Find Rides" />
-            <Button layoutX="313.0" layoutY="403.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: red;" text="Go Back" textFill="#fcf1f1" />
+            <Button layoutX="412.0" layoutY="403.0" mnemonicParsing="false" onAction="#findRidesButtonOnClick" style="-fx-background-color: black;" text="Find Rides" textFill="#f5eeee" />
+            <Button layoutX="313.0" layoutY="403.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#fcf1f1" />
             <TextField fx:id="destinationTextField" layoutX="281.0" layoutY="201.0" prefHeight="31.0" prefWidth="218.0" />
             <Label layoutX="59.0" layoutY="259.0" text="Pickup date and time:">
                <font>
@@ -37,7 +36,7 @@
             <DatePicker fx:id="dropOffDateAndTimeDatePicker" layoutX="283.0" layoutY="305.0" />
             <Label layoutX="178.0" layoutY="44.0" text="Book Intercity Uber">
                <font>
-                  <Font size="22.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
             <Label layoutX="59.0" layoutY="352.0" text="Payment:">
