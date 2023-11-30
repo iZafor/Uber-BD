@@ -1,14 +1,20 @@
 package bd.uber.zafor.model.operationsmanager;
 
+import bd.uber.Employee;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class OperationsManager implements Serializable {
+public class OperationsManager extends Employee implements Serializable {
     private FareStructureManagement fareStructureManagement;
     private List<PromotionalCampaign> promotionalCampaignList;
     private RideCancellationPolicy rideCancellationPolicy;
     private LostItemClaimProcess lostItemClaimProcess;
+
+    public OperationsManager(int id) {
+        super(id);
+    }
 
     public void createPromotionalCampaign(String name, String description, LocalDate startDate, LocalDate endDate) {
 

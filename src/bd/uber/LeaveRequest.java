@@ -41,4 +41,12 @@ public class LeaveRequest implements Serializable {
     public LocalDate getEndDate() {
         return endDate;
     }
+
+    public LeaveRequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LeaveRequestStatus status) {
+        this.status = status;
+    }
 }
