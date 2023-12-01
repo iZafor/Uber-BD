@@ -1,0 +1,13 @@
+AnchorPane {
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+}
+
+Text {
+    -fx-font-size: 16;
+    -fx-fill: #0F0F0F;
+}
+
+Line {
+    -fx-stroke: #B0A695;
+}

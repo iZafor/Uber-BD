@@ -27,7 +27,17 @@ public final class Location implements Serializable {
         return direction;
     }
 
+    public float getDistanceFromCentralPoint() {
+        return distanceFromCentralPoint;
+    }
+
     public float getDistance(Location other) {
-        return other.direction.equals(direction) ? Math.abs(distanceFromCentralPoint - other.distanceFromCentralPoint) : distanceFromCentralPoint + other.distanceFromCentralPoint;
+        if ((direction.equals(Direction.NORTH) && other.direction.equals(Direction.SOUTH))
+                || (direction.equals(Direction.SOUTH) && other.direction.equals(Direction.NORTH))
+                || (direction.equals(Direction.EAST) && other.direction.equals(Direction.WEST))
+                || (direction.equals(Direction.WEST) && other.direction.equals(Direction.EAST))) {
+            return distanceFromCentralPoint + other.distanceFromCentralPoint;
+        }
+        return Math.abs(distanceFromCentralPoint - other.distanceFromCentralPoint);
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="65.0" prefWidth="662.0" stylesheets="@../../../styles/zafor/operationsmanager/location-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.operationsmanager.LocationViewController">
+    <ImageView fitHeight="41.0" fitWidth="37.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/pin.png" />
+    </ImageView>
+    <Text fx:id="locationNameText" layoutX="64.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bashundhar R/A" />
+    <ImageView fitHeight="41.0" fitWidth="37.0" layoutX="276.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/direction.png" />
+    </ImageView>
+    <Text fx:id="locationDirectionText" layoutX="331.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CENTER" />
+    <ImageView fitHeight="41.0" fitWidth="37.0" layoutX="483.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/distance.png" />
+    </ImageView>
+    <Text fx:id="distanceText" layoutX="542.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00" />
+    <Text layoutX="598.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Km" />
+   <Line endX="-2.0" endY="38.0" layoutX="226.0" layoutY="14.0" startX="-2.0" startY="-2.0" />
+   <Line endX="-2.0" endY="38.0" layoutX="450.0" layoutY="14.0" startX="-2.0" startY="-2.0" />
+</AnchorPane>
