@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -41,6 +40,11 @@ public class OperationsManagerController implements Initializable {
     @FXML
     private void onShowDashboard() {
         menuOptionProperty.setValue(OperationsManagerMenuOption.DASHBOARD);
+    }
+
+    @FXML
+    private void onShowProfile() {
+        menuOptionProperty.setValue(OperationsManagerMenuOption.PROFILE);
     }
 
     @FXML
@@ -83,6 +87,11 @@ public class OperationsManagerController implements Initializable {
                 FXMLLoader loader;
                 switch (newValue) {
                     case DASHBOARD:
+                        break;
+                    case PROFILE:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_PROFILE_VIEW);
+                        operationsManagerBorderPane.setCenter(loader.load());
+                        ((OperationsManagerProfileController) loader.getController()).setInitData(operationsManager);
                         break;
                     case MANAGE_PROMOTIONAL_CAMPAIGNS:
                         loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_MANAGE_PROMOTIONAL_CAMPAIGNS_VIEW);

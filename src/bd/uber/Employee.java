@@ -3,7 +3,7 @@ package bd.uber;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee extends User implements Serializable {
+public abstract class Employee extends User implements Serializable {
     private Salary salary;
     private Gender gender;
     private Department department;

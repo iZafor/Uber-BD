@@ -1,5 +1,8 @@
 package bd.uber;
 
+import bd.uber.zafor.model.operationsmanager.OperationsManager;
+
+import java.time.LocalDate;
 import java.util.Random;
 
 public class Test {
@@ -7,7 +10,16 @@ public class Test {
     private static final Random random = new Random(System.nanoTime());
 
     public static void main(String[] args) {
-//        OperationsManager operationsManager = new OperationsManager(1);
+//        OperationsManager operationsManager = db.<OperationsManager>getObjectList(BinFilePath.OPERATIONS_MANAGER).get(0);
+//        operationsManager.setGender(Gender.MALE);
+//        db.updateObjectFile(
+//                operationsManager,
+//                BinFilePath.OPERATIONS_MANAGER,
+//                m -> m.getId() == operationsManager.getId(),
+//                false
+//        );
+//        operationsManager.setDateOfBirth(LocalDate.of(2002, 1, 7));
+//        operationsManager.setDateOfJoining(LocalDate.now().minusDays(random.nextInt(365)));
 //        operationsManager.setName("Zafor Iqbal");
 //        operationsManager.setPassword("abc");
 //        db.addObject(operationsManager, BinFilePath.OPERATIONS_MANAGER);

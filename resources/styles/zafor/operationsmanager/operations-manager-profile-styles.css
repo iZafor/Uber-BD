@@ -1,0 +1,26 @@
+.main-container {
+    -fx-background-color: #DEDEDF;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.subtitle-text {
+    -fx-font-size: 18;
+}
+
+Circle {
+    -fx-fill: transparent;
+    -fx-cursor: hand;
+}
+
+Button {
+    -fx-background-radius: 4;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-cursor: hand;
+    -fx-font-size: 20;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}

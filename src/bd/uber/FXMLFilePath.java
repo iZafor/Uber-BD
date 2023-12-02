@@ -32,6 +32,7 @@ public enum FXMLFilePath {
 
     // Operations Manager
     OPERATIONS_MANAGER_VIEW("/fxml/zafor/operationsmanager/operations-manager-view.fxml"),
+    OPERATIONS_MANAGER_PROFILE_VIEW("/fxml/zafor/operationsmanager/operations-manager-profile-view.fxml"),
     OPERATIONS_MANAGER_MANAGE_LOCATION_VIEW("/fxml/zafor/operationsmanager/operations-manager-manage-locations-view.fxml"),
     OPERATIONS_MANAGER_MANAGE_PROMOTIONAL_CAMPAIGNS_VIEW("/fxml/zafor/operationsmanager/operations-manager-manage-promotional-campaigns-view.fxml"),
     OPERATIONS_MANAGER_MANAGE_FARE_STRUCTURE_VIEW("/fxml/zafor/operationsmanager/operations-manager-fare-structure-management-view.fxml"),
