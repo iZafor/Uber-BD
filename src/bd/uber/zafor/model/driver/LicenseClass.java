@@ -3,12 +3,11 @@ package bd.uber.zafor.model.driver;
 import java.io.Serializable;
 
 public enum LicenseClass implements Serializable {
-    LICENSE_FOR_MOTORCYCLE("License for MotorCycle"),
-    LICENSE_FOR_AUTO_TEMPO_MOTOR("License for Auto/Tempo"),
-    LICENSE_FOR_MICROBUS_JEEP("License for MicroBus/Jeep"),
-    LICENSE_FOR_MEDIUM_RANGE_VEHICLES("License for Medium Range Vehicles"),
-    LICENSE_FOR_HEAVY_RANGE_VEHICLES("License for Heavy Range Vehicles"),
-    LICENSE_FOR_TRACTOR_OR_SPECIAL_CLASSES_VEHICLE("License for Tractor or Special Classes Vehicles");
+    LEARNER_LICENSE("Learner License"),
+    PROFESSIONAL_LICENSE("Professional License"),
+    NO_PROFESSIONAL_LICENSE("Non-Professional License"),
+    PUBLIC_SERVICE_VEHICLE_LICENSE("Public Service Vehicle License"),
+    INSTRUCTOR_LICENSE("Instructor License");
 
     private final String licenseClass;
 
