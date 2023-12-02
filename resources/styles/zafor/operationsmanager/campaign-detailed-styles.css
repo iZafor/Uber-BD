@@ -1,0 +1,56 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+}
+
+Label {
+    -fx-alignment: top_left;
+    -fx-wrap-text: true;
+    -fx-pref-width: 590;
+}
+
+.title {
+    -fx-font-size: 20;
+    -fx-pref-height: 60;
+}
+
+.subtitle {
+    -fx-font-size: 18;
+    -fx-pref-height: 200;
+}
+
+.subtitle-2 {
+    -fx-font-size: 16;
+}
+
+Button {
+    -fx-font-size: 18;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-cursor: hand;
+}
+
+ScrollPane {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-hbar-policy: NEVER;
+}
+
+ScrollPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+ScrollPane VBox {
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}
+
+TextField, ComboBox {
+    -fx-pref-width: 180;
+    -fx-pref-height: 35;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+}

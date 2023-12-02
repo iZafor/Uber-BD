@@ -28,6 +28,12 @@ public enum BinFilePath {
     DAMAGE_REPORT("bin/damage_report.bin"),
     MAINTENANCE_REQUEST("bin/maintenance_request.bin"),
 
+    // Operations Manager Related Files
+    PROMOTIONAL_CAMPAIGN("bin/promotional_campaign.bin"),
+    DISCOUNT("bin/discount.bin"),
+    FARE_MODIFICATION_RULE("bin/fare_modification_rule.bin"),
+    PRICING_TIER("bin/pricing_tier.bin"),
+
     // Others
     LEAVE_REQUEST("bin/leave_request.bin"),
     REASON("bin/reason.bin"),

@@ -1,7 +1,9 @@
 package bd.uber;
 
 import bd.uber.zafor.controller.driver.DriverViewController;
+import bd.uber.zafor.controller.operationsmanager.OperationsManagerController;
 import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.operationsmanager.OperationsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,27 +53,40 @@ GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-//        LoginInfo loginInfo;
-//        if ((loginInfo = validateInputs()) == null) {
-//            showAlert("Invalid Input!");
-//            return;
-//        }
-//
-//        User user;
-//        if ((user = loginInfo.verifyLoginInfo()) == null) {
-//            showAlert("Incorrect Credential!");
-//            return;
-//        }
+        LoginInfo loginInfo;
+        if ((loginInfo = validateInputs()) == null) {
+            showAlert("Invalid Input!");
+            return;
+        }
 
+        User user;
+        if ((user = loginInfo.verifyLoginInfo()) == null) {
+            showAlert("Incorrect Credential!");
+            return;
+        }
+
+        FXMLLoader loader;
         try {
-            FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_VIEW);
-            Util.getInstance().showScene(
-                    loader.load(),
-                    actionEvent,
-                    "Operations Manager",
-                    false
-            );
-//            ((DriverViewController) loader.getController()).setInitData((Driver) user);
+            switch (userTypeComboBox.getValue()) {
+                case DRIVER:
+                    loader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
+                    Util.getInstance().showScene(
+                            loader.load(),
+                            actionEvent,
+                            "Driver",
+                            false
+                    );
+                    ((DriverViewController) loader.getController()).setInitData((Driver) user);
+                case OPERATIONS_MANAGER:
+                    loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_VIEW);
+                    Util.getInstance().showScene(
+                            loader.load(),
+                            actionEvent,
+                            "Operations Manager",
+                            false
+                    );
+                    ((OperationsManagerController) loader.getController()).setInitData((OperationsManager) user);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

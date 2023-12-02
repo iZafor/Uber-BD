@@ -1,38 +1,43 @@
 package bd.uber.zafor.model.operationsmanager;
 
+import javafx.collections.FXCollections;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionalCampaign implements Serializable {
-    private String campaignName;
-    private String description;
-    private LocalDate startDate;
+    private final int campaignId;
+    private final String campaignName;
+    private final String description;
+    private final LocalDate startDate;
     private LocalDate endDate;
-    private List<Discount> discountList;
+    private final List<Integer> discountIdList;
+
+    public PromotionalCampaign(int campaignId, String campaignName, String description, LocalDate startDate, LocalDate endDate) {
+        this.campaignId = campaignId;
+        this.campaignName = campaignName;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.discountIdList = new ArrayList<>();
+    }
+
+    public int getCampaignId() {
+        return campaignId;
+    }
 
     public String getCampaignName() {
         return campaignName;
-    }
-
-    public void setCampaignName(String campaignName) {
-        this.campaignName = campaignName;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
@@ -43,11 +48,7 @@ public class PromotionalCampaign implements Serializable {
         this.endDate = endDate;
     }
 
-    public List<Discount> getDiscountList() {
-        return discountList;
-    }
-
-    public void setDiscountList(List<Discount> discountList) {
-        this.discountList = discountList;
+    public List<Integer> getDiscountIdList() {
+        return discountIdList;
     }
 }

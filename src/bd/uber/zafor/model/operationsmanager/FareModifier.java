@@ -1,11 +1,14 @@
 package bd.uber.zafor.model.operationsmanager;
 
+import bd.uber.zafor.model.driver.RideRequest;
+
 import java.io.Serializable;
 
 public interface FareModifier extends Serializable {
+    boolean appliesTo(RideRequest rideRequest);
     float modifyBaseFare(float baseFare);
 
-    float modifyDistanceRate(float distanceFare);
+    float modifyDistanceRate(float distanceRate);
 
-    float modifyTimeRate(float timeFare);
+    float modifyTimeRate(float timeRate);
 }

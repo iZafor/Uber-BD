@@ -1,0 +1,9 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+    -fx-border-color: #0F0F0F;
+    -fx-background-radius: 4;
+}
+
+Text {
+    -fx-font-size: 18;
+}

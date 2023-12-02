@@ -3,14 +3,28 @@ package bd.uber.zafor.model.operationsmanager;
 import bd.uber.zafor.model.driver.RideRequest;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-public class PriceModificationRule implements Serializable {
+public class FareModificationRule implements Serializable {
+    private final int modificationRuleId;
     private String description;
     private boolean isActive;
     private FareModifier fareModifier;
 
+    public FareModificationRule(int modificationRuleId, String description, FareModifier fareModifier) {
+        this.modificationRuleId = modificationRuleId;
+        this.description = description;
+        this.fareModifier = fareModifier;
+        this.isActive = true;
+    }
+
     public boolean appliesTo(RideRequest rideRequest) {
-        return false;
+        return isActive && fareModifier.appliesTo(rideRequest);
+    }
+
+    public int getModificationRuleId() {
+        return modificationRuleId;
     }
 
     public String getDescription() {

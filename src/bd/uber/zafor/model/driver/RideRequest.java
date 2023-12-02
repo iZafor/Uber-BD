@@ -1,5 +1,7 @@
 package bd.uber.zafor.model.driver;
 
+import bd.uber.zafor.model.operationsmanager.RideType;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -9,21 +11,22 @@ public class RideRequest implements Serializable {
     private final int pickupPointId;
     private final int dropOffPointId;
     private final PaymentMethod paymentMethod;
-    private final float fare;
+    private float fare;
     private final float rideDistance;
     private final LocalDateTime requestTime;
-    private boolean isResolved;
+    private final RideType rideType;
+    private boolean hasResolved;
 
-    public RideRequest(int passengerId, float passengerRating, int pickupPointId, int dropOffPointId, PaymentMethod paymentMethod, float fare, float rideDistance, LocalDateTime requestTime) {
+    public RideRequest(int passengerId, float passengerRating, int pickupPointId, int dropOffPointId, PaymentMethod paymentMethod, float rideDistance, LocalDateTime requestTime, RideType rideType) {
         this.passengerId = passengerId;
         this.passengerRating = passengerRating;
         this.pickupPointId = pickupPointId;
         this.dropOffPointId = dropOffPointId;
         this.paymentMethod = paymentMethod;
-        this.fare = fare;
         this.rideDistance = rideDistance;
         this.requestTime = requestTime;
-        this.isResolved = false;
+        this.rideType = rideType;
+        this.hasResolved = false;
     }
 
     public int getPassengerId() {
@@ -50,6 +53,10 @@ public class RideRequest implements Serializable {
         return fare;
     }
 
+    public void setFare(float fare) {
+        this.fare = fare;
+    }
+
     public float getRideDistance() {
         return rideDistance;
     }
@@ -58,11 +65,15 @@ public class RideRequest implements Serializable {
         return requestTime;
     }
 
-    public boolean isResolved() {
-        return isResolved;
+    public RideType getRideType() {
+        return rideType;
     }
 
-    public void setResolved(boolean resolved) {
-        isResolved = resolved;
+    public boolean getHasResolved() {
+        return hasResolved;
+    }
+
+    public void setHasResolved(boolean hasResolved) {
+        this.hasResolved = hasResolved;
     }
 }

@@ -33,6 +33,15 @@ public enum FXMLFilePath {
     // Operations Manager
     OPERATIONS_MANAGER_VIEW("/fxml/zafor/operationsmanager/operations-manager-view.fxml"),
     OPERATIONS_MANAGER_MANAGE_LOCATION_VIEW("/fxml/zafor/operationsmanager/operations-manager-manage-locations-view.fxml"),
+    OPERATIONS_MANAGER_MANAGE_PROMOTIONAL_CAMPAIGNS_VIEW("/fxml/zafor/operationsmanager/operations-manager-manage-promotional-campaigns-view.fxml"),
+    OPERATIONS_MANAGER_MANAGE_FARE_STRUCTURE_VIEW("/fxml/zafor/operationsmanager/operations-manager-fare-structure-management-view.fxml"),
+    CAMPAIGN_VIEW("/fxml/zafor/operationsmanager/campaign-view.fxml"),
+    CAMPAIGN_DETAILED_VIEW("/fxml/zafor/operationsmanager/campaign-detailed-view.fxml"),
+    DISCOUNT_VIEW("/fxml/zafor/operationsmanager/discount-view.fxml"),
+    PRICING_TIER_VIEW("/fxml/zafor/operationsmanager/pricing-tier-view.fxml"),
+    UPDATE_PRICING_TIER_VIEW("/fxml/zafor/operationsmanager/update-pricing-tier-view.fxml"),
+    ADD_FARE_MODIFICATION_RULE_VIEW("/fxml/zafor/operationsmanager/add-fare-modification-rule-view.fxml"),
+    FARE_MODIFICATION_RULE_VIEW("/fxml/zafor/operationsmanager/fare-modification-rule-view.fxml"),
     LOCATION_VIEW("/fxml/zafor/operationsmanager/location-view.fxml");
 
     private final String path;

@@ -2,8 +2,11 @@ package bd.uber;
 
 import bd.uber.zafor.model.driver.PaymentMethod;
 import bd.uber.zafor.model.driver.RideRequest;
+import bd.uber.zafor.model.operationsmanager.OperationsManager;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,6 +16,10 @@ public class Test {
     private static final Random random = new Random(System.nanoTime());
 
     public static void main(String[] args) {
+//        OperationsManager operationsManager = new OperationsManager(1);
+//        operationsManager.setName("Zafor Iqbal");
+//        operationsManager.setPassword("abc");
+//        db.addObject(operationsManager, BinFilePath.OPERATIONS_MANAGER);
 //        List<Location> locationList = db.getObjectList(BinFilePath.LOCATION);
 //        List<RideRequest> requestList = new ArrayList<>();
 //        for (int i = 0; i < 120; i++) {

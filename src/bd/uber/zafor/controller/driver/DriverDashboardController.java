@@ -261,7 +261,7 @@ public class DriverDashboardController implements Initializable {
                 Platform.runLater(() -> rideRequestsVBox.getChildren().clear());
                 Util.getInstance().getDb().<RideRequest>getObjectList(BinFilePath.RIDE_REQUEST)
                         .stream()
-                        .filter(rideRequest -> !rideRequest.isResolved() && locationList.stream().filter(l -> l.getLocationId() == rideRequest.getPickupPointId()).findFirst().get().getDistance(driverLocationProperty.getValue()) <= rideArea)
+                        .filter(rideRequest -> !rideRequest.getHasResolved() && locationList.stream().filter(l -> l.getLocationId() == rideRequest.getPickupPointId()).findFirst().get().getDistance(driverLocationProperty.getValue()) <= rideArea)
                         .forEach(rideRequest -> {
                             try {
                                 FXMLLoader loader = Util.getInstance().getLoader(FXMLFilePath.RIDE_REQUEST_VIEW);
@@ -271,7 +271,7 @@ public class DriverDashboardController implements Initializable {
                                 controller.getIgnoreButton().setOnMouseClicked(event -> rideRequestsVBox.getChildren().remove(hBox));
                                 controller.getAcceptButton().setOnMouseClicked(event -> {
                                     // Delete the instance from file
-                                    rideRequest.setResolved(true);
+                                    rideRequest.setHasResolved(true);
                                     Util.getInstance().getWorkers().execute(() ->
                                             Util.getInstance().getDb().updateObjectFile(
                                                     rideRequest,

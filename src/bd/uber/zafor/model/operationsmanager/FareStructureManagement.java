@@ -1,42 +1,64 @@
 package bd.uber.zafor.model.operationsmanager;
 
+import bd.uber.BinFilePath;
+import bd.uber.Util;
 import bd.uber.zafor.model.driver.RideRequest;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FareStructureManagement implements Serializable {
-    private Map<RideType, PricingTear> pricingTearMap;
-    private List<PriceModificationRule> priceModificationRuleList;
+    private final Map<RideType, Integer> pricingTierMap;
+    private final List<Integer> fareModificationRuleIdList;
 
-    public boolean addPricingTear(RideType rideType, PricingTear pricingTear) {
-        return false;
+    public FareStructureManagement() {
+        this.pricingTierMap = new HashMap<>();
+        this.fareModificationRuleIdList = new ArrayList<>();
     }
 
-    public boolean removePricingTear(RideType rideType) {
-        return pricingTearMap.remove(rideType) != null;
+    public void updatePricingTier(RideType rideType, Integer pricingTierId) {
+        pricingTierMap.put(rideType, pricingTierId);
     }
 
-    public boolean addPriceModificationRule(PriceModificationRule priceModificationRule) {
-        return priceModificationRuleList.add(priceModificationRule);
+    public boolean addFareModificationRule(FareModificationRule FareModificationRule) {
+        return fareModificationRuleIdList.add(FareModificationRule.getModificationRuleId());
     }
 
-    public boolean removePriceModificationRule(PriceModificationRule priceModificationRule) {
-        return priceModificationRuleList.remove(priceModificationRule);
+    public boolean removeFareModificationRule(int modificationRuleId) {
+        return fareModificationRuleIdList.remove(modificationRuleId) != -1;
     }
 
-    public float calculateFare(RideType rideType, RideRequest rideRequest) {
-        PricingTear pricingTear = pricingTearMap.get(rideType);
-        for (PriceModificationRule modificationRule : priceModificationRuleList) {
+    public float calculateFare(RideRequest rideRequest) {
+        List<FareModificationRule> FareModificationRuleList = Util.getInstance()
+                .getDb()
+                .getObjectList(
+                        BinFilePath.FARE_MODIFICATION_RULE,
+                        r -> fareModificationRuleIdList.stream().anyMatch(id -> id == r.getModificationRuleId())
+                );
+
+        Integer pricingTierId = pricingTierMap.get(rideRequest.getRideType());
+        PricingTier pricingTier = Util.getInstance().getDb().getObject(BinFilePath.PRICING_TIER, p -> p.getPricingTierId() == pricingTierId);
+
+        for (FareModificationRule modificationRule : FareModificationRuleList) {
             if (modificationRule.appliesTo(rideRequest)) {
-                float baserFare = modificationRule.getFareModifier().modifyBaseFare(pricingTear.getBaseFare());
-                float distanceRate = modificationRule.getFareModifier().modifyDistanceRate(pricingTear.getDistanceRate());
-                float timeRate = modificationRule.getFareModifier().modifyTimeRate(pricingTear.getTimeRate());
-
-                return baserFare + baserFare * distanceRate + baserFare * timeRate;
+                float baserFare = modificationRule.getFareModifier().modifyBaseFare(pricingTier.getBaseFare()) * rideRequest.getRideDistance();
+                float distanceRate = modificationRule.getFareModifier().modifyDistanceRate(pricingTier.getDistanceRate());
+                float timeRate = modificationRule.getFareModifier().modifyTimeRate(pricingTier.getTimeRate());
+                return baserFare + baserFare * (distanceRate / 100f) + baserFare * (timeRate / 100f);
             }
         }
-        return 0f;
+        float baseFare = pricingTier.getBaseFare();
+        return baseFare + baseFare * (pricingTier.getDistanceRate() / 100f) + baseFare * (pricingTier.getTimeRate() / 100f);
+    }
+
+    public Map<RideType, Integer> getPricingTierMap() {
+        return pricingTierMap;
+    }
+
+    public List<Integer> getFareModificationRuleIdList() {
+        return fareModificationRuleIdList;
     }
 }

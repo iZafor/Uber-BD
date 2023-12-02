@@ -1,0 +1,28 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+}
+
+Text {
+    -fx-font-size: 20;
+}
+
+TextField, ComboBox, TextArea {
+    -fx-font-size: 18;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-wrap-text: ture;
+}
+
+TextField, ComboBox, Button {
+    -fx-pref-height: 38;
+    -fx-pref-width: 257;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-background-radius: 4;
+    -fx-font-size: 18;
+}

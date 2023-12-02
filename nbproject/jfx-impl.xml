@@ -1879,7 +1879,7 @@
                                     par.setValue(propv);
                                 } else {
                                     if(isTrue(fx_ant_api_1_1)) {
-                                        var arg = app.createArgument();
+                                        var arg = app.creaTiergument();
                                         arg.addText(propn);
                                     } else {
                                         print("Warning: Unnamed parameters not supported by this version of JavaFX SDK deployment Ant tasks. Upgrade JavaFX to 2.0.2 or higher.");
@@ -2385,7 +2385,7 @@
                                     par.setValue(propv);
                                 } else {
                                     if(isTrue(fx_ant_api_1_1)) {
-                                        var arg = app.createArgument();
+                                        var arg = app.creaTiergument();
                                         arg.addText(propn);
                                     } else {
                                         print("Warning: Unnamed parameters not supported by this version of JavaFX SDK deployment Ant tasks. Upgrade JavaFX to 2.0.2 or higher.");

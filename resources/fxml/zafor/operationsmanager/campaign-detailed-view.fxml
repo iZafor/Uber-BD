@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="890.0" prefWidth="747.0" stylesheets="@../../../styles/zafor/operationsmanager/campaign-detailed-styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.zafor.controller.operationsmanager.CampaignDetailedViewController">
+   <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="42.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../images/marketing.png" />
+   </ImageView>
+   <Label fx:id="titleLabel" layoutX="108.0" layoutY="30.0" styleClass="title" text="Unlock Seamless Journeys with Uber Bangladesh!" AnchorPane.rightAnchor="49.0" />
+   <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="45.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../images/description.png" />
+   </ImageView>
+   <Label fx:id="descriptionLabel" layoutX="108.0" layoutY="100.0" styleClass="subtitle" text="Experience the epitome of convenience and comfort with Uber in Bangladesh! Whether you're commuting to work, exploring the city, or heading to a special event, Uber is your reliable ride every step of the way. Enjoy hassle-free travel, safety, and affordability as you navigate Dhaka or any city across Bangladesh. Embrace the freedom to move at your own pace with just a tap on your phone. Join the ride revolution – choose Uber Bangladesh for your next journey!" textAlignment="JUSTIFY" AnchorPane.rightAnchor="49.0" />
+   <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="45.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+      <Image url="@../../../images/hourglass.png" />
+   </ImageView>
+   <Text fx:id="startDateText" layoutX="121.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle" text="December 05, 2023" />
+   <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="465.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../../../images/hourglass.png" />
+   </ImageView>
+   <Text fx:id="endDateText" layoutX="533.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle" text="December 25, 2023" AnchorPane.rightAnchor="50.46998596191406" />
+   <Text layoutX="53.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle" text="Discounts:" />
+   <ScrollPane layoutX="53.0" layoutY="447.0" prefHeight="228.0" prefWidth="653.0">
+      <VBox fx:id="discountsVBox" prefHeight="228.0" prefWidth="633.0" />
+   </ScrollPane>
+   <Text layoutX="53.0" layoutY="715.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle" text="Add new discount:" />
+   <Text layoutX="53.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-2" text="Code:" />
+   <TextField fx:id="newDiscountCodeTextField" layoutX="175.0" layoutY="732.0" />
+   <Text layoutX="387.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-2" text="Amount:" />
+   <TextField fx:id="discountAmountTextField" layoutX="528.0" layoutY="732.0" />
+   <ComboBox fx:id="discountConditionComboBox" layoutX="173.0" layoutY="784.0" prefWidth="150.0" />
+   <Text layoutX="53.0" layoutY="807.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-2" text="Condition:" />
+   <Text layoutX="387.0" layoutY="806.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle-2" text="Condition Value:" />
+   <TextField fx:id="conditionValueTextField" layoutX="528.0" layoutY="783.0" />
+   <Button layoutX="527.0" layoutY="833.0" mnemonicParsing="false" onAction="#onAddDiscount" prefHeight="37.0" prefWidth="180.0" text="Add Discount" />
+</AnchorPane>

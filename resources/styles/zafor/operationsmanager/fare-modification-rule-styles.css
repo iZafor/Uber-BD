@@ -1,0 +1,28 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-background-radius: 4;
+}
+
+.title-text, Button {
+    -fx-font-size: 16;
+    -fx-padding: 10;
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DEDEDF;
+}
+
+.subtitle {
+    -fx-font-size: 14;
+}
+
+.description {
+    -fx-padding: 0 5 0 5;
+    -fx-alignment: top_left;
+    -fx-wrap-text: true;
+}
+
+Button {
+    -fx-pref-width: 100;
+}

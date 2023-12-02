@@ -1,0 +1,28 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+    -fx-border-color: #0F0F0F;
+    -fx-background-radius: 4;
+}
+
+Label {
+    -fx-alignment: top_left;
+    -fx-wrap-text: true;
+    -fx-pref-width: 580;
+}
+
+.title {
+    -fx-font-size: 20;
+    -fx-pref-height: 60;
+}
+
+.subtitle {
+    -fx-font-size: 18;
+    -fx-pref-height: 80;
+}
+
+Button {
+    -fx-font-size: 18;
+    -fx-background-color: #0F0F0F;
+    -fx-text-fill: #DEDEDF;
+    -fx-cursor: hand;
+}

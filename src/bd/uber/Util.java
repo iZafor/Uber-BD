@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DateCell;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -17,6 +18,7 @@ import javafx.util.StringConverter;
 import java.time.LocalDate;
 import java.util.EventObject;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Predicate;
@@ -163,6 +165,7 @@ public class Util {
         if (hideOwner && stage.getOwner() != null) {
             stage.getOwner().hide();
         }
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/uber.png"))));
         stage.centerOnScreen();
         stage.show();
     }
@@ -179,6 +182,7 @@ public class Util {
         stage.setTitle(windowTitle);
         stage.setResizable(false);
         stage.centerOnScreen();
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/uber.png"))));
         stage.show();
     }
 
@@ -198,6 +202,7 @@ public class Util {
         stage.setScene(scene);
         stage.setTitle(windowTitle);
         stage.centerOnScreen();
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/uber.png"))));
         stage.showAndWait();
     }
 
