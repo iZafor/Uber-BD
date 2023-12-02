@@ -6,7 +6,6 @@ import bd.uber.Location;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.Driver;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -106,17 +105,36 @@ public class DriverProfileBasicInfoController {
     }
 
     @FXML
-    private void onSaveChanges(ActionEvent event) {
+    private void onSaveChanges() {
         String newPassword = passwordField.getText();
         String newEmail = emailTextField.getText();
         String newPPhoneNumber = primaryPhoneNumber.getText();
         String newSPhoneNumber = secondaryPhoneNumber.getText();
 
-        if (newPassword == null || newPassword.isEmpty() || newEmail == null || newEmail.isEmpty() || newPPhoneNumber == null || newPPhoneNumber.isEmpty() || newSPhoneNumber == null || newSPhoneNumber.isEmpty()) {
-            Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
+        if (newPassword == null || newPassword.trim().isEmpty() || Util.getInstance().isAnInvalidPassword(newPassword)) {
+            Util.getInstance().showWarningMessage("Password must contain minimum \n2 digits, 2 upper case letters & 2 lower case letters!");
             return;
         }
 
+        if (newEmail == null || newEmail.trim().isEmpty()) {
+            Util.getInstance().showWarningMessage("Email cannot be empty!");
+            return;
+        }
+        if (!newEmail.contains("@")) {
+            Util.getInstance().showWarningMessage("Invalid Email format!");
+            return;
+        }
+
+        if ((newPPhoneNumber == null || newPPhoneNumber.trim().length() != 11) || Util.getInstance().isAnInvalidNumber(newPPhoneNumber)) {
+            Util.getInstance().showWarningMessage("Phone number must be 11 digits long!");
+            return;
+        }
+
+        if (newSPhoneNumber != null && !newSPhoneNumber.isEmpty() && (newSPhoneNumber.trim().length() != 11 || Util.getInstance().isAnInvalidNumber(newSPhoneNumber))) {
+            Util.getInstance().showWarningMessage("Phone number must be 11 digits long!");
+            return;
+        }
+        
         driver.setProfileImage(imageFilePath);
         driver.setPassword(newPassword);
 

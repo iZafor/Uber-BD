@@ -25,4 +25,5 @@ AnchorPane {
 
 Button {
     -fx-pref-width: 100;
+    -fx-cursor: hand;
 }

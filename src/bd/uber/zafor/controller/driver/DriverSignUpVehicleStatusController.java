@@ -8,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DriverSignUpVehicleStatusController implements Initializable {
@@ -62,6 +61,10 @@ public class DriverSignUpVehicleStatusController implements Initializable {
         int odometerReading;
         try {
             odometerReading = Integer.parseInt(odometerReadingTextField.getText());
+            if (odometerReading < 0) {
+                Util.getInstance().showWarningMessage("Odometer reading cannot be less than 0!");
+                return false;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
             Util.getInstance().showWarningMessage("Provide a valid number for odometer reading!");
             return false;
@@ -94,8 +97,12 @@ public class DriverSignUpVehicleStatusController implements Initializable {
         float tirePressure;
         try {
             tirePressure = Float.parseFloat(tirePressureTextField.getText());
+            if (tirePressure <= 0) {
+                Util.getInstance().showWarningMessage("Tire pressure cannot be less or eqaul to 0!");
+                return false;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
-            Util.getInstance().showWarningMessage("Provide a valid number for tire pressure!");
+            Util.getInstance().showWarningMessage("Invalid tire pressure!");
             return false;
         }
 

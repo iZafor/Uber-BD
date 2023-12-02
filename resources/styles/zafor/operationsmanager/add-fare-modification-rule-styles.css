@@ -25,4 +25,5 @@ Button {
     -fx-text-fill: #DEDEDF;
     -fx-background-radius: 4;
     -fx-font-size: 18;
+    -fx-cursor: hand;
 }

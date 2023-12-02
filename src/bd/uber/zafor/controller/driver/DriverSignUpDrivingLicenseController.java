@@ -82,6 +82,10 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
         float insuranceCoverageAmount;
         try {
             insuranceCoverageAmount = Float.parseFloat(insuranceCoverageAmountTextField.getText());
+            if(insuranceCoverageAmount <= 0) {
+                Util.getInstance().showWarningMessage("Coverage amount cannot be less or equal to 0!");
+                return false;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
             Util.getInstance().showWarningMessage("Provide a valid coverage amount!");
             return false;

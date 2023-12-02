@@ -63,8 +63,14 @@ public class DriverSignupBasicInfoController implements Initializable {
         }
 
         String password = passwordTextField.getText();
-        if (password == null || password.trim().isEmpty()) {
-            Util.getInstance().showWarningMessage("Password cannot be empty!");
+        if (password == null || password.trim().isEmpty() || Util.getInstance().isAnInvalidPassword(password)) {
+            Util.getInstance().showWarningMessage("Password must contain minimum \n2 digits, 2 upper case letters & 2 lower case letters!");
+            return false;
+        }
+
+        String confirmPassword = confirmPasswordTextField.getText();
+        if (!password.equals(confirmPassword)) {
+            Util.getInstance().showWarningMessage("Passwords didn't match!");
             return false;
         }
 
@@ -79,14 +85,19 @@ public class DriverSignupBasicInfoController implements Initializable {
         }
 
         String primaryPhoneNumber = primaryPhoneNumberTextField.getText();
-        if (primaryPhoneNumber == null || primaryPhoneNumber.trim().isEmpty()) {
-            Util.getInstance().showWarningMessage("Primary phone number cannot be empty!");
+        if ((primaryPhoneNumber == null || primaryPhoneNumber.trim().length() != 11) || Util.getInstance().isAnInvalidNumber(primaryPhoneNumber)) {
+            Util.getInstance().showWarningMessage("Phone number must be 11 digits long!");
             return false;
         }
 
         String secondaryPhoneNumber = secondaryPhoneNumberTextField.getText();
-        if (secondaryPhoneNumber == null || secondaryPhoneNumber.trim().isEmpty()) {
-            Util.getInstance().showWarningMessage("Secondary phone number cannot be empty!");
+        if (secondaryPhoneNumber != null && !secondaryPhoneNumber.isEmpty() && (secondaryPhoneNumber.trim().length() != 11 || Util.getInstance().isAnInvalidNumber(secondaryPhoneNumber))) {
+            Util.getInstance().showWarningMessage("Phone number must be 11 digits long!");
+            return false;
+        }
+
+        if (primaryPhoneNumber.equals(secondaryPhoneNumber)) {
+            Util.getInstance().showWarningMessage("Both the numbers cannot be the same!");
             return false;
         }
 

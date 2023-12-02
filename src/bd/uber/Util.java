@@ -248,4 +248,29 @@ public class Util {
             }
         });
     }
+
+    public boolean isAnInvalidPassword(String password) {
+        int digitsCount = 0;
+        int upperCaseCount = 0;
+        int lowerCaseCount = 0;
+        for (char c : password.toCharArray()) {
+            if (c >= '0' && c <= '9') {
+                digitsCount++;
+            } else if (c >= 'a' && c <= 'z') {
+                lowerCaseCount++;
+            } else if (c >= 'A' && c <= 'Z') {
+                upperCaseCount++;
+            }
+        }
+        return digitsCount < 2 || upperCaseCount < 2 || lowerCaseCount < 2;
+    }
+
+    public boolean isAnInvalidNumber(String phoneNumber) {
+        for (char c : phoneNumber.toCharArray()) {
+            if (c < '0' || c > '9') {
+                return true;
+            }
+        }
+        return false;
+    }
 }

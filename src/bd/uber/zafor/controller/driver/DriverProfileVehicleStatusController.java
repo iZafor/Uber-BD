@@ -58,6 +58,10 @@ public class DriverProfileVehicleStatusController implements Initializable {
         try {
             odometerReading = Integer.parseInt(odometerReadingTextField.getText());
             tirePressure = Float.parseFloat(tirePressureTextField.getText());
+            if (odometerReading < 0 || tirePressure <= 0) {
+                Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
+                return;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
             Util.getInstance().showWarningMessage("Invalid input!\nPlease recheck values.");
             return;

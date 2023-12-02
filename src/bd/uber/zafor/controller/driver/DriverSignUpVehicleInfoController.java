@@ -1,7 +1,6 @@
 package bd.uber.zafor.controller.driver;
 
 import bd.uber.Util;
-import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.SignupForm;
 import bd.uber.zafor.model.driver.VehicleInfo;
 import bd.uber.zafor.model.driver.VehicleType;
@@ -63,16 +62,24 @@ public class DriverSignUpVehicleInfoController implements Initializable {
         int passengerCapacity;
         try {
             passengerCapacity = Integer.parseInt(passengerCapacityTextField.getText());
+            if (passengerCapacity <= 0) {
+                Util.getInstance().showWarningMessage("Passenger capacity cannot be less or equal to 0!");
+                return false;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
-            Util.getInstance().showWarningMessage("Passenger capacity cannot be empty!");
+            Util.getInstance().showWarningMessage("Invalid passenger capacity!");
             return false;
         }
 
         int numberOfEngines;
         try {
             numberOfEngines = Integer.parseInt(passengerCapacityTextField.getText());
+            if (numberOfEngines <= 0) {
+                Util.getInstance().showWarningMessage("Number of engines cannot be less or equal to 0!");
+                return false;
+            }
         } catch (NumberFormatException | NullPointerException ignored) {
-            Util.getInstance().showWarningMessage("Provide a valid number for engines!");
+            Util.getInstance().showWarningMessage("Invalid engines numbers!");
             return false;
         }
 

@@ -1,14 +1,5 @@
 package bd.uber;
 
-import bd.uber.zafor.model.driver.PaymentMethod;
-import bd.uber.zafor.model.driver.RideRequest;
-import bd.uber.zafor.model.operationsmanager.OperationsManager;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Test {
