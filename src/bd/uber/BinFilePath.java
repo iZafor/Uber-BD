@@ -8,7 +8,7 @@ public enum BinFilePath {
     OPERATIONS_MANAGER("bin/operations_manager.bin"),
     HUMAN_RESOURCE_MANGER("bin/human_resource_manager.bin"),
     SUPPORT_REPRESENTATIVE("bin/support_representative.bin"),
-    VEHICLE_MAINTENANCE_TEAM("bin/vehicle_maintenance_team.bin"),
+    VEHICLE_MAINTENANCE_Manager("bin/vehicle_maintenance_manager.bin"),
     BUSINESS_ACCOUNT_MANAGER("bin/business_account_manager.bin"),
 
     // Unknown
@@ -30,6 +30,9 @@ public enum BinFilePath {
     DRIVER_FEEDBACK("bin/driver_feedback.bin"),
     DAMAGE_REPORT("bin/damage_report.bin"),
     MAINTENANCE_REQUEST("bin/maintenance_request.bin"),
+    PLACED_ORDER("bin/placed_order.bin"),
+    INVENTORY("bin/inventory.bin"),
+
 
     // Operations Manager Related Files
     PROMOTIONAL_CAMPAIGN("bin/promotional_campaign.bin"),

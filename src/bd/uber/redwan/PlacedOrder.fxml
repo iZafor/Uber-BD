@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.redwan.PlacedOrderController">
+                <TableView fx:id="inventoryTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="619.0">
+                <columns>
+                    <TableColumn fx:id="categoryTable" prefWidth="248.0" text="Category" />
+                    <TableColumn fx:id="componentNameTable" prefWidth="243.0" text="Component Name" />
+               <TableColumn fx:id="quantityColumn" prefWidth="108.0" text="Quantity" />
+                    <!-- Additional columns for quantity, etc., if needed -->
+                </columns>
+            </TableView>
+</AnchorPane>

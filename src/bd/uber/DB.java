@@ -61,7 +61,8 @@ public class DB {
             }
         } catch (EOFException ignored) {
 
-        } catch (IOException | ClassNotFoundException ignored) {
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             // log the error
         }
         return eList;
