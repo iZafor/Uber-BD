@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="121.0" prefWidth="655.0"
+            stylesheets="@../../../styles/zafor/operationsmanager/leave-request-style.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="bd.uber.zafor.controller.operationsmanager.LeaveRequestViewController">
+    <Label layoutX="8.0" layoutY="22.0" styleClass="title-label" text="Start Date"/>
+    <Label layoutX="171.0" layoutY="22.0" styleClass="title-label" text="End Date"/>
+    <Label layoutX="334.0" layoutY="22.0" styleClass="title-label" text="Reason"/>
+    <Label layoutX="497.0" layoutY="22.0" styleClass="title-label" text="Status"/>
+    <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="8.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true"
+               rotate="180.0">
+        <Image url="@../../../images/hourglass.png"/>
+    </ImageView>
+    <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="169.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/hourglass.png"/>
+    </ImageView>
+    <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="334.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/question.png"/>
+    </ImageView>
+    <ImageView fitHeight="28.0" fitWidth="25.0" layoutX="497.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../images/status.png"/>
+    </ImageView>
+    <Text fx:id="startDateText" layoutX="37.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="December 02, 2023" AnchorPane.topAnchor="78.0"/>
+    <Text fx:id="endDateText" layoutX="202.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="December 02, 2023" AnchorPane.topAnchor="78.0"/>
+    <Label fx:id="reasonLabel" layoutX="366.0" layoutY="80.0" prefHeight="18.0" prefWidth="118.0" text="Just cause"
+           AnchorPane.topAnchor="78.0"/>
+    <Text fx:id="statusText" layoutX="530.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PENDING"
+          AnchorPane.topAnchor="78.0"/>
+</AnchorPane>

@@ -24,7 +24,7 @@ public class OperationsManagerController implements Initializable {
     private BorderPane operationsManagerBorderPane;
 
     private final ObjectProperty<OperationsManagerMenuOption> menuOptionProperty = new SimpleObjectProperty<>();
-    private volatile OperationsManager operationsManager;
+    private OperationsManager operationsManager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,6 +111,9 @@ public class OperationsManagerController implements Initializable {
                         );
                         break;
                     case REQUEST_FOR_LEAVE:
+                        loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_REQUEST_FOR_LEAVE_VIEW);
+                        operationsManagerBorderPane.setCenter(loader.load());
+                        ((OperationsManagerRequestForLeaveController) loader.getController()).setInitData(operationsManager.getId());
                         break;
                 }
             } catch (IOException ignored) {

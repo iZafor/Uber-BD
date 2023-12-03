@@ -1,0 +1,15 @@
+AnchorPane {
+    -fx-background-color: #DEDEDF;
+    -fx-border-color: #0F0F0F;
+    -fx-background-radius: 4;
+}
+
+.title-label {
+    -fx-font-size: 18;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DEDEDF;
+    -fx-padding: 0 0 0 10;
+}

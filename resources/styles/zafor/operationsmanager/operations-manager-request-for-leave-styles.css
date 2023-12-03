@@ -1,0 +1,58 @@
+.main-container {
+    -fx-background-color: #DEDEDF;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.subtitle-text {
+    -fx-font-size: 18;
+}
+
+DatePicker {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0F0F0F;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-pref-height: 44;
+    -fx-pref-width: 200;
+}
+
+.request-button {
+    -fx-font-size: 20;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-pref-width: 233;
+    -fx-pref-height: 40;
+}
+
+ScrollPane {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+    -fx-hbar-policy: NEVER;
+}
+
+ScroolPane .scroll-bar {
+    -fx-pref-width: 15;
+}
+
+VBox {
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DEDEDF;
+    -fx-cursor: hand;
+}
+
+TextArea {
+    -fx-wrap-text: true;
+    -fx-alignment: top_left;
+}
