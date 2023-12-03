@@ -56,6 +56,19 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private void repairButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RepairTeamMemberScene.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene inventoryScene = new Scene(root);
+            stage.setScene(inventoryScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }        
+        
     }
 
     @FXML

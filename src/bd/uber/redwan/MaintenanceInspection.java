@@ -5,7 +5,7 @@ public class MaintenanceInspection implements Inspection {
     private Report report;
     private MaintenanceDetails maintenanceDetails;
     private MaintenanceTask maintenanceTask;
-    private Report generatedReport; // Store the generated report
+    private Report generatedReport; 
 
     public MaintenanceInspection(Report report, MaintenanceDetails details, MaintenanceTask task) {
         this.report = report;
@@ -13,7 +13,6 @@ public class MaintenanceInspection implements Inspection {
         this.maintenanceTask = task;
     }
 
-    // Getters and setters for MaintenanceDetails and MaintenanceTask
     public MaintenanceDetails getMaintenanceDetails() {
         return maintenanceDetails;
     }
@@ -35,7 +34,7 @@ public class MaintenanceInspection implements Inspection {
         String reportId = report.getReportId();
         String findings = report.getFindings();
 
-        String generatedReportString = "Report ID: " + reportId + "\nFindings: " + findings + "\nAdditional details: ..."; // Modify this to suit your logic
+        String generatedReportString = "Report ID: " + reportId + "\nFindings: " + findings + "\nAdditional details: ..."; 
 
         this.generatedReport = new Report(reportId, generatedReportString);
     }
@@ -47,7 +46,6 @@ public class MaintenanceInspection implements Inspection {
         return null; 
     }
 
-    // Method to retrieve the generated findings/details
     public String getGeneratedFindings() {
         if (generatedReport != null) {
             return generatedReport.getFindings();

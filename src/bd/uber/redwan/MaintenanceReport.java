@@ -13,7 +13,6 @@ public class MaintenanceReport {
     private LocalDate date;
     private String reportBody;
 
-    // Constructor
     public MaintenanceReport(int vehicleId, String to, String from, LocalDate date, String reportBody) {
         this.vehicleId = vehicleId;
         this.to = to;

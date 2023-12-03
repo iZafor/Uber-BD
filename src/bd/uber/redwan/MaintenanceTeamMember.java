@@ -7,10 +7,11 @@ import bd.uber.zafor.model.driver.MaintenanceRequest;
  * @author Redwan
  */
 public class MaintenanceTeamMember {
+
     private String memberId;
     private String memberName;
 
-    public MaintenanceTeamMember(String memberId,String memberName) {
+    public MaintenanceTeamMember(String memberId, String memberName) {
         this.memberId = memberId;
         this.memberName = memberName;
     }
@@ -23,7 +24,6 @@ public class MaintenanceTeamMember {
         this.memberName = memberName;
     }
 
-
     public String getMemberId() {
         return memberId;
     }
@@ -35,12 +35,11 @@ public class MaintenanceTeamMember {
     public void handleSupportRequest(MaintenanceRequest maintenanceRequest) {
 
     }
-    
-    
+
     //////test
-@Override
-public String toString() {
-    return "Member ID: " + this.memberId +
-            ", Member Name: " + this.memberName;
-}
+    @Override
+    public String toString() {
+        return "Member ID: " + this.memberId
+                + ", Member Name: " + this.memberName;
+    }
 }

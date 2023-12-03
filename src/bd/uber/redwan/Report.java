@@ -9,13 +9,11 @@ public class Report {
     private String reportId;
     private String findings;
 
-    // Constructor
     public Report(String reportId, String findings) {
         this.reportId = reportId;
         this.findings = findings;
     }
 
-    // Getters and setters
     public String getReportId() {
         return reportId;
     }
@@ -32,5 +30,4 @@ public class Report {
         this.findings = findings;
     }
     
-    // Other methods as needed
 }

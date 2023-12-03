@@ -8,12 +8,10 @@ package bd.uber.redwan;
 public class RepairInspection {
     private Report report;
 
-    // Constructor
     public RepairInspection(Report report) {
         this.report = report;
     }
 
-    // Getter and setter for Report
     public Report getReport() {
         return report;
     }
@@ -22,5 +20,4 @@ public class RepairInspection {
         this.report = report;
     }
 
-    // Other methods as needed
 }

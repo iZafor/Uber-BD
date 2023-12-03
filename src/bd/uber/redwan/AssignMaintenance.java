@@ -13,14 +13,6 @@ public class AssignMaintenance {
         this.viewUpcomingMaintenanceTasks = viewUpcomingMaintenanceTasks;
     }
 
-    public void performMaintenanceTaskAndUpdateLog(MaintenanceTask maintenanceTask, String logUpdate) {
-
-    }
-
-    public void confirmCompletionOfScheduledMaintenance(MaintenanceTask maintenanceTask) {
-
-    }
-
     public List<MaintenanceTask> getViewUpcomingMaintenanceTasks() {
         return viewUpcomingMaintenanceTasks;
     }
@@ -28,4 +20,6 @@ public class AssignMaintenance {
     public void setViewUpcomingMaintenanceTasks(List<MaintenanceTask> viewUpcomingMaintenanceTasks) {
         this.viewUpcomingMaintenanceTasks = viewUpcomingMaintenanceTasks;
     }
+    
+   
 }

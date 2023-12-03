@@ -19,7 +19,6 @@ public class VehicleMaintenanceManager extends Employee implements Serializable 
     private MaintenanceTeam maintenanceTeam;
     
     
-    // Constructor
     public VehicleMaintenanceManager() { 
         super (1); ///user id
         this.maintenanceRequests = new ArrayList<>();
@@ -27,35 +26,6 @@ public class VehicleMaintenanceManager extends Employee implements Serializable 
         this.maintenanceTeam = new MaintenanceTeam();
    }
 
-    public void sendRepairRequest() {
-        
-    }
 
-    public boolean scheduleMaintenance() {
-        
-        return true; 
-    }
-
-    public void scheduleRepair() {
-        
-    }
-
-    public void scheduleInspection() {
-        
-    }
-
-    public boolean retireVehicle() {
-        
-        return true; // Placeholder return value
-    }
-
-    public List<VehicleComponent> checkInventory() {
-        
-        return new ArrayList<>(); 
-    }
-
-    public void assignForInspection() {
-        
-    }
 
 }

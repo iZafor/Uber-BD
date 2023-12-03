@@ -38,9 +38,7 @@ public class MaintainenceTeamMemberSceneController implements Initializable {
     private TextArea reportTextArea;
     private TextArea inspectionTextArea;
 
-    /**
-     * Initializes the controller class.
-     */
+
     private Report generatedReport;
     private MaintenanceDetails maintenanceDetails;
     private MaintenanceTask maintenanceTask;
@@ -79,7 +77,7 @@ public class MaintainenceTeamMemberSceneController implements Initializable {
         MaintenanceTask selectedTask = inspectionTable.getSelectionModel().getSelectedItem();
 
         if (selectedTask != null) {
-            selectedTask.setVehicleInfoId(vehicleInfoId); // Assuming vehicleInfoId is set externally
+            selectedTask.setVehicleInfoId(vehicleInfoId); 
 
             inspectionTable.refresh();
         } else {
