@@ -24,3 +24,12 @@ Button {
     -fx-wrap-text: true;
     -fx-text-alignment: center;
 }
+
+PasswordField {
+    -fx-pref-width: 180;
+    -fx-pref-height: 40;
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-radius: 4;
+    -fx-border-width: 2;
+}

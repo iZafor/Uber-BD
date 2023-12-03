@@ -9,7 +9,6 @@
     <left>
         <AnchorPane prefHeight="800.0" prefWidth="241.0" stylesheets="@../../../styles/zafor/operationsmanager/operations-mangaer-menu-styles.css" BorderPane.alignment="CENTER">
             <VBox alignment="CENTER" layoutX="-4.0" layoutY="3.0" prefHeight="780.0" prefWidth="230.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
-                <Button mnemonicParsing="false" onAction="#onShowDashboard" text="Dashboard" />
             <Button layoutX="26.0" layoutY="191.0" mnemonicParsing="false" onAction="#onShowProfile" text="Profile" />
                 <Button layoutX="26.0" layoutY="358.0" mnemonicParsing="false" onAction="#onManagePromotionalCampaigns" text="Manage Promotional Campaigns" />
                 <Button layoutX="26.0" layoutY="299.0" mnemonicParsing="false" onAction="#onManageFareStructure" text="Manage Fare Structure" />

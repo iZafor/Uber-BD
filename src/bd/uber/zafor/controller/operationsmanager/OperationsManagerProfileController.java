@@ -5,6 +5,7 @@ import bd.uber.Util;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -21,6 +22,8 @@ public class OperationsManagerProfileController {
     private Circle profileImageCircle;
     @FXML
     private Text employeeNameText;
+    @FXML
+    private PasswordField passwordField;
     @FXML
     private Text employeeGenderText;
     @FXML
@@ -43,7 +46,9 @@ public class OperationsManagerProfileController {
 
     public void setInitData(Employee employee) {
         this.employee = employee;
+        imageFilePath = employee.getProfileImage();
         employeeNameText.setText(employee.getName());
+        passwordField.setText(employee.getPassword());
         employeeGenderText.setText(employee.getGender().name());
         employeeDepartmentText.setText(employee.getDepartment().toString());
         employeeDesignationText.setText(employee.getDesignation().toString());
@@ -81,10 +86,26 @@ public class OperationsManagerProfileController {
     }
 
     @FXML
-    private void onUpdateImage() {
-        if (imageFilePath != null) {
-            employee.setProfileImage(imageFilePath);
-            Util.getInstance().showSuccessMessage("Image updated successfully.");
+    private void onUpdate() {
+        String password = passwordField.getText();
+
+        if (password == null || password.trim().isEmpty()) {
+            Util.getInstance().showWarningMessage("Password cannot be empty!");
+            return;
         }
+
+        if (employee.getPassword().equals(password) && employee.getProfileImage().equals(imageFilePath)) {
+            Util.getInstance().showWarningMessage("Nothing to update!");
+            return;
+        }
+
+        if (Util.getInstance().isAnInvalidPassword(password)) {
+            Util.getInstance().showWarningMessage("Password must contain minimum \n2 digits, 2 upper case letters & 2 lower case letters!");
+            return;
+        }
+
+        employee.setProfileImage(imageFilePath);
+        employee.setPassword(password);
+        Util.getInstance().showSuccessMessage("Update successfully.");
     }
 }

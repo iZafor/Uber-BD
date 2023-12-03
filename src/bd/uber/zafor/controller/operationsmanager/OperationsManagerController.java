@@ -29,17 +29,12 @@ public class OperationsManagerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureMenuOptionsProperty();
-        menuOptionProperty.setValue(OperationsManagerMenuOption.MANAGE_LOCATIONS);
         Platform.runLater(this::configureOnClose);
     }
 
     public void setInitData(OperationsManager operationsManager) {
         this.operationsManager = operationsManager;
-    }
-
-    @FXML
-    private void onShowDashboard() {
-        menuOptionProperty.setValue(OperationsManagerMenuOption.DASHBOARD);
+        menuOptionProperty.setValue(OperationsManagerMenuOption.PROFILE);
     }
 
     @FXML
@@ -86,8 +81,6 @@ public class OperationsManagerController implements Initializable {
             try {
                 FXMLLoader loader;
                 switch (newValue) {
-                    case DASHBOARD:
-                        break;
                     case PROFILE:
                         loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_PROFILE_VIEW);
                         operationsManagerBorderPane.setCenter(loader.load());
