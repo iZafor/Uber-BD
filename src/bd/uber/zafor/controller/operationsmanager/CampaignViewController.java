@@ -25,7 +25,7 @@ public class CampaignViewController {
     @FXML
     private Text endDateText;
 
-    private volatile PromotionalCampaign campaign;
+    private PromotionalCampaign campaign;
 
     public void setInitData(PromotionalCampaign campaign) {
         this.campaign = campaign;

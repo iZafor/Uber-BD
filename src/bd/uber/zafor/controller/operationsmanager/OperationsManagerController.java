@@ -29,17 +29,22 @@ public class OperationsManagerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configureMenuOptionsProperty();
-        Platform.runLater(this::configureOnClose);
     }
 
     public void setInitData(OperationsManager operationsManager) {
         this.operationsManager = operationsManager;
         menuOptionProperty.setValue(OperationsManagerMenuOption.PROFILE);
+        Platform.runLater(this::configureOnClose);
     }
 
     @FXML
     private void onShowProfile() {
         menuOptionProperty.setValue(OperationsManagerMenuOption.PROFILE);
+    }
+
+    @FXML
+    private void onGetInsight() {
+        menuOptionProperty.setValue(OperationsManagerMenuOption.GET_INSIGHT);
     }
 
     @FXML
@@ -85,6 +90,12 @@ public class OperationsManagerController implements Initializable {
                         loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_PROFILE_VIEW);
                         operationsManagerBorderPane.setCenter(loader.load());
                         ((OperationsManagerProfileController) loader.getController()).setInitData(operationsManager);
+                        break;
+                    case GET_INSIGHT:
+                        operationsManagerBorderPane.setCenter(Util.getInstance()
+                                .getLoader(FXMLFilePath.OPERATIONS_MANAGER_GET_INSIGHT_VIEW)
+                                .load()
+                        );
                         break;
                     case MANAGE_PROMOTIONAL_CAMPAIGNS:
                         loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_MANAGE_PROMOTIONAL_CAMPAIGNS_VIEW);

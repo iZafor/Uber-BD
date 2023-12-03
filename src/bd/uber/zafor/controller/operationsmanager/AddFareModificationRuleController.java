@@ -74,7 +74,6 @@ public class AddFareModificationRuleController implements Initializable {
 
             if (Util.getInstance().getDb().addObject(modificationRule, BinFilePath.FARE_MODIFICATION_RULE)) {
                 Platform.runLater(() -> {
-                    Util.getInstance().showSuccessMessage("Modification rule added successfully.");
                     descriptionTextarea.getScene().getWindow().hide();
                 });
                 modificationRuleList.add(modificationRule.getModificationRuleId());

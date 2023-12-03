@@ -3,6 +3,7 @@ package bd.uber.zafor.model.operationsmanager;
 import bd.uber.BinFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.RideRequest;
+import bd.uber.zafor.model.driver.RideType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class FareStructureManagement implements Serializable {
         pricingTierMap.put(rideType, pricingTierId);
     }
 
-    public boolean addFareModificationRule(FareModificationRule FareModificationRule) {
-        return fareModificationRuleIdList.add(FareModificationRule.getModificationRuleId());
+    public void addFareModificationRule(FareModificationRule FareModificationRule) {
+        fareModificationRuleIdList.add(FareModificationRule.getModificationRuleId());
     }
 
     public boolean removeFareModificationRule(int modificationRuleId) {

@@ -1,7 +1,5 @@
 package bd.uber.zafor.model.driver;
 
-import bd.uber.zafor.model.operationsmanager.RideType;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 

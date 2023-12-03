@@ -48,7 +48,7 @@ public class CampaignDetailedViewController implements Initializable {
     @FXML
     public TextField conditionValueTextField;
 
-    private volatile PromotionalCampaign promotionalCampaign;
+    private PromotionalCampaign promotionalCampaign;
     private final ObservableList<Integer> discountObservableList = FXCollections.observableArrayList();
 
     @Override
@@ -107,16 +107,18 @@ public class CampaignDetailedViewController implements Initializable {
             return;
         }
 
-        Util.getInstance().getWorkers().execute(() -> {
-            Discount discount = new Discount(
-                    promotionalCampaign.getDiscountIdList().size() + 1,
-                    code,
-                    amount,
-                    type.equals(DiscountConditionType.RATING) ? new PassengerRatingDiscountCondition(conditionValue) : new RideDistanceCondition(conditionValue)
-            );
+        Discount discount = new Discount(
+                promotionalCampaign.getDiscountIdList().size() + 1,
+                code,
+                amount,
+                type.equals(DiscountConditionType.RATING) ? new PassengerRatingDiscountCondition(conditionValue) : new RideDistanceCondition(conditionValue)
+        );
 
+
+        Util.getInstance().getWorkers().execute(() -> {
             if (Util.getInstance().getDb().addObject(discount, BinFilePath.DISCOUNT)) {
                 Platform.runLater(() -> {
+                    clearFields();
                     Util.getInstance().showSuccessMessage("Discount added successfully.");
                     discountObservableList.add(discount.getDiscountId());
                 });
@@ -127,6 +129,13 @@ public class CampaignDetailedViewController implements Initializable {
                 );
             }
         });
+    }
+
+    private void clearFields() {
+        newDiscountCodeTextField.setText("");
+        discountAmountTextField.setText("");
+        discountConditionComboBox.setValue(null);
+        conditionValueTextField.setText("");
     }
 
     private void loadDiscounts() {
@@ -168,6 +177,7 @@ public class CampaignDetailedViewController implements Initializable {
                     promotionalCampaign.getDiscountIdList().removeIf(id -> id == c.getRemoved().get(0));
                     discountsVBox.getChildren().clear();
                     loadDiscounts();
+                    System.out.println("Removed :" + c.getRemoved());
                     return;
                 }
 

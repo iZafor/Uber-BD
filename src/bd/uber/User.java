@@ -17,14 +17,6 @@ public abstract class User implements Serializable {
         this.id = id;
     }
 
-    public User(int id, String name, String password, LocalDate accountCreationDate, int contactDetailsId) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.accountCreationDate = accountCreationDate;
-        this.contactDetailsId = contactDetailsId;
-    }
-
     public int getId() {
         return id;
     }

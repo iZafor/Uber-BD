@@ -37,6 +37,8 @@ public class OperationsManagerManagePromotionalCampaignsController implements In
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        newCampaignStartDate.setConverter(Util.STRING_CONVERTER_FOR_LOCAL_DATE);
+        newCampaignEndDate.setConverter(Util.STRING_CONVERTER_FOR_LOCAL_DATE);
         newCampaignStartDate.setDayCellFactory(param -> Util.getInstance().getConstrainedDateCell(LocalDate.now(), null));
         newCampaignEndDate.setDayCellFactory(param -> Util.getInstance().getConstrainedDateCell(LocalDate.now(), null));
         loadCampaigns();

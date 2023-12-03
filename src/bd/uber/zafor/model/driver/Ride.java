@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public final class Ride implements Serializable {
-    private boolean isCancelled;
-    private boolean isCompleted;
+    private boolean hasCancelled;
+    private boolean hasCompleted;
     private int passengerId;
     private int driverId;
     private final int pickupPointId;
@@ -28,28 +28,28 @@ public final class Ride implements Serializable {
         this.paymentMethod = paymentMethod;
         this.fare = fare;
         this.rideVehicleInfoId = rideVehicleInfoId;
-        this.isCompleted = false;
-        this.isCancelled = false;
+        this.hasCompleted = false;
+        this.hasCancelled = false;
     }
 
-    public boolean isCancelled() {
-        return isCancelled;
+    public boolean hasCancelled() {
+        return hasCancelled;
     }
 
-    public void setCancelled(boolean cancelled) {
-        isCancelled = cancelled;
+    public void setHasCancelled(boolean hasCancelled) {
+        this.hasCancelled = hasCancelled;
     }
 
     public int getPassengerId() {
         return passengerId;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
+    public boolean hasCompleted() {
+        return hasCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setHasCompleted(boolean hasCompleted) {
+        this.hasCompleted = hasCompleted;
     }
 
     public void setPassengerId(int passengerId) {

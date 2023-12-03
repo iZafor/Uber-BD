@@ -35,15 +35,15 @@ public class DetailedRideViewController {
 
     public void setInitData(Ride ride, RideFeedback rideFeedback) {
         List<Location> locationList = Util.getInstance().getLocationList();
-        rideStatusText.setText(ride.isCompleted() ? "Completed" : "Cancelled");
-        rideStatusText.getStyleClass().add(ride.isCancelled() ? "red-text" : "green-text");
+        rideStatusText.setText(ride.hasCompleted() ? "Completed" : "Cancelled");
+        rideStatusText.getStyleClass().add(ride.hasCancelled() ? "red-text" : "green-text");
         pickupLocationText.setText(locationList.get(ride.getPickupPointId()).getName());
         dropOffLocationText.setText(locationList.get(ride.getDropOffPointId()).getName());
         rideDistanceText.setText(String.valueOf(ride.getRideDistance()));
         paymentMethodText.setText(ride.getPaymentMethod().name());
         fareAmountText.setText(String.valueOf(ride.getFare()));
 
-        if(ride.isCompleted()) {
+        if(ride.hasCompleted()) {
             pickupTimeText.setText(ride.getPickupTime().format(DateTimeFormatter.ofPattern("HH:mm:ss, yyyy-MM-dd")));
             dropOffTimeText.setText(ride.getDropOffTime().format(DateTimeFormatter.ofPattern("HH:mm:ss, yyyy-MM-dd")));
             passengerRatingText.setText(String.valueOf(rideFeedback.getRating()));

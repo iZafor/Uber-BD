@@ -77,6 +77,7 @@ GetStartedController implements Initializable {
                             false
                     );
                     ((DriverViewController) loader.getController()).setInitData((Driver) user);
+                    break;
                 case OPERATIONS_MANAGER:
                     loader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_VIEW);
                     Util.getInstance().showScene(
@@ -86,6 +87,7 @@ GetStartedController implements Initializable {
                             false
                     );
                     ((OperationsManagerController) loader.getController()).setInitData((OperationsManager) user);
+                    break;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

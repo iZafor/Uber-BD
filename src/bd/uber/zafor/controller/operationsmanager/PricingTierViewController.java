@@ -1,8 +1,7 @@
 package bd.uber.zafor.controller.operationsmanager;
 
 import bd.uber.zafor.model.operationsmanager.PricingTier;
-import bd.uber.zafor.model.operationsmanager.RideType;
-import javafx.event.ActionEvent;
+import bd.uber.zafor.model.driver.RideType;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 

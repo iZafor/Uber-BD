@@ -6,7 +6,7 @@ import bd.uber.Util;
 import bd.uber.zafor.model.operationsmanager.FareModificationRule;
 import bd.uber.zafor.model.operationsmanager.FareStructureManagement;
 import bd.uber.zafor.model.operationsmanager.PricingTier;
-import bd.uber.zafor.model.operationsmanager.RideType;
+import bd.uber.zafor.model.driver.RideType;
 import javafx.application.Platform;
 import javafx.collections.*;
 import javafx.event.ActionEvent;

@@ -42,8 +42,8 @@ public class RideViewController {
         List<Location> locationList = Util.getInstance().getLocationList();
         pickupLocationLabel.setText(locationList.stream().filter(l -> l.getLocationId() == ride.getPickupPointId()).findFirst().get().getName());
         dropOffLocationLabel.setText(locationList.stream().filter(l -> l.getLocationId() == ride.getDropOffPointId()).findFirst().get().getName());
-        statusLabel.setText(ride.isCompleted() ? "Completed" : "Cancelled");
-        statusLabel.getStyleClass().add(ride.isCompleted() ? "green-label" : "red-label");
+        statusLabel.setText(ride.hasCompleted() ? "Completed" : "Cancelled");
+        statusLabel.getStyleClass().add(ride.hasCompleted() ? "green-label" : "red-label");
         fareText.setText(String.valueOf(ride.getFare()));
         rideDistanceText.setText(String.format("%.2f", ride.getRideDistance()));
 
@@ -52,7 +52,7 @@ public class RideViewController {
             pickupDateTimeLabel.setText(pickupTime.format(DateTimeFormatter.ofPattern("hh:mm:ss, yyyy-MM-dd")));
         }
 
-        if (ride.isCompleted()) {
+        if (ride.hasCompleted()) {
             dropOffDateTimeLabel.setText(ride.getDropOffTime().format(DateTimeFormatter.ofPattern("hh:mm:ss, yyyy-MM-dd")));
         }
     }

@@ -5,7 +5,6 @@ import bd.uber.User;
 import bd.uber.Util;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public final class Driver extends User implements Serializable {
     }
 
     public void cancelRide(Ride ride) { // there should be a cancellation reason
-        ride.setCancelled(true);
+        ride.setHasCancelled(true);
         rideList.add(ride);
         Util.getInstance().getWorkers().execute(() ->
                 Util.getInstance().getDb().addObject(ride, BinFilePath.RIDE)
@@ -40,7 +39,7 @@ public final class Driver extends User implements Serializable {
     }
 
     public void completeRide(Ride ride) {
-        ride.setCompleted(true);
+        ride.setHasCompleted(true);
         rideList.add(ride);
         totalEarnings += ride.getFare();
         distanceDriven += ride.getRideDistance();

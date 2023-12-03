@@ -1,4 +1,4 @@
-package bd.uber.zafor.model.operationsmanager;
+package bd.uber.zafor.model.driver;
 
 import java.io.Serializable;
 

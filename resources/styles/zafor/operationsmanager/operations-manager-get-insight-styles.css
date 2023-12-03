@@ -1,0 +1,30 @@
+.main-container {
+    -fx-background-color: #DEDEDF;
+}
+
+.title-text {
+    -fx-font-size: 20;
+}
+
+.subtitle {
+    -fx-font-size: 18;
+}
+
+VBox {
+    -fx-background-color: transparent;
+    -fx-border-color: #0F0F0F;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+}
+
+Button {
+    -fx-background-color: #0F0F0F;
+    -fx-background-radius: 4;
+    -fx-text-fill: #DEDEDF;
+    -fx-pref-width: 240;
+    -fx-pref-height: 80;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-cursor: hand;
+}

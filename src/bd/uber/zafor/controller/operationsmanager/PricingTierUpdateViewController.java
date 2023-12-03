@@ -3,7 +3,7 @@ package bd.uber.zafor.controller.operationsmanager;
 import bd.uber.BinFilePath;
 import bd.uber.Util;
 import bd.uber.zafor.model.operationsmanager.PricingTier;
-import bd.uber.zafor.model.operationsmanager.RideType;
+import bd.uber.zafor.model.driver.RideType;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

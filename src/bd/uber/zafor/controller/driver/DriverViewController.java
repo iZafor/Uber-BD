@@ -87,7 +87,7 @@ public class DriverViewController implements Initializable {
         // Retrieve Rides
         Util.getInstance().getWorkers().execute(() -> {
             this.driver.setRideList(Util.getInstance().getDb().getObjectList(BinFilePath.RIDE, ride -> ride.getDriverId() == driver.getId()));
-            List<Ride> completedRides = driver.getRideList().stream().filter(Ride::isCompleted).collect(Collectors.toList());
+            List<Ride> completedRides = driver.getRideList().stream().filter(Ride::hasCompleted).collect(Collectors.toList());
 
             // Retrieve Feedbacks
             Util.getInstance().getWorkers().execute(() -> {

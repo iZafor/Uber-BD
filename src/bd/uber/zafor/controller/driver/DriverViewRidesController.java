@@ -166,11 +166,11 @@ public class DriverViewRidesController implements Initializable {
         if (isFromDate && isToDate && toDate != null && isFareLower && isFareUpper) {
             finalFareLower = fareLower;
             finalFareUpper = fareUpper;
-            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.hasCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getPickupTime().isBefore(LocalDateTime.of(toDate, LocalTime.MIDNIGHT))
                     && ride.getFare() >= finalFareLower && ride.getFare() <= finalFareUpper;
         } else if (isFromDate && isToDate && toDate != null && !isFareLower && !isFareUpper) {
-            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.hasCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getPickupTime().isBefore(LocalDateTime.of(toDate, LocalTime.MIDNIGHT));
         } else if (!isFromDate && !isToDate && isFareLower && isFareUpper) {
             finalFareLower = fareLower;
@@ -178,10 +178,10 @@ public class DriverViewRidesController implements Initializable {
             return ride -> ride.getFare() >= finalFareLower && ride.getFare() <= finalFareUpper;
         } else if (isFromDate && !isToDate && isFareLower && !isFareUpper) {
             finalFareLower = fareLower;
-            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
+            return ride -> ride.hasCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT))
                     && ride.getFare() >= finalFareLower;
         } else if (isFromDate && !isToDate && !isFareLower && !isFareUpper) {
-            return ride -> ride.isCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT));
+            return ride -> ride.hasCompleted() && ride.getPickupTime().isAfter(LocalDateTime.of(fromDate, LocalTime.MIDNIGHT));
         } else if (!isFromDate && !isToDate && isFareLower) {
             finalFareLower = fareLower;
             return ride -> ride.getFare() >= finalFareLower;
