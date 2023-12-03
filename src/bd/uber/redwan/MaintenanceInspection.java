@@ -1,9 +1,5 @@
 package bd.uber.redwan;
 
-import bd.uber.redwan.Inspection;
-import bd.uber.redwan.MaintenanceDetails;
-import bd.uber.redwan.MaintenanceTask;
-import bd.uber.redwan.Report;
 
 public class MaintenanceInspection implements Inspection {
     private Report report;

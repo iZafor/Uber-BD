@@ -6,10 +6,10 @@ import java.util.List;
  *
  * @author Redwan
  */
-public class ScheduledMaintenance {
+public class AssignMaintenance {
     private List<MaintenanceTask> viewUpcomingMaintenanceTasks;
 
-    public ScheduledMaintenance(List<MaintenanceTask> viewUpcomingMaintenanceTasks) {
+    public AssignMaintenance(List<MaintenanceTask> viewUpcomingMaintenanceTasks) {
         this.viewUpcomingMaintenanceTasks = viewUpcomingMaintenanceTasks;
     }
 
