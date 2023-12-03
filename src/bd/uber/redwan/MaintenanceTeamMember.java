@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bd.uber.redwan;
 
 import bd.uber.zafor.model.driver.MaintenanceRequest;
@@ -12,19 +8,22 @@ import bd.uber.zafor.model.driver.MaintenanceRequest;
  */
 public class MaintenanceTeamMember {
     private String memberId;
+    private String memberName;
 
-    // Constructor
-    public MaintenanceTeamMember(String memberId) {
+    public MaintenanceTeamMember(String memberId,String memberName) {
         this.memberId = memberId;
+        this.memberName = memberName;
     }
 
-    // Method to handle support request
-    public void handleSupportRequest(MaintenanceRequest maintenanceRequest) {
-        // Logic to handle the maintenance request
-        // This method can process or handle the incoming maintenance request
+    public String getMemberName() {
+        return memberName;
     }
 
-    // Getter and setter for memberId
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+
     public String getMemberId() {
         return memberId;
     }
@@ -33,5 +32,15 @@ public class MaintenanceTeamMember {
         this.memberId = memberId;
     }
 
-    // Other methods as needed
+    public void handleSupportRequest(MaintenanceRequest maintenanceRequest) {
+
+    }
+    
+    
+    //////test
+@Override
+public String toString() {
+    return "Member ID: " + this.memberId +
+            ", Member Name: " + this.memberName;
+}
 }

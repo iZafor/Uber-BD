@@ -2,7 +2,6 @@ package bd.uber.redwan;
 
 import java.io.Serializable;
 
-// Class representing a vehicle component
 public class VehicleComponent implements Serializable {
     private final String componentName;
     private final ComponentCategory category;

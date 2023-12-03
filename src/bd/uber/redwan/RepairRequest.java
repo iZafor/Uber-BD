@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bd.uber.redwan;
 
-
-
 import bd.uber.zafor.model.driver.DamageReport;
+import java.io.Serializable;
 
 import java.util.List;
 
@@ -14,7 +10,7 @@ import java.util.List;
  *
  * @author Redwan
  */
-public class RepairRequest {
+public class RepairRequest implements Serializable {
     private String requestId;
     private int driverId;
     private List<DamageReport> damageReports;

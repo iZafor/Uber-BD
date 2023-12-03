@@ -1,0 +1,2 @@
+Vehicle Registration No: 1, Year: 2004, Model: Lexus, Status: Needs Retirement
+Vehicle Registration No: 5, Year: 2005, Model: Tesla, Status: In Poor Condition

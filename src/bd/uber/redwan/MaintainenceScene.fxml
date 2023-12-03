@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="681.0" prefWidth="954.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bd.uber.redwan.MaintainenceSceneController">
    <children>
-      <TextArea fx:id="viewMaintainenceRequests" layoutX="27.0" layoutY="58.0" prefHeight="200.0" prefWidth="901.0" />
       <Label layoutX="27.0" layoutY="29.0" text="Maintainence Requests:" />
-      <DatePicker fx:id="datePickerId" layoutX="21.0" layoutY="310.0" />
-      <Button layoutX="21.0" layoutY="366.0" mnemonicParsing="false" onAction="#scheduleMaintainence" text="Schedule Maintainence" />
-      <Button layoutX="310.0" layoutY="318.0" mnemonicParsing="false" onAction="#generateReportFromMaintenanceInspectionButton" text="Generate Report" />
-      <Button layoutX="622.0" layoutY="326.0" mnemonicParsing="false" onAction="#maintainenceInspectionButton" text="View Maintenance Inspection" />
-      <TextArea fx:id="viewMaintainenceInspection" layoutX="529.0" layoutY="373.0" prefHeight="200.0" prefWidth="399.0" />
-      <Button layoutX="310.0" layoutY="358.0" mnemonicParsing="false" onAction="#viewReport" text="View Report" />
-      <TextArea fx:id="showReport" layoutX="278.0" layoutY="405.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextArea fx:id="showScheduledMaintainence" layoutX="21.0" layoutY="418.0" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="863.0" layoutY="636.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
+      <TableView fx:id="maintainenceRequestTable" layoutX="30.0" layoutY="64.0" prefHeight="200.0" prefWidth="878.0">
+        <columns>
+          <TableColumn fx:id="vehicleInfoIdColumn" prefWidth="123.0" text="Vehicle Info Id" />
+          <TableColumn fx:id="modelColumn" prefWidth="155.0" text="Model" />
+            <TableColumn fx:id="preferredTimeSlotColumn" prefWidth="144.0" text="Prefered Time Slot" />
+            <TableColumn fx:id="odometerReadingColumn" prefWidth="144.0" text="Odometer Reading" />
+            <TableColumn fx:id="fuelLevelColumn" prefWidth="78.0" text="Fuel Level" />
+            <TableColumn fx:id="tirePressureColumn" prefWidth="111.0" text="Tire Pressure" />
+            <TableColumn fx:id="engineOilLevelColumn" prefWidth="122.0" text="Engine Oil Level" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+      <Button layoutX="135.0" layoutY="542.0" mnemonicParsing="false" onAction="#assignToMemberButton" text="Assign to member" />
+      <TableView fx:id="teamMemberTable" layoutX="30.0" layoutY="321.0" prefHeight="200.0" prefWidth="364.0">
+        <columns>
+          <TableColumn fx:id="teamMemberIdColumn" prefWidth="180.0" text="Team Member Id" />
+          <TableColumn fx:id="teamMemberNameColumn" prefWidth="183.0" text="Team Member Name" />
+        </columns>
+      </TableView>
+      <Button layoutX="521.0" layoutY="381.0" mnemonicParsing="false" onAction="#viewMaintainenceTasksButton" text="View Maintainence Tasks" />
+      <ComboBox fx:id="teamMemberLoginComboBox" layoutX="517.0" layoutY="325.0" prefHeight="31.0" prefWidth="192.0" promptText="Team Member Login" />
    </children>
 </AnchorPane>

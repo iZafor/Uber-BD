@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package bd.uber.redwan;
 
 import bd.uber.Util;
@@ -34,15 +30,28 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private void maintainenceButton(ActionEvent event) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("MaintainenceScene.fxml"));
+//            Parent root = loader.load();
+//
+//            Util.getInstance().showScene(root, event, "", false);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            // Handle the exception
+//        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MaintainenceScene.fxml"));
             Parent root = loader.load();
 
-            Util.getInstance().showScene(root, event, "", false);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene inventoryScene = new Scene(root);
+            stage.setScene(inventoryScene);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
             // Handle the exception
         }
+
     }
 
     @FXML
@@ -68,6 +77,36 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private void retirementButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VehicleRetirementScene.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene retirementScene = new Scene(root);
+            stage.setScene(retirementScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }       
+        
+    }
+
+    @FXML
+    private void preventativeMaintainenceButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PreventitiveMaintenancePlanningScene.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene preventativeScene = new Scene(root);
+            stage.setScene(preventativeScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }         
+        
     }
 
 }

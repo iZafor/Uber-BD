@@ -53,16 +53,16 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
-//        LoginInfo loginInfo;
-//        if ((loginInfo = validateInputs()) == null) {
-//            showAlert("Invalid Input!");
-//            return;
-//        }
-//
-//        if (loginInfo.verifyLoginInfo() == null) {
-//            showAlert("Incorrect Credential!");
-//            return;
-//        }
+        LoginInfo loginInfo;
+        if ((loginInfo = validateInputs()) == null) {
+            showAlert("Invalid Input!");
+            return;
+        }
+
+        if (loginInfo.verifyLoginInfo() == null) {
+            showAlert("Incorrect Credential!");
+            return;
+        }
      try{       
         Parent parent = FXMLLoader.load(getClass().getResource("redwan/MainScene.fxml")) ;
         Util.getInstance().showScene(parent, actionEvent,"", false);

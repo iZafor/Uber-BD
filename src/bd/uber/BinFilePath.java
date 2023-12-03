@@ -8,7 +8,7 @@ public enum BinFilePath {
     OPERATIONS_MANAGER("bin/operations_manager.bin"),
     HUMAN_RESOURCE_MANGER("bin/human_resource_manager.bin"),
     SUPPORT_REPRESENTATIVE("bin/support_representative.bin"),
-    VEHICLE_MAINTENANCE_TEAM("bin/vehicle_maintenance_team.bin"),
+    VEHICLE_MAINTENANCE_Manager("bin/vehicle_maintenance_manager.bin"),
     BUSINESS_ACCOUNT_MANAGER("bin/business_account_manager.bin"),
 
     // Unknown

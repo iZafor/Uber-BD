@@ -1,29 +1,70 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bd.uber.redwan;
 
-/**
- *
- * @author Redwan
- */
-public class MaintenanceInspection {
+import bd.uber.redwan.Inspection;
+import bd.uber.redwan.MaintenanceDetails;
+import bd.uber.redwan.MaintenanceTask;
+import bd.uber.redwan.Report;
+
+public class MaintenanceInspection implements Inspection {
     private Report report;
+    private MaintenanceDetails maintenanceDetails;
+    private MaintenanceTask maintenanceTask;
+    private Report generatedReport; // Store the generated report
 
-    // Constructor
-    public MaintenanceInspection(Report report) {
+    public MaintenanceInspection(Report report, MaintenanceDetails details, MaintenanceTask task) {
         this.report = report;
+        this.maintenanceDetails = details;
+        this.maintenanceTask = task;
     }
 
-    // Getter and setter for Report
-    public Report getReport() {
-        return report;
+    // Getters and setters for MaintenanceDetails and MaintenanceTask
+    public MaintenanceDetails getMaintenanceDetails() {
+        return maintenanceDetails;
     }
 
-    public void setReport(Report report) {
-        this.report = report;
+    public void setMaintenanceDetails(MaintenanceDetails maintenanceDetails) {
+        this.maintenanceDetails = maintenanceDetails;
     }
 
-    // Other methods as needed
+    public MaintenanceTask getMaintenanceTask() {
+        return maintenanceTask;
+    }
+
+    public void setMaintenanceTask(MaintenanceTask maintenanceTask) {
+        this.maintenanceTask = maintenanceTask;
+    }
+
+    
+    public void generateReport() {
+        String reportId = report.getReportId();
+        String findings = report.getFindings();
+
+        String generatedReportString = "Report ID: " + reportId + "\nFindings: " + findings + "\nAdditional details: ..."; // Modify this to suit your logic
+
+        this.generatedReport = new Report(reportId, generatedReportString);
+    }
+
+    public String getGeneratedReportId() {
+        if (generatedReport != null) {
+            return generatedReport.getReportId();
+        }
+        return null; 
+    }
+
+    // Method to retrieve the generated findings/details
+    public String getGeneratedFindings() {
+        if (generatedReport != null) {
+            return generatedReport.getFindings();
+        }
+        return null; 
+    }
+
+   
+    public void updateStatus() {
+    }
+
+    
+    public void submitReport() {
+    }
+
 }

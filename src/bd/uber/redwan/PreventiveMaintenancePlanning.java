@@ -4,35 +4,29 @@
  */
 package bd.uber.redwan;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+ 
 /**
  *
  * @author Redwan
  */
+
 public class PreventiveMaintenancePlanning {
 
-    // Method to access service history and performance data of a vehicle
-    public void accessServiceHistoryAndPerformanceData(Vehicle vehicle) {
-        // Logic to access service history and performance data of the vehicle
-        // This method can gather and analyze data related to previous services and performance metrics
-    }
+    private static final String DIRECTORY_PATH = "src" + File.separator + "bd" + File.separator + "uber" + File.separator + "redwan" + File.separator;
 
-    // Method to analyze historical data to plan maintenance tasks
-    public void analyzeHistoricalDataToPlanMaintenanceTasks(String historicalData) {
-        // Logic to analyze historical data for maintenance planning
-        // This method can analyze data to determine patterns and plan future maintenance tasks
-    }
+    public void createTextFile(String fileName, String content) {
+        String filePath = DIRECTORY_PATH + fileName;
 
-    // Method to schedule preventive maintenance tasks for a vehicle
-    public void schedulePreventiveMaintenanceTasksForVehicle(Vehicle vehicle, String maintenanceTasks) {
-        // Logic to schedule preventive maintenance tasks for the specified vehicle
-        // This method can schedule tasks based on analysis or predefined criteria
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-    // Method to implement scheduled preventive maintenance and update records
-    public void implementScheduledPreventiveMaintenanceAndUpdateRecords(String maintenanceRecords) {
-        // Logic to implement scheduled preventive maintenance and update records
-        // This method can update maintenance records after performing scheduled tasks
-    }
-
-    // Other methods and functionalities as needed
 }
