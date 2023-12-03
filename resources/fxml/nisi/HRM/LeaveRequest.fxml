@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="645.0" prefWidth="784.0" style="-fx-background-color: ccfc7f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="bd.nisi.controller.LeaveRequestController">
+   <children>
+      <Label layoutX="296.0" layoutY="35.0" text="LeaveRequest">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <TableView layoutX="38.0" layoutY="148.0" prefHeight="366.0" prefWidth="708.0">
+        <columns>
+          <TableColumn fx:id="idTableColumn" prefWidth="65.0" text="ID" />
+            <TableColumn fx:id="startingDateTableColumn" prefWidth="108.0" text="Starting Date" />
+            <TableColumn fx:id="endingDateTableColumn" prefWidth="153.0" text="Ending Date" />
+            <TableColumn fx:id="statusTableColumn" prefWidth="75.0" text="Status" />
+          <TableColumn fx:id="resonTableColumn" prefWidth="306.0" text="Reason" />
+        </columns>
+      </TableView>
+      <Button layoutX="674.0" layoutY="568.0" mnemonicParsing="false" onAction="#goBackButtonOnClick" style="-fx-background-color: black;" text="Go Back" textFill="#f5eaea" />
+   </children>
+</AnchorPane>

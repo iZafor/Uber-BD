@@ -18,6 +18,9 @@ public enum BinFilePath {
     CONTACT_DETAILS("bin/contact_details"),
 
     // Driver Related Files,
+
+    
+    EMPLOYEE_DETAILS("bin/Employee_Details"),
     VEHICLE_INFO("bin/vehicle_info.bin"),
     VEHICLE_STATUS("bin/vehicle_status.bin"),
     INSURANCE_POLICY("bin/insurance_policy.bin"),
@@ -48,8 +51,6 @@ public enum BinFilePath {
     }
 
     public String getPath() {
-        synchronized (this) {
-            return path;
-        }
+        return path;
     }
 }
