@@ -1,5 +1,6 @@
 package bd.uber;
 
+import bd.uber.zafor.model.driver.Driver;
 import bd.uber.zafor.model.driver.PaymentMethod;
 import bd.uber.zafor.model.driver.Ride;
 import bd.uber.zafor.model.operationsmanager.OperationsManager;
@@ -17,6 +18,10 @@ public class Test {
     private static final List<Location> locationList = db.getObjectList(BinFilePath.LOCATION);
 
     public static void main(String[] args) {
+        List<Driver> driverList = db.getObjectList(BinFilePath.DRIVER);
+        for(Driver driver: driverList) {
+            System.out.println(driver.id + " " + driver.password);
+        }
 //        manager.setProfileImage("");
 //        generateRides();
 //        OperationsManager operationsManager = new OperationsManager(1);

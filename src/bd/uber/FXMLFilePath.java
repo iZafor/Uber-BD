@@ -67,7 +67,9 @@ public enum FXMLFilePath {
     PAYMENT_PROCEDURE("/fxml/nisi/Passenger/PaymentProcedure.fxml"),
     DIGITAL_PAYMENT_SCEN1("/fxml/nisi/Passenger/DigitalPaymentScen1.fxml"),
     DIGITAL_PAYMENT_SCEN2("/fxml/nisi/Passenger/DigitalPaymentScen2.fxml"),
-    PASSENGER_PROFILE("/fxml/nisi/Passenger/PassengerProfile.fxml");
+    PASSENGER_PROFILE("/fxml/nisi/Passenger/PassengerProfile.fxml"),
+
+    BUSINESS_ACCOUNT_MANAGER("/fxml/hasibul/BusinessAcountManagerView.fxml");
 
     private final String path;
 

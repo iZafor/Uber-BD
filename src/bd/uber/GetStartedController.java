@@ -1,7 +1,9 @@
 package bd.uber;
 
 import bd.uber.zafor.controller.driver.DriverViewController;
+import bd.uber.zafor.controller.operationsmanager.OperationsManagerController;
 import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.operationsmanager.OperationsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +17,8 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 
 public class GetStartedController implements Initializable {
     @FXML
@@ -37,7 +38,7 @@ public class GetStartedController implements Initializable {
     }
 
     @FXML
-    private void onForgotPassword(MouseEvent mouseEvent) {
+    private void onForgotPassword() {
     }
 
     @FXML
@@ -53,22 +54,73 @@ public class GetStartedController implements Initializable {
 
     @FXML
     private void onLogin(ActionEvent actionEvent) {
+        UserType userType = userTypeComboBox.getValue();
+        User user = null;
         LoginInfo loginInfo;
-        if ((loginInfo = validateInputs()) == null) {
+
+        if (userType == null) {
             showAlert("Invalid Input!");
             return;
         }
 
-        if (loginInfo.verifyLoginInfo() == null) {
-            showAlert("Incorrect Credential!");
-            return;
+        if (userType == UserType.DRIVER || userType == UserType.OPERATIONS_MANAGER) {
+            if ((loginInfo = validateInputs()) == null) {
+                showAlert("Invalid Input!");
+                return;
+            }
+
+            if ((user = loginInfo.verifyLoginInfo()) == null) {
+                showAlert("Incorrect Credential!");
+                return;
+            }
         }
-     try{       
-        Parent parent = FXMLLoader.load(getClass().getResource("redwan/MainScene.fxml")) ;
-        Util.getInstance().showScene(parent, actionEvent,"", false);
-     }
-     catch (Exception ignored){}
-    
+
+        try {
+            switch (userType) {
+                case DRIVER:
+                    FXMLLoader dLoader = Util.getInstance().getLoader(FXMLFilePath.DRIVER_VIEW);
+                    Util.getInstance().showScene(dLoader.load(), actionEvent, "Driver", false);
+                    ((DriverViewController) dLoader.getController()).setInitData((Driver) user);
+                    break;
+                case OPERATIONS_MANAGER:
+                    FXMLLoader omLoader = Util.getInstance().getLoader(FXMLFilePath.OPERATIONS_MANAGER_VIEW);
+                    Util.getInstance().showScene(omLoader.load(), actionEvent, "Operations Manger", false);
+                    ((OperationsManagerController) omLoader.getController()).setInitData((OperationsManager) user);
+                    break;
+                case PASSENGER:
+                    Util.getInstance().showScene(Util.getInstance().getLoader(FXMLFilePath.PASSENGER_PROFILE).load(),
+                            actionEvent,
+                            "Passenger",
+                            false);
+                    break;
+                case HUMAN_RESOURCE_MANGER:
+                    Util.getInstance().showScene(
+                            Util.getInstance().getLoader(FXMLFilePath.HRM_Dashboard).load(),
+                            actionEvent,
+                            "Human Resource Manager",
+                            false
+                    );
+                    break;
+                case VEHICLE_MAINTENANCE_Manager:
+                    Util.getInstance().showScene(
+                            FXMLLoader.load(Objects.requireNonNull(getClass().getResource("redwan/MainScene.fxml"))),
+                            actionEvent,
+                            "Vehicle Maintenance Manger",
+                            false
+                    );
+                    break;
+                case BUSINESS_ACCOUNT_MANAGER:
+                    Util.getInstance().showScene(
+                            Util.getInstance().getLoader(FXMLFilePath.BUSINESS_ACCOUNT_MANAGER).load(),
+                            actionEvent,
+                            "Business Account Manager",
+                            false
+                    );
+                    break;
+            }
+        } catch (Exception e) {
+            // log the error
+        }
     }
 
     private LoginInfo validateInputs() {
