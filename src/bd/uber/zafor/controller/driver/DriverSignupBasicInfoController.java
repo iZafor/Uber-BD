@@ -4,6 +4,7 @@ import bd.uber.ContactDetails;
 import bd.uber.Location;
 import bd.uber.Util;
 import bd.uber.zafor.model.driver.Driver;
+import bd.uber.zafor.model.driver.SignupDriver;
 import bd.uber.zafor.model.driver.SignupForm;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +52,7 @@ public class DriverSignupBasicInfoController implements Initializable {
     @FXML
     private void onShowNextView() {
         if (validateInputs()) {
-            Util.getInstance().setSignupForm(SignupForm.DRIVING_LICENSE_AND_INSURANCE_POLICY);
+            Util.getInstance().getSignupDriver().setSignupFormPage(SignupForm.DRIVING_LICENSE_AND_INSURANCE_POLICY);
         }
     }
 
@@ -102,10 +103,11 @@ public class DriverSignupBasicInfoController implements Initializable {
         }
 
         try {
-            Driver driver = Util.getInstance().getSignUpDriver();
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+            Driver driver = signUpDriver.getDriver();
             driver.setName(name);
             driver.setPassword(password);
-            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
+            ContactDetails contactDetails = signUpDriver.getSignupDriverContactDetails();
             contactDetails.setEmail(email);
             contactDetails.setLocationId(tempLocation.getLocationId());
             contactDetails.setPrimaryPhoneNumber(primaryPhoneNumber);
@@ -156,12 +158,13 @@ public class DriverSignupBasicInfoController implements Initializable {
 
     private void restoreData() {
         try {
-            Driver driver = Util.getInstance().getSignUpDriver();
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+            Driver driver = signUpDriver.getDriver();
             nameTextField.setText(driver.getName());
             passwordTextField.setText(driver.getPassword());
             confirmPasswordTextField.setText(driver.getPassword());
 
-            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
+            ContactDetails contactDetails = signUpDriver.getSignupDriverContactDetails();
             emailTextField.setText(contactDetails.getEmail());
             addressTextField.setText(Util.getInstance().getLocationList().stream().filter(l -> l.getLocationId() == contactDetails.getLocationId()).findFirst().get().getName());
             primaryPhoneNumberTextField.setText(contactDetails.getPrimaryPhoneNumber());

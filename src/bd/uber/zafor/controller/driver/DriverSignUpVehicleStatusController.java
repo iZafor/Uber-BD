@@ -38,13 +38,14 @@ public class DriverSignUpVehicleStatusController implements Initializable {
     @FXML
     private void onShowNextView() {
         if (validateInputs()) {
-            Util.getInstance().setSignupForm(SignupForm.IDENTIFICATION_INFO);
+            Util.getInstance().getSignupDriver().setSignupFormPage(SignupForm.IDENTIFICATION_INFO);
         }
     }
 
     private void restoreData() {
         try {
-            VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+            VehicleStatus vehicleStatus = signUpDriver.getSignUpDriverVehicleStatus();
             odometerReadingTextField.setText(String.valueOf(vehicleStatus.getOdometerReading()));
             fuelLevelComboBox.setValue(vehicleStatus.getFuelLevel());
             engineoilLevelComboBox.setValue(vehicleStatus.getEngineOilLevel());
@@ -106,7 +107,8 @@ public class DriverSignUpVehicleStatusController implements Initializable {
             return false;
         }
 
-        VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
+        SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+        VehicleStatus vehicleStatus = signUpDriver.getSignUpDriverVehicleStatus();
         vehicleStatus.setOdometerReading(odometerReading);
         vehicleStatus.setFuelLevel(fuelLevel);
         vehicleStatus.setTirePressure(tirePressure);

@@ -19,7 +19,7 @@ public class CreateNewAccountController {
                     "Driver Signup",
                     true
             );
-            ((DriverSignupController) loader.getController()).setInitData(Util.getInstance().getSignupFormProperty());
+            ((DriverSignupController) loader.getController()).setInitData(Util.getInstance().getSignupDriver().getSignupFormPageProperty());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

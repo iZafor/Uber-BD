@@ -2,8 +2,6 @@ package bd.uber;
 
 import bd.uber.zafor.model.driver.*;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -40,18 +38,12 @@ public class Util {
     private final DB db;
     private final ExecutorService workers;
 
-    private Driver signUpDriver;
-    private ContactDetails signupDriverContactDetails;
-    private VehicleInfo signupDriverVehicleInfo;
-    private VehicleStatus signUpDriverVehicleStatus;
-    private InsurancePolicy signUpDriverInsurancePolicy;
-    private DrivingLicense signUpDriverDrivingLicense;
-    private final ObjectProperty<SignupForm> signupFormProperty;
+    private SignupDriver signupDriver;
     private List<Location> locationList;
 
     private Util() {
         db = new DB();
-        signupFormProperty = new SimpleObjectProperty<>(SignupForm.BASIC_INFO);
+        signupDriver = null;
         workers = Executors.newFixedThreadPool(5);
     }
 
@@ -70,63 +62,15 @@ public class Util {
         return db;
     }
 
-    public Driver getSignUpDriver() {
-        if (signUpDriver == null) {
-            signUpDriver = new Driver(db.getObjectCount(BinFilePath.DRIVER) + 1);
+    public SignupDriver getSignupDriver() {
+        if (signupDriver == null) {
+            signupDriver = new SignupDriver();
         }
-        return signUpDriver;
-    }
-
-    public ContactDetails getSignupDriverContactDetails() {
-        if (signupDriverContactDetails == null) {
-            signupDriverContactDetails = new ContactDetails(db.getObjectCount(BinFilePath.CONTACT_DETAILS) + 1);
-        }
-        return signupDriverContactDetails;
-    }
-
-    public VehicleInfo getSignupDriverVehicleInfo() {
-        if (signupDriverVehicleInfo == null) {
-            signupDriverVehicleInfo = new VehicleInfo(db.getObjectCount(BinFilePath.VEHICLE_INFO) + 1);
-        }
-        return signupDriverVehicleInfo;
-    }
-
-    public VehicleStatus getSignupDriverVehicleStatus() {
-        if (signUpDriverVehicleStatus == null) {
-            signUpDriverVehicleStatus = new VehicleStatus(db.getObjectCount(BinFilePath.VEHICLE_STATUS) + 1);
-        }
-        return signUpDriverVehicleStatus;
-    }
-
-    public InsurancePolicy getSignUpDriverInsurancePolicy() {
-        if (signUpDriverInsurancePolicy == null) {
-            signUpDriverInsurancePolicy = new InsurancePolicy(db.getObjectCount(BinFilePath.INSURANCE_POLICY) + 1);
-        }
-        return signUpDriverInsurancePolicy;
-    }
-
-    public DrivingLicense getSignUpDriverDrivingLicense() {
-        if (signUpDriverDrivingLicense == null) {
-            signUpDriverDrivingLicense = new DrivingLicense(db.getObjectCount(BinFilePath.DRIVING_LICENSE) + 1);
-        }
-        return signUpDriverDrivingLicense;
+        return signupDriver;
     }
 
     public void resetSignupDriverObjects() {
-        signUpDriver = null;
-        signupDriverContactDetails = null;
-        signupDriverVehicleInfo = null;
-        signUpDriverInsurancePolicy = null;
-        signUpDriverVehicleStatus = null;
-        signUpDriverDrivingLicense = null;
-    }
-
-    public ObjectProperty<SignupForm> getSignupFormProperty() {
-        return signupFormProperty;
-    }
-
-    public void setSignupForm(SignupForm form) {
-        signupFormProperty.setValue(form);
+        signupDriver = null;
     }
 
     /**

@@ -41,7 +41,7 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
     @FXML
     private void onShowNextView() {
         if (validateInputs()) {
-            Util.getInstance().setSignupForm(SignupForm.VEHICLE_INFO);
+            Util.getInstance().getSignupDriver().setSignupFormPage(SignupForm.VEHICLE_INFO);
         }
     }
 
@@ -97,12 +97,13 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
             return false;
         }
 
-        DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
+        SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+        DrivingLicense drivingLicense = signUpDriver.getSignupDriverDrivingLicense();
         drivingLicense.setLicenseNumber(licenseNumber);
         drivingLicense.setExpirationDate(drivingLicenseExpirationDate);
         drivingLicense.setLicenseClass(licenseClass);
 
-        InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+        InsurancePolicy insurancePolicy = signUpDriver.getSignupDriverInsurancePolicy();
         insurancePolicy.setPolicyNumber(policyNumber);
         insurancePolicy.setProvider(insuranceProvider);
         insurancePolicy.setCoverageAmount(insuranceCoverageAmount);
@@ -112,20 +113,24 @@ public class DriverSignUpDrivingLicenseController implements Initializable {
 
     private void restoreData() {
         try {
-            DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+
+            DrivingLicense drivingLicense = signUpDriver.getSignupDriverDrivingLicense();
             // DrivingLicense
             licenseNumberTextField.setText(drivingLicense.getLicenseNumber());
             licenseClassComboBox.setValue(drivingLicense.getLicenseClass());
             drivingLicenseExpirationDatePicker.setValue(drivingLicense.getExpirationDate());
 
             // InsurancePolicy
-            InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+            InsurancePolicy insurancePolicy = signUpDriver.getSignupDriverInsurancePolicy();
             policyNumberTextField.setText(insurancePolicy.getPolicyNumber());
             policyProviderTextField.setText(insurancePolicy.getProvider());
             insuranceCoverageAmountTextField.setText(String.valueOf(insurancePolicy.getCoverageAmount()));
             insurancePolicyExpirationDatePicker.setValue(insurancePolicy.getExpirationDate());
         } catch (NullPointerException ignored) {
 
+        } catch (Exception e) {
+            // log the error
         }
     }
 }

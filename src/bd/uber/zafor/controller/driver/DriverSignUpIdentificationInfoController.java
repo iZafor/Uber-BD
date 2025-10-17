@@ -35,7 +35,7 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
 
     private final FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Image", "*.png", "*.jpg", "*.jpeg");
 
-    private final Driver signupDriver = Util.getInstance().getSignUpDriver();
+    private final Driver signupDriver = Util.getInstance().getSignupDriver().getDriver();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,12 +65,14 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
     @FXML
     private void onSignup(ActionEvent event) {
         if (validateInputs()) {
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+
             // Connect other objects
-            ContactDetails contactDetails = Util.getInstance().getSignupDriverContactDetails();
-            VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
-            DrivingLicense drivingLicense = Util.getInstance().getSignUpDriverDrivingLicense();
-            VehicleStatus vehicleStatus = Util.getInstance().getSignupDriverVehicleStatus();
-            InsurancePolicy insurancePolicy = Util.getInstance().getSignUpDriverInsurancePolicy();
+            ContactDetails contactDetails = signUpDriver.getSignupDriverContactDetails();
+            VehicleInfo vehicleInfo = signUpDriver.getSignupDriverVehicleInfo();
+            DrivingLicense drivingLicense = signUpDriver.getSignupDriverDrivingLicense();
+            VehicleStatus vehicleStatus = signUpDriver.getSignUpDriverVehicleStatus();
+            InsurancePolicy insurancePolicy = signUpDriver.getSignupDriverInsurancePolicy();
 
             signupDriver.setRideRequestRange(1);
             signupDriver.setContactDetailsId(contactDetails.getContactDetailsId());
@@ -153,7 +155,7 @@ public class DriverSignUpIdentificationInfoController implements Initializable {
     }
 
     private boolean validateInputs() {
-        Driver driver = Util.getInstance().getSignUpDriver();
+        Driver driver = Util.getInstance().getSignupDriver().getDriver();
         if (driver.getProfileImage() == null) {
             Util.getInstance().showWarningMessage("Profile image cannot be empty!");
             return false;

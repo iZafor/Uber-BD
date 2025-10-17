@@ -1,6 +1,7 @@
 package bd.uber.zafor.controller.driver;
 
 import bd.uber.Util;
+import bd.uber.zafor.model.driver.SignupDriver;
 import bd.uber.zafor.model.driver.SignupForm;
 import bd.uber.zafor.model.driver.VehicleInfo;
 import bd.uber.zafor.model.driver.VehicleType;
@@ -35,7 +36,7 @@ public class DriverSignUpVehicleInfoController implements Initializable {
     @FXML
     private void onShowNextView() {
         if (validateInput()) {
-            Util.getInstance().setSignupForm(SignupForm.VEHICLE_STATUS);
+            Util.getInstance().getSignupDriver().setSignupFormPage(SignupForm.VEHICLE_STATUS);
         }
     }
 
@@ -89,7 +90,8 @@ public class DriverSignUpVehicleInfoController implements Initializable {
             return false;
         }
 
-        VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
+        SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+        VehicleInfo vehicleInfo = signUpDriver.getSignupDriverVehicleInfo();
         vehicleInfo.setModel(model);
         vehicleInfo.setColor(color);
         vehicleInfo.setRegistrationNumber(registrationNumber);
@@ -102,7 +104,8 @@ public class DriverSignUpVehicleInfoController implements Initializable {
 
     private void restoreData() {
         try {
-            VehicleInfo vehicleInfo = Util.getInstance().getSignupDriverVehicleInfo();
+            SignupDriver signUpDriver = Util.getInstance().getSignupDriver();
+            VehicleInfo vehicleInfo = signUpDriver.getSignupDriverVehicleInfo();
             int passengerCapacity = vehicleInfo.getPassengerCapacity();
             int numberOfEngines = vehicleInfo.getNumberOfEngines();
             modelTextField.setText(vehicleInfo.getModel());
